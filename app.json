@@ -4,7 +4,7 @@
     "slug": "mythicmath-front",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/icon.jpeg",
     "splash": {
       "image": "./assets/images/logo.png",
       "resizeMode": "contain",
@@ -21,13 +21,13 @@
         "backgroundColor": "#E6F4FE"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.mythicmathfront"
     },
     "web": {
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.jpeg"
     },
-
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true

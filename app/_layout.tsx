@@ -6,8 +6,7 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <Stack screenOptions={{ headerShown: false, animation: "none" }}>
-        </Stack>
+        <Stack screenOptions={{ headerShown: false, animation: "none" }} />
       </ThemeProvider>
     </SafeAreaProvider>
   );

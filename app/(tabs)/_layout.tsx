@@ -10,6 +10,7 @@ export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
+        headerShown: false,
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           height: 70 + insets.bottom,

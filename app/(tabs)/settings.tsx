@@ -1,8 +1,20 @@
+import { View, Button } from "react-native";
+import { router } from "expo-router";
+
+//Hook
 import { useTheme } from "@/hooks/useTheme";
-import { View, Text, StyleSheet } from "react-native";
+
+//Services
+import { logout } from "@/src/services/authService";
 
 export default function SettingsScreen() {
   const { theme } = useTheme();
+
+  async function handleLogout() {
+    await logout();
+    router.replace("/(auth)/login");
+  }
+
   return (
     <View
       style={{
@@ -12,15 +24,8 @@ export default function SettingsScreen() {
         alignItems: "center",
       }}
     >
-      <Text>Tab [Home|Settings]</Text>
+      {/* Logout */}
+      <Button title="Logout" onPress={handleLogout} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

@@ -8,3 +8,9 @@ export interface ProfileResponse {
   xpToNextLevel: number;
   level: number;
 }
+
+// RESPONSE TYPE
+export interface UpdateAvatarResponse {
+  result: boolean;
+  image: string;
+}

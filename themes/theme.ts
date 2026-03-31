@@ -5,6 +5,10 @@ export type ThemeColors = {
   textSecondary: string;
   backgroundAuthDarker: [string, string];
   backgroundAuthClearer: [string, string];
+  chip: [string, string]
+  chipForeground: string;
+  progressBar: string;
+  progressBarForeground: string;
   card: string;
   cardForeground: string;
   popover: string;
@@ -43,6 +47,12 @@ export const lightTheme: ThemeColors = {
 
   backgroundAuthDarker: ["#7e22ce", "#1d4ed8"],
   backgroundAuthClearer: ["#9333ea", "#2563eb"],
+
+  chip: ["#7e22ce", "#1d4ed8"],
+  chipForeground: "#ffffff",
+
+  progressBar: "#e5e7eb",
+  progressBarForeground: "#7e22ce",
 
   card: "#ffffff",
   cardForeground: "#202020",
@@ -93,6 +103,12 @@ export const darkTheme: ThemeColors = {
 
   backgroundAuthDarker: ["#7e22ce", "#1d4ed8"],
   backgroundAuthClearer: ["#9333ea", "#2563eb"],
+
+  chip: ["#7e22ce", "#1d4ed8"],
+  chipForeground: "#ffffff",
+
+  progressBar: "#2f2f2f",
+  progressBarForeground: "#9333ea",
 
   card: "#202020",
   cardForeground: "#fafafa",
