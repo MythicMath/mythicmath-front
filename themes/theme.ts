@@ -15,6 +15,10 @@ export type ThemeColors = {
   purpleDarker: string;
   blue: string;
   blueDarker: string;
+  green: string;
+  greenDarker: string;
+  fire: string;
+  fireDarker: string;
   secondary: string;
   secondaryForeground: string;
   muted: string;
@@ -32,19 +36,19 @@ export type ThemeColors = {
 
 export const lightTheme: ThemeColors = {
   background: "#ffffff",
-  foreground: "#0a0a0a",
+  foreground: "#202020",
 
-  text: "#0a0a0a",
+  text: "#202020",
   textSecondary: "#3e3e3e",
 
   backgroundAuthDarker: ["#7e22ce", "#1d4ed8"],
   backgroundAuthClearer: ["#9333ea", "#2563eb"],
 
   card: "#ffffff",
-  cardForeground: "#0a0a0a",
+  cardForeground: "#202020",
 
   popover: "#ffffff",
-  popoverForeground: "#0a0a0a",
+  popoverForeground: "#202020",
 
   primary: "#030213",
   error: "#ff4d4f",
@@ -55,6 +59,11 @@ export const lightTheme: ThemeColors = {
   blue: "#2563eb",
   blueDarker: "#1d4ed8",
 
+  green: "#71eb25",
+  greenDarker: "#0b8b1a",
+
+  fire: "#eb9f25",
+  fireDarker: "#b31313",
 
   secondary: "#f4f4f5",
   secondaryForeground: "#030213",
@@ -76,19 +85,19 @@ export const lightTheme: ThemeColors = {
   ring: "#b4b4b4",
 };
 export const darkTheme: ThemeColors = {
-  background: "#0a0a0a",
+  background: "#202020",
   foreground: "#fafafa",
 
-  text: "#0a0a0a",
+  text: "#202020",
   textSecondary: "#2f2f2f",
 
   backgroundAuthDarker: ["#7e22ce", "#1d4ed8"],
   backgroundAuthClearer: ["#9333ea", "#2563eb"],
 
-  card: "#0a0a0a",
+  card: "#202020",
   cardForeground: "#fafafa",
 
-  popover: "#0a0a0a",
+  popover: "#202020",
   popoverForeground: "#fafafa",
 
   primary: "#fafafa",
@@ -99,6 +108,12 @@ export const darkTheme: ThemeColors = {
 
   blue: "#2563eb",
   blueDarker: "#1d4ed8",
+
+  green: "#71eb25",
+  greenDarker: "#0b8b1a",
+
+  fire: "#eb9f25",
+  fireDarker: "#b31313",
 
   secondary: "#3f3f46",
   secondaryForeground: "#fafafa",

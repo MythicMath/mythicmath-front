@@ -48,7 +48,7 @@ export default function LoginScreen() {
   } = useForm<FormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      identifier: "ana",
+      identifier: "ana", //MOCKADO
       password: "password",
     },
   });
