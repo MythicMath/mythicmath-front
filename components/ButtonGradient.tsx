@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default function ButtonGradient({ title, onPress, disabled }: Props) {
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   return (
     <Pressable
@@ -25,7 +25,7 @@ export default function ButtonGradient({ title, onPress, disabled }: Props) {
       {({ pressed }) => (
         <LinearGradient
           colors={
-            pressed ? theme.backgroundAuthDarker : theme.backgroundAuthClearer
+            pressed ? theme.gradients.bgColoredPressed : theme.gradients.bgColored
           }
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}

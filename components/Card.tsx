@@ -7,15 +7,15 @@ type Props = {
 };
 
 export default function Card({ children, style }: Props) {
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   return (
     <View
       style={[
         styles.card,
         {
-          backgroundColor: theme.card,
-          borderColor: theme.border,
+          backgroundColor: theme.colors.card,
+          borderColor: theme.colors.border,
         },
         style,
       ]}

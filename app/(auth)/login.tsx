@@ -10,7 +10,6 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { globalStyles } from "@/styles/globalStyles";
 import { login } from "@/src/services/authService";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -21,7 +20,7 @@ const loginSchema = z.object({
     .trim()
     .min(1, "Nome ou e-mail é obrigatório")
     .refine((value) => {
-      if (!value) return true; // evita rodar refine quando vazio
+      if (!value) return true;
 
       if (value.includes("@")) {
         return emailRegex.test(value);
@@ -36,8 +35,7 @@ const loginSchema = z.object({
 type FormData = z.infer<typeof loginSchema>;
 
 export default function LoginScreen() {
-  const { theme } = useTheme();
-  const globalTheme = globalStyles(theme);
+  const theme = useTheme();
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
@@ -48,7 +46,7 @@ export default function LoginScreen() {
   } = useForm<FormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      identifier: "ana", //MOCKADO
+      identifier: "ana",
       password: "password",
     },
   });
@@ -75,7 +73,7 @@ export default function LoginScreen() {
 
   return (
     <LinearGradient
-      colors={theme.backgroundAuthClearer}
+      colors={theme.gradients.bgColored}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.background}
@@ -83,15 +81,19 @@ export default function LoginScreen() {
       <View style={styles.container}>
         <Image
           source={require("@/assets/images/logo_transparent.png")}
-          style={{ width: 100, height: 100, borderRadius: 100 }}
+          style={styles.logo}
         />
 
-        <Text style={globalTheme.title}>MythicMath</Text>
-        <Text style={globalTheme.message}>
+        <Text style={[styles.title, { color: theme.colors.secondary }]}>
+          MythicMath
+        </Text>
+
+        <Text style={[styles.message, { color: theme.colors.secondary }]}>
           Transforme seu treino de matemática em diversão
         </Text>
 
         <CardAuth>
+          {/* IDENTIFIER */}
           <Controller
             control={control}
             name="identifier"
@@ -106,14 +108,20 @@ export default function LoginScreen() {
                   onBlur={() => setFocusedInput(null)}
                   style={[
                     styles.input,
-                    { borderColor: theme.border, color: theme.text },
+                    {
+                      borderColor: theme.colors.border,
+                      color: theme.colors.foreground,
+                      backgroundColor: theme.colors.inputBackground,
+                    },
                     focusedInput === "identifier" && styles.focused,
                   ]}
-                  placeholderTextColor={theme.textSecondary}
+                  placeholderTextColor={theme.colors.mutedForeground}
                 />
 
                 {errors.identifier && (
-                  <Text style={[styles.error, { color: theme.error }]}>
+                  <Text
+                    style={[styles.error, { color: theme.colors.destructive }]}
+                  >
                     {errors.identifier.message}
                   </Text>
                 )}
@@ -121,6 +129,7 @@ export default function LoginScreen() {
             )}
           />
 
+          {/* PASSWORD */}
           <Controller
             control={control}
             name="password"
@@ -135,14 +144,20 @@ export default function LoginScreen() {
                   onBlur={() => setFocusedInput(null)}
                   style={[
                     styles.input,
-                    { borderColor: theme.border, color: theme.text },
+                    {
+                      borderColor: theme.colors.border,
+                      color: theme.colors.foreground,
+                      backgroundColor: theme.colors.inputBackground,
+                    },
                     focusedInput === "password" && styles.focused,
                   ]}
-                  placeholderTextColor={theme.textSecondary}
+                  placeholderTextColor={theme.colors.mutedForeground}
                 />
 
                 {errors.password && (
-                  <Text style={[styles.error, { color: theme.error }]}>
+                  <Text
+                    style={[styles.error, { color: theme.colors.destructive }]}
+                  >
                     {errors.password.message}
                   </Text>
                 )}
@@ -156,7 +171,12 @@ export default function LoginScreen() {
         </CardAuth>
 
         <View style={styles.messageRow}>
-          <Text style={globalTheme.message_bottom}>
+          <Text
+            style={[
+              styles.messageBottom,
+              { color: theme.colors.secondary },
+            ]}
+          >
             🎮 Ganhe XP • 🏆 Conquiste rankings • ⚡ Desafie amigos
           </Text>
         </View>
@@ -169,6 +189,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
   },
+
   container: {
     flex: 1,
     justifyContent: "center",
@@ -176,10 +197,35 @@ const styles = StyleSheet.create({
     padding: 24,
   },
 
+  logo: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    marginBottom: 16,
+  },
+
+  title: {
+    fontSize: 24,
+    fontWeight: "600",
+    marginBottom: 4,
+  },
+
+  message: {
+    fontSize: 14,
+    textAlign: "center",
+    marginBottom: 16,
+  },
+
+  messageBottom: {
+    fontSize: 12,
+    textAlign: "center",
+  },
+
   messageRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
+    marginTop: 16,
   },
 
   input: {
@@ -187,6 +233,7 @@ const styles = StyleSheet.create({
     padding: 14,
     borderRadius: 10,
     borderWidth: 1,
+    marginBottom: 12,
   },
 
   focused: {
@@ -195,7 +242,7 @@ const styles = StyleSheet.create({
 
   error: {
     fontSize: 12,
-    marginTop: -10,
-    marginBottom: 4,
+    marginTop: -8,
+    marginBottom: 8,
   },
 });

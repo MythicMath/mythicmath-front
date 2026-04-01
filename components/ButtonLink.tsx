@@ -1,4 +1,4 @@
-import { Pressable, Text } from "react-native";
+import { Pressable, Text, StyleSheet } from "react-native";
 import { useTheme } from "@/hooks/useTheme";
 import { Href, Link } from "expo-router";
 
@@ -8,23 +8,21 @@ type Props = {
 };
 
 export function ButtonLink({ title, href }: Props) {
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   return (
     <Link href={href} asChild>
       <Pressable
-        style={{
-          backgroundColor: theme.background,
-          padding: 4,
-          borderRadius: 8,
-          alignItems: "center",
-        }}
+        style={({ pressed }) => [
+          styles.container,
+          { opacity: pressed ? 0.6 : 1 },
+        ]}
       >
         <Text
-          style={{
-            color: theme.purple,
-            fontWeight: "600",
-          }}
+          style={[
+            styles.text,
+            { color: theme.colors.link },
+          ]}
         >
           {title}
         </Text>
@@ -32,3 +30,16 @@ export function ButtonLink({ title, href }: Props) {
     </Link>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 12,
+    alignItems: "center",
+  },
+  text: {
+    textAlign: "center",
+    fontSize: 14,
+    fontWeight: "600",
+    textDecorationLine: "none",
+  },
+});

@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useTheme } from "@/hooks/useTheme";
 
 export default function TabsLayout() {
-  const { theme } = useTheme();
+  const theme = useTheme();
   const insets = useSafeAreaInsets();
 
   return (
@@ -16,7 +16,7 @@ export default function TabsLayout() {
           height: 70 + insets.bottom,
           paddingBottom: insets.bottom,
           paddingTop: 8,
-          backgroundColor: theme.background
+          backgroundColor: theme.colors.background,
         },
       }}
     >

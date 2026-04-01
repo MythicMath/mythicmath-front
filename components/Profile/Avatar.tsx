@@ -16,7 +16,7 @@ export function Avatar({
   size = 100,
   onEditPress,
 }: Props) {
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   // ✅ Generate initials
   const getInitials = () => {
@@ -51,7 +51,7 @@ export function Avatar({
             width: size,
             height: size,
             borderRadius: size / 2,
-            backgroundColor: theme.muted,
+            backgroundColor: theme.colors.muted,
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -60,7 +60,7 @@ export function Avatar({
             style={{
               fontSize: size / 2.5,
               fontWeight: "bold",
-              color: theme.text,
+              color: theme.colors.text,
             }}
           >
             {getInitials()}
@@ -75,8 +75,8 @@ export function Avatar({
           style={[
             styles.editButton,
             {
-              backgroundColor: theme.primary,
-              borderColor: theme.background,
+              backgroundColor: theme.colors.primary,
+              borderColor: theme.colors.background,
             },
           ]}
         >

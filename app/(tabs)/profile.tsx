@@ -15,7 +15,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function ProfileScreen() {
-  const { theme } = useTheme();
+ const theme = useTheme(); 
 
   const [profileData, setProfileData] = useState<ProfileResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -52,7 +52,7 @@ export default function ProfileScreen() {
   return (
     <AppScrollView>
       <LinearGradient
-        colors={theme.backgroundAuthClearer}
+        colors={theme.gradients.bgColored}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.background}

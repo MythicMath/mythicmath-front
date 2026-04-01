@@ -12,7 +12,7 @@ type Props = {
 };
 
 export default function CardAuth({ children }: Props) {
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   const translateY = useSharedValue(40);
   const opacity = useSharedValue(0.5);
@@ -33,8 +33,8 @@ export default function CardAuth({ children }: Props) {
         styles.card,
         animatedStyle,
         {
-          backgroundColor: theme.card,
-          borderColor: theme.border,
+          backgroundColor: theme.colors.card,
+          borderColor: theme.colors.border,
         },
       ]}
     >

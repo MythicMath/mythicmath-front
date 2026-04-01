@@ -3,6 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { TOKEN_KEY, PUBLIC_ROUTES } from "../constants/auth.constants";
 const api = axios.create({
   baseURL: "http://10.0.2.2:8000",
+  //baseURL: "http://SEU_IP:8000",
 });
 
 api.interceptors.request.use(

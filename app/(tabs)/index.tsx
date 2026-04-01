@@ -3,13 +3,13 @@ import { useTheme } from "@/hooks/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function Home() {
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   return (
     <View style={{ flex: 1 }}>
       {/* 🔥 Background gradient (only top 40%) */}
       <LinearGradient
-        colors={theme.backgroundAuthClearer}
+        colors={theme.gradients.background}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.background}
@@ -17,7 +17,7 @@ export default function Home() {
 
       {/* ✅ Full content */}
       <View style={styles.container}>
-        <Text style={{ color: theme.foreground }}>Hello Theme</Text>
+        <Text style={{ color: theme.colors.background }}>Hello Theme</Text>
       </View>
     </View>
   );

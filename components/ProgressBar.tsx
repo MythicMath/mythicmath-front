@@ -18,13 +18,13 @@ export function ProgressBar({
   color,
   backgroundColor,
 }: Props) {
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   const progress = Math.min(xpCurrent / xpToNextLevel, 1);
   const percentage = Math.round(progress * 100);
 
-  const fillColor = color ?? theme.progressBarForeground;
-  const bgColor = backgroundColor ?? theme.progressBar;
+  const fillColor = color ?? theme.colors.background;
+  const bgColor = backgroundColor ?? theme.colors.link;
 
   return (
     <View style={styles.container}>

@@ -1,7 +1,5 @@
 import { StatisticIcons } from "@/icons/StatisticIcons";
 import { Text, View } from "react-native";
-
-//Theme
 import { useTheme } from "@/hooks/useTheme";
 import Card from "../Card";
 
@@ -13,49 +11,69 @@ type Props = {
   icon: IconKey;
 };
 
-export default function ProfileStatistics({ text, quantity, icon }: Props) {
-  const Icon = StatisticIcons[icon];
-  const { theme } = useTheme();
+export default function ProfileStatistics({
+  text,
+  quantity,
+  icon,
+}: Props) {
+  const theme = useTheme();
 
-  const color = theme[Icon.colorKey];
+  const IconConfig = StatisticIcons[icon];
+  const IconComponent = IconConfig.icon;
+
+  const color = theme.colors[IconConfig.colorKey];
 
   return (
     <Card>
       <View
         style={{
-          display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
         }}
       >
         <View
           style={{
-            display: "flex",
             flexDirection: "row",
             gap: 12,
           }}
         >
           <View
             style={{
-              backgroundColor: theme.muted,
+              backgroundColor: theme.colors.muted,
               width: 40,
               height: 40,
               borderRadius: 10,
               justifyContent: "center",
               alignItems: "center",
-              alignSelf: "center",
             }}
           >
-            <Icon.icon name={Icon.iconName} size={20} color={color} />
+            <IconComponent
+              name={IconConfig.iconName}
+              size={20}
+              color={color}
+            />
           </View>
 
-          <View style={{ marginVertical: "auto" }}>
-            <Text style={{ fontSize: 18, color: theme.text }}>{text}</Text>
+          <View style={{ justifyContent: "center" }}>
+            <Text
+              style={{
+                fontSize: 16,
+                color: theme.colors.foreground,
+              }}
+            >
+              {text}
+            </Text>
           </View>
         </View>
 
-        <View style={{ marginVertical: "auto" }}>
-          <Text style={{ fontWeight: "bold", fontSize: 18, color: theme.text }}>
+        <View style={{ justifyContent: "center" }}>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 18,
+              color: theme.colors.foreground,
+            }}
+          >
             {quantity}
           </Text>
         </View>

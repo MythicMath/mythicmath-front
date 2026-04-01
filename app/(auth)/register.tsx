@@ -7,70 +7,36 @@ import CardAuth from "@/components/CardAuth";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 
-// React Hook Form controla os campos do formulário com alta performance
 import { useForm, Controller } from "react-hook-form";
-
-// Zod é usado para criar um schema de validação
 import { z } from "zod";
-
-// Permite conectar Zod com React Hook Form
 import { zodResolver } from "@hookform/resolvers/zod";
-import { globalStyles } from "@/styles/globalStyles";
 import { register } from "@/src/services/authService";
 
-/*
-  Aqui criamos o schema de validação do formulário.
-  Todo dado submetido será validado com essas regras.
-*/
 const registerSchema = z
   .object({
-    // name deve existir e ter pelo menos 1 caractere
     name: z.string().min(1, "O nome é obrigatório"),
-
-    // email precisa ter formato válido
     email: z.string().email("Digite um e-mail válido"),
-
-    // password precisa ter pelo menos 6 caracteres
     password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
-
-    // confirmPassword será comparado depois
     confirmPassword: z.string(),
   })
-  /*
-    refine permite criar validações personalizadas.
-    Aqui verificamos se password === confirmPassword
-  */
   .refine((data) => data.password === data.confirmPassword, {
     message: "As senhas não coincidem",
-    path: ["confirmPassword"], // erro aparecerá nesse campo
+    path: ["confirmPassword"],
   });
 
-/*
-  infer permite criar automaticamente o tipo TypeScript
-  baseado no schema Zod.
-*/
 type FormData = z.infer<typeof registerSchema>;
 
 export default function RegisterScreen() {
-  const { theme } = useTheme();
-  const globalTheme = globalStyles(theme);
+  const theme = useTheme();
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
-  /*
-    useForm inicializa o formulário.
-
-    resolver: conecta o Zod ao React Hook Form.
-    Ou seja: quando o formulário for submetido,
-    o Zod fará toda a validação automaticamente.
-  */
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(registerSchema),
-
     defaultValues: {
       name: "",
       email: "",
@@ -79,10 +45,6 @@ export default function RegisterScreen() {
     },
   });
 
-  /*
-    Essa função só será executada se TODAS
-    as validações do schema passarem.
-  */
   async function handleRegister(data: FormData) {
     try {
       await register(data);
@@ -100,7 +62,7 @@ export default function RegisterScreen() {
 
   return (
     <LinearGradient
-      colors={theme.backgroundAuthClearer}
+      colors={theme.gradients.bgColored}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={styles.background}
@@ -108,22 +70,29 @@ export default function RegisterScreen() {
       <View style={styles.container}>
         <Image
           source={require("@/assets/images/logo_transparent.png")}
-          style={{ width: 100, height: 100, borderRadius: 100 }}
+          style={styles.logo}
         />
 
-        <Text style={globalTheme.title}>Criar Conta</Text>
-        <Text style={globalTheme.message}>
+        <Text
+          style={[
+            styles.title,
+            { color: theme.colors.secondary },
+          ]}
+        >
+          Criar Conta
+        </Text>
+
+        <Text
+          style={[
+            styles.message,
+            { color: theme.colors.secondary },
+          ]}
+        >
           Comece sua jornada matemática agora
         </Text>
 
         <CardAuth>
-          {/* 
-            Controller conecta um input do React Native
-            com o sistema do React Hook Form.
-
-            Isso é necessário porque TextInput é
-            um componente controlado.
-          */}
+          {/* NAME */}
           <Controller
             control={control}
             name="name"
@@ -131,30 +100,29 @@ export default function RegisterScreen() {
               <>
                 <TextInput
                   placeholder="Nome*"
-                  // value vem do React Hook Form
                   value={value}
-                  // qualquer alteração atualiza o estado interno do formulário
                   onChangeText={onChange}
-                  // usado apenas para estilização
                   onFocus={() => setFocusedInput("name")}
                   onBlur={() => setFocusedInput(null)}
                   style={[
                     styles.input,
-                    { borderColor: theme.border, color: theme.text },
+                    {
+                      borderColor: theme.colors.border,
+                      color: theme.colors.foreground,
+                      backgroundColor: theme.colors.inputBackground,
+                    },
                     focusedInput === "name" && styles.focused,
                   ]}
-                  placeholderTextColor={theme.textSecondary}
+                  placeholderTextColor={theme.colors.mutedForeground}
                 />
 
-                {/* 
-                  errors é gerado automaticamente pelo React Hook Form
-                  baseado no schema do Zod.
-                  
-                  Se existir erro no campo name,
-                  mostramos o texto abaixo do input.
-                */}
                 {errors.name && (
-                  <Text style={[styles.error, { color: theme.error }]}>
+                  <Text
+                    style={[
+                      styles.error,
+                      { color: theme.colors.destructive },
+                    ]}
+                  >
                     {errors.name.message}
                   </Text>
                 )}
@@ -178,15 +146,23 @@ export default function RegisterScreen() {
                   onBlur={() => setFocusedInput(null)}
                   style={[
                     styles.input,
-                    { borderColor: theme.border, color: theme.text },
+                    {
+                      borderColor: theme.colors.border,
+                      color: theme.colors.foreground,
+                      backgroundColor: theme.colors.inputBackground,
+                    },
                     focusedInput === "email" && styles.focused,
                   ]}
-                  placeholderTextColor={theme.textSecondary}
+                  placeholderTextColor={theme.colors.mutedForeground}
                 />
 
-                {/* erro de email inválido */}
                 {errors.email && (
-                  <Text style={[styles.error, { color: theme.error }]}>
+                  <Text
+                    style={[
+                      styles.error,
+                      { color: theme.colors.destructive },
+                    ]}
+                  >
                     {errors.email.message}
                   </Text>
                 )}
@@ -209,15 +185,23 @@ export default function RegisterScreen() {
                   onBlur={() => setFocusedInput(null)}
                   style={[
                     styles.input,
-                    { borderColor: theme.border, color: theme.text },
+                    {
+                      borderColor: theme.colors.border,
+                      color: theme.colors.foreground,
+                      backgroundColor: theme.colors.inputBackground,
+                    },
                     focusedInput === "password" && styles.focused,
                   ]}
-                  placeholderTextColor={theme.textSecondary}
+                  placeholderTextColor={theme.colors.mutedForeground}
                 />
 
-                {/* erro se senha < 6 caracteres */}
                 {errors.password && (
-                  <Text style={[styles.error, { color: theme.error }]}>
+                  <Text
+                    style={[
+                      styles.error,
+                      { color: theme.colors.destructive },
+                    ]}
+                  >
                     {errors.password.message}
                   </Text>
                 )}
@@ -240,15 +224,23 @@ export default function RegisterScreen() {
                   onBlur={() => setFocusedInput(null)}
                   style={[
                     styles.input,
-                    { borderColor: theme.border, color: theme.text },
+                    {
+                      borderColor: theme.colors.border,
+                      color: theme.colors.foreground,
+                      backgroundColor: theme.colors.inputBackground,
+                    },
                     focusedInput === "confirmPassword" && styles.focused,
                   ]}
-                  placeholderTextColor={theme.textSecondary}
+                  placeholderTextColor={theme.colors.mutedForeground}
                 />
 
-                {/* erro se senhas não coincidirem */}
                 {errors.confirmPassword && (
-                  <Text style={[styles.error, { color: theme.error }]}>
+                  <Text
+                    style={[
+                      styles.error,
+                      { color: theme.colors.destructive },
+                    ]}
+                  >
                     {errors.confirmPassword.message}
                   </Text>
                 )}
@@ -256,22 +248,24 @@ export default function RegisterScreen() {
             )}
           />
 
-          {/* 
-            handleSubmit executa:
-            1- validação do Zod
-            2- se válido → chama handleRegister
-            3- se inválido → preenche errors automaticamente
-          */}
           <ButtonGradient
             title="Cadastre-se"
             onPress={handleSubmit(handleRegister)}
           />
 
-          <ButtonLink title="Já tem conta? Entre aqui" href="/login" />
+          <ButtonLink
+            title="Já tem conta? Entre aqui"
+            href="/login"
+          />
         </CardAuth>
 
         <View style={styles.messageRow}>
-          <Text style={globalTheme.message_bottom}>
+          <Text
+            style={[
+              styles.messageBottom,
+              { color: theme.colors.secondary },
+            ]}
+          >
             ✨ Comece do nível 1 e evolua até o topo!
           </Text>
         </View>
@@ -284,6 +278,7 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
   },
+
   container: {
     flex: 1,
     justifyContent: "center",
@@ -291,27 +286,52 @@ const styles = StyleSheet.create({
     padding: 24,
   },
 
+  logo: {
+    width: 100,
+    height: 100,
+    borderRadius: 100,
+    marginBottom: 16,
+  },
+
+  title: {
+    fontSize: 24,
+    fontWeight: "600",
+    marginBottom: 4,
+  },
+
+  message: {
+    fontSize: 14,
+    textAlign: "center",
+    marginBottom: 16,
+  },
+
+  messageBottom: {
+    fontSize: 12,
+    textAlign: "center",
+  },
+
   messageRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
+    marginTop: 16,
   },
+
   input: {
     width: "100%",
     padding: 14,
     borderRadius: 10,
     borderWidth: 1,
+    marginBottom: 12,
   },
 
-  // estilo aplicado quando o input está focado
   focused: {
     borderWidth: 2,
   },
 
-  // estilo da mensagem de erro
   error: {
     fontSize: 12,
-    marginTop: -10,
-    marginBottom: 4,
+    marginTop: -8,
+    marginBottom: 8,
   },
 });
