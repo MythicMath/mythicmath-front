@@ -1,16 +1,16 @@
-import { View, StyleSheet, TextInput, Text, Image } from "react-native";
-import { router } from "expo-router";
-import { useTheme } from "@/hooks/useTheme";
-import { ButtonLink } from "@/components/ButtonLink";
 import ButtonGradient from "@/components/ButtonGradient";
+import { ButtonLink } from "@/components/ButtonLink";
 import CardAuth from "@/components/CardAuth";
+import { useTheme } from "@/hooks/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import { useState } from "react";
+import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 
-import { useForm, Controller } from "react-hook-form";
-import { z } from "zod";
+import { register } from "@/src/api/auth.api";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { register } from "@/src/services/authService";
+import { Controller, useForm } from "react-hook-form";
+import { z } from "zod";
 
 const registerSchema = z
   .object({
@@ -73,21 +73,11 @@ export default function RegisterScreen() {
           style={styles.logo}
         />
 
-        <Text
-          style={[
-            styles.title,
-            { color: theme.colors.secondary },
-          ]}
-        >
+        <Text style={[styles.title, { color: theme.colors.secondary }]}>
           Criar Conta
         </Text>
 
-        <Text
-          style={[
-            styles.message,
-            { color: theme.colors.secondary },
-          ]}
-        >
+        <Text style={[styles.message, { color: theme.colors.secondary }]}>
           Comece sua jornada matemática agora
         </Text>
 
@@ -118,10 +108,7 @@ export default function RegisterScreen() {
 
                 {errors.name && (
                   <Text
-                    style={[
-                      styles.error,
-                      { color: theme.colors.destructive },
-                    ]}
+                    style={[styles.error, { color: theme.colors.destructive }]}
                   >
                     {errors.name.message}
                   </Text>
@@ -158,10 +145,7 @@ export default function RegisterScreen() {
 
                 {errors.email && (
                   <Text
-                    style={[
-                      styles.error,
-                      { color: theme.colors.destructive },
-                    ]}
+                    style={[styles.error, { color: theme.colors.destructive }]}
                   >
                     {errors.email.message}
                   </Text>
@@ -197,10 +181,7 @@ export default function RegisterScreen() {
 
                 {errors.password && (
                   <Text
-                    style={[
-                      styles.error,
-                      { color: theme.colors.destructive },
-                    ]}
+                    style={[styles.error, { color: theme.colors.destructive }]}
                   >
                     {errors.password.message}
                   </Text>
@@ -236,10 +217,7 @@ export default function RegisterScreen() {
 
                 {errors.confirmPassword && (
                   <Text
-                    style={[
-                      styles.error,
-                      { color: theme.colors.destructive },
-                    ]}
+                    style={[styles.error, { color: theme.colors.destructive }]}
                   >
                     {errors.confirmPassword.message}
                   </Text>
@@ -253,18 +231,12 @@ export default function RegisterScreen() {
             onPress={handleSubmit(handleRegister)}
           />
 
-          <ButtonLink
-            title="Já tem conta? Entre aqui"
-            href="/login"
-          />
+          <ButtonLink title="Já tem conta? Entre aqui" href="/login" />
         </CardAuth>
 
         <View style={styles.messageRow}>
           <Text
-            style={[
-              styles.messageBottom,
-              { color: theme.colors.secondary },
-            ]}
+            style={[styles.messageBottom, { color: theme.colors.secondary }]}
           >
             ✨ Comece do nível 1 e evolua até o topo!
           </Text>

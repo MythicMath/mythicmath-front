@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Image, ActivityIndicator } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
 //Types
 import { ProfileResponse } from "@/types/profile";
@@ -8,14 +8,14 @@ import { ProfileResponse } from "@/types/profile";
 import ProfileStatistics from "@/components/Profile/ProfileStatistics";
 
 //Services
-import { profile } from "@/src/services/profileService";
 import { AppScrollView } from "@/components/AppScrollView";
 import ProfileCard from "@/components/Profile/ProfileCard";
 import { useTheme } from "@/hooks/useTheme";
+import { profile } from "@/src/api/profile.api";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function ProfileScreen() {
- const theme = useTheme(); 
+  const theme = useTheme();
 
   const [profileData, setProfileData] = useState<ProfileResponse | null>(null);
   const [loading, setLoading] = useState(true);

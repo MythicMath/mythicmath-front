@@ -1,14 +1,11 @@
-import { StatisticIcons } from "@/icons/StatisticIcons";
 import { Text, View } from "react-native";
 
 //Theme
 
 import Card from "../Card";
-import { ProgressBar } from "../ProgressBar";
 import { Chip } from "../Chip";
+import { ProgressBar } from "../ProgressBar";
 import { Avatar } from "./Avatar";
-import * as ImagePicker from "expo-image-picker";
-import { updateAvatar } from "@/src/services/profileService";
 
 type Props = {
   image: string;

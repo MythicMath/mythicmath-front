@@ -22,6 +22,9 @@ export function ProgressBar({
   const theme = useTheme();
 
   const progress = Math.min(xpCurrent / xpToNextLevel, 1);
+
+  const progressValue = progress * 100;
+
   const percentage = Math.round(progress * 100);
 
   const fillColor = color ?? theme.colors.link;
@@ -34,7 +37,7 @@ export function ProgressBar({
         <Text style={styles.percentage}>{percentage}%</Text>
       </View>
 
-      <ProgressApp value={50} bgColor={bgColor} color={fillColor} />
+      <ProgressApp value={progressValue} bgColor={bgColor} color={fillColor} />
     </View>
   );
 }

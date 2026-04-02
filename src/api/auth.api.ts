@@ -1,8 +1,10 @@
-import api from "./api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { RegisterRequest, AuthResponse, LoginRequest } from "../../types/auth";
-import { TOKEN_KEY } from "../constants/auth.constants";
+import { AuthResponse, LoginRequest, RegisterRequest } from "../../types/auth";
 import { ApiEndpoints } from "../constants/api.endpoints";
+import { TOKEN_KEY } from "../constants/auth.constants";
+import { clearAuth } from "../services/auth.service";
+
+import api from "./api";
 
 // ENDPOINTS __________
 
@@ -16,14 +18,7 @@ export const login = (data: LoginRequest) =>
 
 // Logout
 export const logout = async (): Promise<void> => {
-  try {
-    const token = await getToken();
-    if (!(token == null)) {
-      await api.post(ApiEndpoints.LOGOUT, { token });
-    }
-  } finally {
-    await AsyncStorage.removeItem(TOKEN_KEY);
-  }
+  await clearAuth()
 };
 
 // HELPER __________

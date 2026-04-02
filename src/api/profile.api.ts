@@ -1,6 +1,6 @@
-import api from "./api";
 import { ProfileResponse, UpdateAvatarResponse } from "../../types/profile";
 import { ApiEndpoints } from "../constants/api.endpoints";
+import api from "./api";
 
 // ENDPOINTS __________
 

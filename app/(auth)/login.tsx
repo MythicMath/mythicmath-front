@@ -1,16 +1,16 @@
-import { View, StyleSheet, TextInput, Text, Image } from "react-native";
-import { router } from "expo-router";
-import { useTheme } from "@/hooks/useTheme";
-import { ButtonLink } from "@/components/ButtonLink";
 import ButtonGradient from "@/components/ButtonGradient";
+import { ButtonLink } from "@/components/ButtonLink";
 import CardAuth from "@/components/CardAuth";
+import { useTheme } from "@/hooks/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 import { useState } from "react";
+import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 
-import { useForm, Controller } from "react-hook-form";
-import { z } from "zod";
+import { login } from "@/src/api/auth.api";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { login } from "@/src/services/authService";
+import { Controller, useForm } from "react-hook-form";
+import { z } from "zod";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -172,10 +172,7 @@ export default function LoginScreen() {
 
         <View style={styles.messageRow}>
           <Text
-            style={[
-              styles.messageBottom,
-              { color: theme.colors.secondary },
-            ]}
+            style={[styles.messageBottom, { color: theme.colors.secondary }]}
           >
             🎮 Ganhe XP • 🏆 Conquiste rankings • ⚡ Desafie amigos
           </Text>
