@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 import { useTheme } from "@/hooks/useTheme";
+import { ProgressApp } from "./components-core/ProgressApp";
 
 type Props = {
   xpCurrent: number;
@@ -23,8 +24,8 @@ export function ProgressBar({
   const progress = Math.min(xpCurrent / xpToNextLevel, 1);
   const percentage = Math.round(progress * 100);
 
-  const fillColor = color ?? theme.colors.background;
-  const bgColor = backgroundColor ?? theme.colors.link;
+  const fillColor = color ?? theme.colors.link;
+  const bgColor = backgroundColor ?? theme.colors.muted;
 
   return (
     <View style={styles.container}>
@@ -33,17 +34,7 @@ export function ProgressBar({
         <Text style={styles.percentage}>{percentage}%</Text>
       </View>
 
-      <View style={[styles.barBackground, { backgroundColor: bgColor }]}>
-        <View
-          style={[
-            styles.barFill,
-            {
-              width: `${percentage}%`,
-              backgroundColor: fillColor,
-            },
-          ]}
-        />
-      </View>
+      <ProgressApp value={50} bgColor={bgColor} color={fillColor} />
     </View>
   );
 }

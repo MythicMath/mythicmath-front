@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     paddingHorizontal: 8,
-    borderRadius: 8,
+    borderRadius: 12,
   },
 
   gradient: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 14,
     padding: 14,
-    borderRadius: 10,
+    borderRadius: 12,
   },
 
   text: {

@@ -9,7 +9,7 @@ export default function Home() {
     <View style={{ flex: 1 }}>
       {/* 🔥 Background gradient (only top 40%) */}
       <LinearGradient
-        colors={theme.gradients.background}
+        colors={theme.gradients.bgColored}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.background}

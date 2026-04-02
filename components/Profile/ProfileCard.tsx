@@ -29,32 +29,9 @@ export default function ProfileCard({
   const levelText = `Nível ${level}`;
 
   const handleUpload = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        quality: 0.8,
-        allowsEditing: true,
-        aspect: [1, 1],
-      });
-
-      if (result.canceled) return;
-
-      const asset = result.assets[0];
-
-      const formData = new FormData();
-
-      formData.append("avatar", {
-        uri: asset.uri,
-        name: "avatar.jpg",
-        type: "image/jpeg",
-      } as any);
-
-      const response = await updateAvatar(formData);
-
-      console.log(response.image); // new avatar URL
-    } catch (error) {
-      console.error(error);
-    }
+    console.log(
+      "TODO: Add logica para selecionar uma imagem da própria aplicação ou usar avatar dependedndo do tipo de login feito",
+    );
   };
 
   return (

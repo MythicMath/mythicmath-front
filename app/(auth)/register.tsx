@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
   input: {
     width: "100%",
     padding: 14,
-    borderRadius: 10,
+    borderRadius: 12,
     borderWidth: 1,
     marginBottom: 12,
   },

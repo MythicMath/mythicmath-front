@@ -18,7 +18,7 @@ export function AppScrollView({
       {...rest}
       contentContainerStyle={[
         {
-          paddingBottom: 0, // 👈 IF NEEDED, CHANGE THIS VALUE TO (80 + insets.bottom)
+          paddingBottom: 20, // 👈 IF NEEDED, CHANGE THIS VALUE TO (80 + insets.bottom)
           paddingTop: 16,
           paddingHorizontal: 16,
         },
