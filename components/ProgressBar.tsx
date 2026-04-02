@@ -5,39 +5,37 @@ import { useTheme } from "@/hooks/useTheme";
 import { ProgressApp } from "./components-core/ProgressApp";
 
 type Props = {
-  xpCurrent: number;
-  xpToNextLevel: number;
-  level: number;
-  color?: string;
-  backgroundColor?: string;
+  variant?: "dark" | "light";
+  progressValue?: number;
+  textLeft?: string;
+  textRight?: string;
 };
 
 export function ProgressBar({
-  xpCurrent,
-  xpToNextLevel,
-  level,
-  color,
-  backgroundColor,
+  variant,
+  progressValue = 0,
+  textLeft = "",
+  textRight = "",
 }: Props) {
   const theme = useTheme();
 
-  const progress = Math.min(xpCurrent / xpToNextLevel, 1);
-
-  const progressValue = progress * 100;
-
-  const percentage = Math.round(progress * 100);
-
-  const fillColor = color ?? theme.colors.link;
-  const bgColor = backgroundColor ?? theme.colors.muted;
+  const textColor =
+    variant === "dark" ? theme.colors.textDark : theme.colors.textLight;
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>Progresso até o nível {level + 1}</Text>
-        <Text style={styles.percentage}>{percentage}%</Text>
+        <Text style={[styles.title, { color: textColor }]}>{textLeft}</Text>
+        <Text style={[styles.percentage, { color: textColor }]}>
+          {textRight}
+        </Text>
       </View>
 
-      <ProgressApp value={progressValue} bgColor={bgColor} color={fillColor} />
+      <ProgressApp
+        value={progressValue}
+        bgColor={theme.colors.muted}
+        color={theme.colors.link}
+      />
     </View>
   );
 }

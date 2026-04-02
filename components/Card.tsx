@@ -27,7 +27,7 @@ export default function Card({ children, style }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    width: "100%",
+    minWidth: 110,
     padding: 16,
     borderRadius: 12,
     borderWidth: 1,

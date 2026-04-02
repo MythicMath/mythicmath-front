@@ -3,7 +3,7 @@ export const colors = {
   foreground: "#0a0a0a",
 
   primary: "#030213",
-  primaryForeground: "#ffffff",
+  primaryForeground: "#ffffff57",
 
   secondary: "#f1f1f3",
   secondaryForeground: "#030213",
@@ -19,11 +19,13 @@ export const colors = {
 
   border: "rgba(0,0,0,0.1)",
 
-  text: "#161616",
+  textDark: "#161616",
+  textLight: "#ffffff",
 
   card: "#ffffff",
 
   chipForeground: "#ffffff",
+  chipTransparent: "#ffffff2b",
 
   inputBackground: "#f3f3f5",
 

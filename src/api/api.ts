@@ -37,8 +37,6 @@ api.interceptors.response.use(
 
     const isLoginRoute = url.includes("/login");
 
-    console.log(`\n\n\n  ${status}\n${isLoginRoute}\n${isLoggingOut}  \n\n\n`);
-
     if (status === 401 && !isLoginRoute && !isLoggingOut) {
       try {
         isLoggingOut = true;

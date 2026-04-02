@@ -5,7 +5,7 @@ import { Text, View } from "react-native";
 import Card from "../Card";
 import { Chip } from "../Chip";
 import { ProgressBar } from "../ProgressBar";
-import { Avatar } from "./Avatar";
+import { Avatar } from "../Avatar";
 
 type Props = {
   image: string;
@@ -24,6 +24,12 @@ export default function ProfileCard({
   xpToNextLevel,
 }: Props) {
   const levelText = `Nível ${level}`;
+
+  const progress = Math.min(xpCurrent / xpToNextLevel, 1);
+
+  const progressValue = progress * 100;
+
+  const percentage = Math.round(progress * 100);
 
   const handleUpload = async () => {
     console.log(
@@ -66,9 +72,10 @@ export default function ProfileCard({
       </View>
 
       <ProgressBar
-        xpCurrent={xpCurrent}
-        xpToNextLevel={xpToNextLevel}
-        level={level}
+        variant="dark"
+        progressValue={progressValue}
+        textLeft={`Progresso até o nível ${level + 1}`}
+        textRight={`${percentage}%`}
       />
     </Card>
   );

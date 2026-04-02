@@ -10,15 +10,35 @@ type Props = {
   color?: string;
   backgroundColor?: string | Gradient;
   style?: ViewStyle;
+  isTransparent?: boolean;
 };
 
-export function Chip({ label, color, backgroundColor, style }: Props) {
+export function Chip({
+  label,
+  color,
+  backgroundColor,
+  style,
+  isTransparent = false,
+}: Props) {
   const theme = useTheme();
 
   const textColor = color ?? theme.colors.card;
   const bg = backgroundColor ?? theme.gradients.bgColoredPressed;
 
   const isGradient = Array.isArray(bg);
+
+  if (isTransparent) {
+    return (
+      <LinearGradient
+        colors={[theme.colors.chipTransparent, theme.colors.chipTransparent]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={[styles.container, style]}
+      >
+        <Text style={[styles.text, { color: textColor }]}>{label}</Text>
+      </LinearGradient>
+    );
+  }
 
   if (isGradient) {
     return (
@@ -45,12 +65,13 @@ export function Chip({ label, color, backgroundColor, style }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     borderRadius: 999,
   },
   text: {
     fontSize: 13,
     fontWeight: "bold",
+    textAlign: "center",
   },
 });

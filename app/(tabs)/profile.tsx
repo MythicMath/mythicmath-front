@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 //Types
 import { ProfileResponse } from "@/types/profile";
 
 //Components
-import ProfileStatistics from "@/components/Profile/ProfileStatistics";
+import { AppScrollView } from "@/components/AppScrollView";
+import CardStatistics from "@/components/CardStatistics";
+import { LoadingApp } from "@/components/components-core/LoadingApp";
+import ProfileCard from "@/components/Profile/ProfileCard";
 
 //Services
-import { AppScrollView } from "@/components/AppScrollView";
-import ProfileCard from "@/components/Profile/ProfileCard";
 import { useTheme } from "@/hooks/useTheme";
 import { profile } from "@/src/api/profile.api";
 import { LinearGradient } from "expo-linear-gradient";
@@ -36,17 +37,7 @@ export default function ProfileScreen() {
   }, []);
 
   if (loading) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <ActivityIndicator />
-      </View>
-    );
+    return <LoadingApp />;
   }
 
   return (
@@ -75,22 +66,22 @@ export default function ProfileScreen() {
             Estatísticas
           </Text>
 
-          <ProfileStatistics
+          <CardStatistics
             text="Dias Seguidos"
             icon="fire"
             quantity={profileData?.day_learning_streak || 0}
           />
-          <ProfileStatistics
+          <CardStatistics
             text="Vitórias Ranqueadas"
             icon="trophy"
             quantity={profileData?.ranked_victories || 0}
           />
-          <ProfileStatistics
+          <CardStatistics
             text="Experiência (XP)"
             icon="lightning"
             quantity={profileData?.xpCurrent || 0}
           />
-          <ProfileStatistics
+          <CardStatistics
             text="Nível Atual"
             icon="medal"
             quantity={profileData?.level || 0}
@@ -107,7 +98,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: 240,
+    height: 260,
   },
 
   container: {
