@@ -40,11 +40,69 @@ export default function CardStatistics({
         elevation: 6,
       }}
     >
-      {!isVertical ? (
+      {isVertical ? (
+        <View
+          style={{
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 12,
+          }}
+        >
+          <View
+            style={{
+              flexDirection: "column",
+              alignItems: "center",
+              gap: 12,
+            }}
+          >
+            <View
+              style={{
+                width: 40,
+                height: 36,
+                borderRadius: 12,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <IconComponent
+                name={IconConfig.iconName}
+                size={20}
+                color={color}
+              />
+            </View>
+
+            <View style={{ justifyContent: "center" }}>
+              <Text
+                style={{
+                  fontWeight: "bold",
+                  fontSize: 18,
+                  color: theme.colors.foreground,
+                  textAlign: "center",
+                }}
+              >
+                {quantity}
+              </Text>
+            </View>
+          </View>
+
+          <View style={{ justifyContent: "center", maxWidth: 80 }}>
+            <Text
+              style={{
+                fontSize: 16,
+                color: theme.colors.foreground,
+              }}
+            >
+              {text}
+            </Text>
+          </View>
+        </View>
+      ) : (
         <View
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
+            paddingRight: 16,
           }}
         >
           <View
@@ -91,64 +149,6 @@ export default function CardStatistics({
               }}
             >
               {quantity}
-            </Text>
-          </View>
-        </View>
-      ) : (
-        <View
-          style={{
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 12,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 12,
-            }}
-          >
-            <View
-              style={{
-                width: 40,
-                height: 36,
-                borderRadius: 12,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <IconComponent
-                name={IconConfig.iconName}
-                size={20}
-                color={color}
-              />
-            </View>
-
-            <View style={{ justifyContent: "center" }}>
-              <Text
-                style={{
-                  fontWeight: "bold",
-                  fontSize: 18,
-                  color: theme.colors.foreground,
-                  textAlign: "center",
-                }}
-              >
-                {quantity}
-              </Text>
-            </View>
-          </View>
-
-          <View style={{ justifyContent: "center" }}>
-            <Text
-              style={{
-                fontSize: 16,
-                color: theme.colors.foreground,
-                textAlign: "center",
-              }}
-            >
-              {text}
             </Text>
           </View>
         </View>

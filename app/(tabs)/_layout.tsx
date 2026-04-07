@@ -55,7 +55,7 @@ export default function TabsLayout() {
         headerShown: false,
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
-          height: 70 + insets.bottom,
+          height: 50 + insets.bottom,
           paddingBottom: insets.bottom,
           paddingTop: 8,
           backgroundColor: theme.colors.background,
@@ -65,7 +65,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" color={color} size={size} />
           ),
@@ -75,7 +75,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile",
+          title: "",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" color={color} size={size} />
           ),
@@ -85,7 +85,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="settings"
         options={{
-          title: "Settings",
+          title: "",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="settings" color={color} size={size} />
           ),

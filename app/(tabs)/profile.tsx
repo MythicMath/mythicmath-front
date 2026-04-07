@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
-
-//Types
-import { ProfileResponse } from "@/types/profile";
 
 //Components
 import { AppScrollView } from "@/components/AppScrollView";
@@ -17,7 +15,7 @@ import { useProfileStore } from "@/store/profile";
 
 export default function ProfileScreen() {
   const theme = useTheme();
-
+  const { t } = useTranslation();
   const profileData = useProfileStore((s) => s.profile);
 
   if (!profileData) {
@@ -33,6 +31,8 @@ export default function ProfileScreen() {
         style={styles.background}
       />
 
+      <Text style={styles.title}>{t("screen.profile.title")}</Text>
+
       <View style={styles.container}>
         {/* Profile Card Info */}
         <ProfileCard
@@ -44,29 +44,29 @@ export default function ProfileScreen() {
         />
 
         {/* Profile Card Statistics */}
-
+        
         <View style={{ paddingTop: 24, display: "flex", gap: 8 }}>
           <Text style={{ paddingVertical: 12, fontSize: 20 }}>
-            Estatísticas
+            {t("screen.profile.stats")}
           </Text>
 
           <CardStatistics
-            text="Dias Seguidos"
+            text={t("screen.profile.currentStreak")}
             icon="fire"
             quantity={profileData?.day_learning_streak || 0}
           />
           <CardStatistics
-            text="Vitórias Ranqueadas"
+            text={t("screen.profile.rankedVictories")}
             icon="trophy"
             quantity={profileData?.ranked_victories || 0}
           />
           <CardStatistics
-            text="Experiência (XP)"
+            text={t("screen.profile.totalXP")}
             icon="lightning"
             quantity={profileData?.xpCurrent || 0}
           />
           <CardStatistics
-            text="Nível Atual"
+            text={t("screen.profile.level")}
             icon="medal"
             quantity={profileData?.level || 0}
           />
@@ -85,7 +85,14 @@ const styles = StyleSheet.create({
     height: 260,
   },
 
+  title: {
+    marginTop: 36,
+    fontSize: 24,
+    textAlign: "center",
+    color: "white",
+  },
+
   container: {
-    marginTop: 120,
+    marginTop: 20,
   },
 });

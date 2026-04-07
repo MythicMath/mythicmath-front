@@ -30,28 +30,20 @@
       "footer": "✨ Comece no nível 1 e torne-se um mestre da matemática!"
     },
     "home": {
-      "greeting": "Bem-vindo de volta, {{name}}!",
-      "dailyGoal": "Meta diária",
-      "startLesson": "Iniciar lição",
-      "continue": "Continuar",
-      "xp": "XP",
-      "streak": "Sequência",
       "level": "Nível",
-      "lives": "Vidas",
-      "leaderboard": "Ranking",
-      "quests": "Missões",
-      "dailyChallenge": "Desafio diário",
-      "noLives": "Você ficou sem vidas! Volte mais tarde ou pratique para ganhar mais."
+      "xp": "XP",
+      "progressUntil": "Progresso até o nível",
+      "currentStreak": "Sequência",
+      "rankedVictories": "Vitórias"
     },
     "profile": {
       "title": "Perfil",
+      "level": "Nível",
       "stats": "Estatísticas",
       "totalXP": "XP total",
       "currentStreak": "Sequência atual",
-      "bestStreak": "Melhor sequência",
-      "achievements": "Conquistas",
-      "editProfile": "Editar perfil",
-      "logout": "Sair"
+      "rankedVictories": "Vitórias Ranqueadas",
+      "progressUntil": "Progresso até o nível"
     },
     "quests": {
       "title": "Missões",

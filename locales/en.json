@@ -30,28 +30,20 @@
       "footer": "✨ Begin at level 1 and become a math master!"
     },
     "home": {
-      "greeting": "Welcome back, {{name}}!",
-      "dailyGoal": "Daily Goal",
-      "startLesson": "Start Lesson",
-      "continue": "Continue",
-      "xp": "XP",
-      "streak": "Streak",
       "level": "Level",
-      "lives": "Lives",
-      "leaderboard": "Leaderboard",
-      "quests": "Quests",
-      "dailyChallenge": "Daily Challenge",
-      "noLives": "You're out of lives! Come back later or practice to earn more."
+      "xp": "XP",
+      "progressUntil": "Progression to level",
+      "currentStreak": "Streak",
+      "rankedVictories": "Victories"
     },
     "profile": {
       "title": "Profile",
+      "level": "Level",
       "stats": "Stats",
       "totalXP": "Total XP",
       "currentStreak": "Current Streak",
-      "bestStreak": "Best Streak",
-      "achievements": "Achievements",
-      "editProfile": "Edit Profile",
-      "logout": "Log out"
+      "rankedVictories": "Ranked Victories",
+      "progressUntil": "Progression to level"
     },
     "quests": {
       "title": "Quests",

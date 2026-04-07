@@ -1,41 +1,28 @@
-import ButtonGradient from "@/components/ButtonGradient";
-import { ButtonLink } from "@/components/ButtonLink";
-import CardAuth from "@/components/CardAuth";
-import { useTheme } from "@/hooks/useTheme";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { LinearGradient } from "expo-linear-gradient";
+import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 
+// Components
+import ButtonGradient from "@/components/ButtonGradient";
+import { ButtonLink } from "@/components/ButtonLink";
+import CardAuth from "@/components/CardAuth";
+
+//Hook
+import { useTheme } from "@/hooks/useTheme";
+
+//API
 import { login } from "@/src/api/auth.api";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const loginSchema = z.object({
-  identifier: z
-    .string()
-    .trim()
-    .min(1, "Nome ou e-mail é obrigatório")
-    .refine((value) => {
-      if (!value) return true;
-
-      if (value.includes("@")) {
-        return emailRegex.test(value);
-      }
-
-      return value.length >= 2;
-    }, "Digite um nome ou e-mail válido"),
-
-  password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
-});
-
-type FormData = z.infer<typeof loginSchema>;
+//Zod Schema
+import { FormDataLogin, loginSchema } from "@/helper/zodSchema/user";
 
 export default function LoginScreen() {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
@@ -43,7 +30,7 @@ export default function LoginScreen() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<FormDataLogin>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       identifier: "ana",
@@ -51,7 +38,7 @@ export default function LoginScreen() {
     },
   });
 
-  async function handleLogin(data: FormData) {
+  async function handleLogin(data: FormDataLogin) {
     const payload = {
       identifier: data.identifier,
       password: data.password,
@@ -84,11 +71,11 @@ export default function LoginScreen() {
         />
 
         <Text style={[styles.title, { color: theme.colors.secondary }]}>
-          MythicMath
+          {t("screen.login.title")}
         </Text>
 
         <Text style={[styles.message, { color: theme.colors.secondary }]}>
-          Transforme seu treino de matemática em diversão
+          {t("screen.login.description")}
         </Text>
 
         <CardAuth>
@@ -99,7 +86,7 @@ export default function LoginScreen() {
             render={({ field: { onChange, value } }) => (
               <>
                 <TextInput
-                  placeholder="Nome ou Email*"
+                  placeholder={t("screen.login.fields.nameEmail") + "*"}
                   value={value}
                   onChangeText={onChange}
                   autoCapitalize="none"
@@ -135,7 +122,7 @@ export default function LoginScreen() {
             render={({ field: { onChange, value } }) => (
               <>
                 <TextInput
-                  placeholder="Senha*"
+                  placeholder={t("screen.login.fields.password") + "*"}
                   secureTextEntry
                   value={value}
                   onChangeText={onChange}
@@ -164,16 +151,22 @@ export default function LoginScreen() {
             )}
           />
 
-          <ButtonGradient title="Entrar" onPress={handleSubmit(handleLogin)} />
+          <ButtonGradient
+            title={t("screen.login.button.login")}
+            onPress={handleSubmit(handleLogin)}
+          />
 
-          <ButtonLink title="Não tem conta? Cadastre-se" href="/register" />
+          <ButtonLink
+            title={t("screen.login.button.goToRegister")}
+            href="/register"
+          />
         </CardAuth>
 
         <View style={styles.messageRow}>
           <Text
             style={[styles.messageBottom, { color: theme.colors.secondary }]}
           >
-            🎮 Ganhe XP • 🏆 Conquiste rankings • ⚡ Desafie amigos
+            {t("screen.login.footer")}
           </Text>
         </View>
       </View>

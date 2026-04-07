@@ -5,6 +5,7 @@ import { Chip } from "../Chip";
 import { ProgressBar } from "../ProgressBar";
 import { Avatar } from "../Avatar";
 import { useTheme } from "@/hooks/useTheme";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   image: string;
@@ -22,7 +23,9 @@ export default function UserInfo({
   xpCurrent,
   xpToNextLevel,
 }: Props) {
-  const levelText = `Nível ${level}`;
+  const { t } = useTranslation();
+
+  const levelText = `${t("screen.home.level")} ${level}`;
   const theme = useTheme();
 
   const progress = Math.min(xpCurrent / xpToNextLevel, 1);
@@ -59,7 +62,7 @@ export default function UserInfo({
         variant="light"
         progressValue={progressValue}
         textLeft={`XP:  ${xpCurrent}`}
-        textRight={`${xpToNextLevel} para o próximo nível`}
+        textRight={`${t("screen.home.progressUntil")} ${xpToNextLevel}`}
       />
     </View>
   );

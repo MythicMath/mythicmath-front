@@ -1,31 +1,22 @@
-import ButtonGradient from "@/components/ButtonGradient";
-import { ButtonLink } from "@/components/ButtonLink";
-import CardAuth from "@/components/CardAuth";
-import { useTheme } from "@/hooks/useTheme";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 
+// Components
+import ButtonGradient from "@/components/ButtonGradient";
+import { ButtonLink } from "@/components/ButtonLink";
+import CardAuth from "@/components/CardAuth";
+
+//Hook
+import { useTheme } from "@/hooks/useTheme";
+
+//API
+import { FormDataRegister, registerSchema } from "@/helper/zodSchema/user";
 import { register } from "@/src/api/auth.api";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
-import { useTranslation } from "react-i18next";
-
-const registerSchema = z
-  .object({
-    name: z.string().min(1, "O nome é obrigatório"),
-    email: z.string().email("Digite um e-mail válido"),
-    password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
-    confirmPassword: z.string(),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "As senhas não coincidem",
-    path: ["confirmPassword"],
-  });
-
-type FormData = z.infer<typeof registerSchema>;
 
 export default function RegisterScreen() {
   const theme = useTheme();
@@ -37,7 +28,7 @@ export default function RegisterScreen() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+  } = useForm<FormDataRegister>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
@@ -47,7 +38,7 @@ export default function RegisterScreen() {
     },
   });
 
-  async function handleRegister(data: FormData) {
+  async function handleRegister(data: FormDataRegister) {
     try {
       await register(data);
       router.replace("/(tabs)");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 
 //Components
@@ -13,8 +13,11 @@ import { LinearGradient } from "expo-linear-gradient";
 
 //Store
 import { useProfileStore } from "@/store/profile";
+import { useTranslation } from "react-i18next";
+
 export default function Home() {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const profileData = useProfileStore((s) => s.profile);
 
@@ -50,19 +53,19 @@ export default function Home() {
       >
         <CardStatistics
           variant="vertical"
-          text="Streak"
+          text={t("screen.home.currentStreak")}
           icon="fire"
           quantity={profileData.day_learning_streak}
         />
         <CardStatistics
           variant="vertical"
-          text="Vitórias"
+          text={t("screen.home.rankedVictories")}
           icon="trophy"
           quantity={profileData.ranked_victories}
         />
         <CardStatistics
           variant="vertical"
-          text="Nível"
+          text={t("screen.home.level")}
           icon="medal"
           quantity={profileData.level}
         />

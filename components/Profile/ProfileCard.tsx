@@ -6,6 +6,7 @@ import Card from "../Card";
 import { Chip } from "../Chip";
 import { ProgressBar } from "../ProgressBar";
 import { Avatar } from "../Avatar";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   image: string;
@@ -23,7 +24,9 @@ export default function ProfileCard({
   xpCurrent,
   xpToNextLevel,
 }: Props) {
-  const levelText = `Nível ${level}`;
+  const { t } = useTranslation();
+
+  const levelText = `${t("screen.profile.level")} ${level}`;
 
   const progress = Math.min(xpCurrent / xpToNextLevel, 1);
 
@@ -74,7 +77,7 @@ export default function ProfileCard({
       <ProgressBar
         variant="dark"
         progressValue={progressValue}
-        textLeft={`Progresso até o nível ${level + 1}`}
+        textLeft={`${t("screen.profile.progressUntil")} ${level + 1}`}
         textRight={`${percentage}%`}
       />
     </Card>
