@@ -1,0 +1,71 @@
+{
+  "appName": "MythicMath",
+  "screen": {
+    "login": {
+      "title": "MythicMath",
+      "description": "Transforme sua prática de matemática em um jogo diário!",
+      "fields": {
+        "nameEmail": "Nome ou Email",
+        "password": "Senha"
+      },
+      "button": {
+        "login": "Entrar",
+        "goToRegister": "Não tem uma conta? Cadastre-se"
+      },
+      "footer": "🎮 Ganhe XP • 🔥 Mantenha sua sequência • 🏆 Suba no ranking"
+    },
+    "register": {
+      "title": "Criar Conta",
+      "description": "Comece sua jornada matemática hoje!",
+      "fields": {
+        "name": "Nome",
+        "email": "Email",
+        "password": "Senha",
+        "confirmPassword": "Confirme a senha"
+      },
+      "button": {
+        "login": "Cadastrar",
+        "goToLogin": "Já tem uma conta? Entrar"
+      },
+      "footer": "✨ Comece no nível 1 e torne-se um mestre da matemática!"
+    },
+    "home": {
+      "greeting": "Bem-vindo de volta, {{name}}!",
+      "dailyGoal": "Meta diária",
+      "startLesson": "Iniciar lição",
+      "continue": "Continuar",
+      "xp": "XP",
+      "streak": "Sequência",
+      "level": "Nível",
+      "lives": "Vidas",
+      "leaderboard": "Ranking",
+      "quests": "Missões",
+      "dailyChallenge": "Desafio diário",
+      "noLives": "Você ficou sem vidas! Volte mais tarde ou pratique para ganhar mais."
+    },
+    "profile": {
+      "title": "Perfil",
+      "stats": "Estatísticas",
+      "totalXP": "XP total",
+      "currentStreak": "Sequência atual",
+      "bestStreak": "Melhor sequência",
+      "achievements": "Conquistas",
+      "editProfile": "Editar perfil",
+      "logout": "Sair"
+    },
+    "quests": {
+      "title": "Missões",
+      "daily": "Missões diárias",
+      "weekly": "Missões semanais",
+      "complete": "Completar",
+      "completed": "Concluído",
+      "reward": "Recompensa",
+      "xpReward": "{{count}} XP",
+      "progress": "Progresso",
+      "claim": "Resgatar recompensa"
+    }
+  },
+  "error": {
+    "common": "Algo deu errado."
+  }
+}

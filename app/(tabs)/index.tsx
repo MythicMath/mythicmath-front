@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-
-//Types
-import { ProfileResponse } from "@/types/profile";
 
 //Components
 import UserInfo from "@/components/Home/UserInfo";
@@ -12,31 +9,16 @@ import { LoadingApp } from "@/components/components-core/LoadingApp";
 import { AppScrollView } from "@/components/AppScrollView";
 import CardStatistics from "@/components/CardStatistics";
 import { useTheme } from "@/hooks/useTheme";
-import { profile } from "@/src/api/profile.api";
 import { LinearGradient } from "expo-linear-gradient";
 
+//Store
+import { useProfileStore } from "@/store/profile";
 export default function Home() {
   const theme = useTheme();
 
-  const [profileData, setProfileData] = useState<ProfileResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const profileData = useProfileStore((s) => s.profile);
 
-  useEffect(() => {
-    const loadProfile = async () => {
-      try {
-        const data = await profile();
-        setProfileData(data);
-      } catch (error) {
-        console.error("Error loading profile:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadProfile();
-  }, []);
-
-  if (loading) {
+  if (!profileData) {
     return <LoadingApp />;
   }
 
@@ -50,20 +32,18 @@ export default function Home() {
       />
 
       <View style={styles.container}>
-        {/* Profile Card Info */}
         <UserInfo
-          name={profileData?.name || ""}
-          image={profileData?.image || ""}
-          level={profileData?.level || 0}
-          xpCurrent={profileData?.xpCurrent || 0}
-          xpToNextLevel={profileData?.xpToNextLevel || 0}
+          name={profileData.name}
+          image={profileData.image || ""}
+          level={profileData.level}
+          xpCurrent={profileData.xpCurrent}
+          xpToNextLevel={profileData.xpToNextLevel}
         />
       </View>
 
       <View
         style={{
-          marginTop:  40,
-          display: "flex",
+          marginTop: 40,
           flexDirection: "row",
           justifyContent: "space-between",
         }}
@@ -72,20 +52,19 @@ export default function Home() {
           variant="vertical"
           text="Streak"
           icon="fire"
-          quantity={profileData?.day_learning_streak || 0}
+          quantity={profileData.day_learning_streak}
         />
         <CardStatistics
           variant="vertical"
           text="Vitórias"
           icon="trophy"
-          quantity={profileData?.ranked_victories || 0}
+          quantity={profileData.ranked_victories}
         />
-
         <CardStatistics
           variant="vertical"
           text="Nível"
           icon="medal"
-          quantity={profileData?.level || 0}
+          quantity={profileData.level}
         />
       </View>
     </AppScrollView>

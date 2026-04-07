@@ -12,31 +12,15 @@ import ProfileCard from "@/components/Profile/ProfileCard";
 
 //Services
 import { useTheme } from "@/hooks/useTheme";
-import { profile } from "@/src/api/profile.api";
 import { LinearGradient } from "expo-linear-gradient";
+import { useProfileStore } from "@/store/profile";
 
 export default function ProfileScreen() {
   const theme = useTheme();
 
-  const [profileData, setProfileData] = useState<ProfileResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const profileData = useProfileStore((s) => s.profile);
 
-  useEffect(() => {
-    const loadProfile = async () => {
-      try {
-        const data = await profile();
-        setProfileData(data);
-      } catch (error) {
-        console.error("Error loading profile:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadProfile();
-  }, []);
-
-  if (loading) {
+  if (!profileData) {
     return <LoadingApp />;
   }
 

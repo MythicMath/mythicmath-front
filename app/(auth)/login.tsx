@@ -59,7 +59,6 @@ export default function LoginScreen() {
 
     try {
       await login(payload);
-      alert("Logado!");
       router.replace("/(tabs)");
     } catch (error: any) {
       console.log(error);

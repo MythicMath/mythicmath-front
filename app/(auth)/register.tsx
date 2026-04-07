@@ -11,6 +11,7 @@ import { register } from "@/src/api/auth.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
+import { useTranslation } from "react-i18next";
 
 const registerSchema = z
   .object({
@@ -28,6 +29,7 @@ type FormData = z.infer<typeof registerSchema>;
 
 export default function RegisterScreen() {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
@@ -48,13 +50,10 @@ export default function RegisterScreen() {
   async function handleRegister(data: FormData) {
     try {
       await register(data);
-      alert("Registrado!");
       router.replace("/(tabs)");
     } catch (error: any) {
-      console.log(error);
-
       const message =
-        error?.response?.data?.detail || error?.message || "Erro ao registrar";
+        error?.response?.data?.detail || error?.message || t("error.common");
 
       alert(message);
     }
@@ -74,11 +73,11 @@ export default function RegisterScreen() {
         />
 
         <Text style={[styles.title, { color: theme.colors.secondary }]}>
-          Criar Conta
+          {t("screen.register.title")}
         </Text>
 
         <Text style={[styles.message, { color: theme.colors.secondary }]}>
-          Comece sua jornada matemática agora
+          {t("screen.register.description")}
         </Text>
 
         <CardAuth>
@@ -89,7 +88,7 @@ export default function RegisterScreen() {
             render={({ field: { onChange, value } }) => (
               <>
                 <TextInput
-                  placeholder="Nome*"
+                  placeholder={t("screen.register.fields.name") + "*"}
                   value={value}
                   onChangeText={onChange}
                   onFocus={() => setFocusedInput("name")}
@@ -124,7 +123,7 @@ export default function RegisterScreen() {
             render={({ field: { onChange, value } }) => (
               <>
                 <TextInput
-                  placeholder="Email*"
+                  placeholder={t("screen.register.fields.email") + "*"}
                   value={value}
                   onChangeText={onChange}
                   keyboardType="email-address"
@@ -161,7 +160,7 @@ export default function RegisterScreen() {
             render={({ field: { onChange, value } }) => (
               <>
                 <TextInput
-                  placeholder="Senha*"
+                  placeholder={t("screen.register.fields.password") + "*"}
                   secureTextEntry
                   value={value}
                   onChangeText={onChange}
@@ -197,7 +196,9 @@ export default function RegisterScreen() {
             render={({ field: { onChange, value } }) => (
               <>
                 <TextInput
-                  placeholder="Confirme a Senha*"
+                  placeholder={
+                    t("screen.register.fields.confirmPassword") + "*"
+                  }
                   secureTextEntry
                   value={value}
                   onChangeText={onChange}
@@ -227,18 +228,21 @@ export default function RegisterScreen() {
           />
 
           <ButtonGradient
-            title="Cadastre-se"
+            title={t("screen.register.button.login")}
             onPress={handleSubmit(handleRegister)}
           />
 
-          <ButtonLink title="Já tem conta? Entre aqui" href="/login" />
+          <ButtonLink
+            title={t("screen.register.button.goToLogin")}
+            href="/login"
+          />
         </CardAuth>
 
         <View style={styles.messageRow}>
           <Text
             style={[styles.messageBottom, { color: theme.colors.secondary }]}
           >
-            ✨ Comece do nível 1 e evolua até o topo!
+            {t("screen.register.footer")}
           </Text>
         </View>
       </View>

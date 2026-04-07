@@ -1,0 +1,71 @@
+{
+  "appName": "MythicMath",
+  "screen": {
+    "login": {
+      "title": "MythicMath",
+      "description": "Turn your math practice into a daily game!",
+      "fields": {
+        "nameEmail": "Name or Email",
+        "password": "Password"
+      },
+      "button": {
+        "login": "Login",
+        "goToRegister": "Don't have an account? Sign up"
+      },
+      "footer": "🎮 Earn XP • 🔥 Build streaks • 🏆 Climb the leaderboard"
+    },
+    "register": {
+      "title": "Create Account",
+      "description": "Start your math journey today!",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password"
+      },
+      "button": {
+        "login": "Sign up",
+        "goToLogin": "Already have an account? Log in"
+      },
+      "footer": "✨ Begin at level 1 and become a math master!"
+    },
+    "home": {
+      "greeting": "Welcome back, {{name}}!",
+      "dailyGoal": "Daily Goal",
+      "startLesson": "Start Lesson",
+      "continue": "Continue",
+      "xp": "XP",
+      "streak": "Streak",
+      "level": "Level",
+      "lives": "Lives",
+      "leaderboard": "Leaderboard",
+      "quests": "Quests",
+      "dailyChallenge": "Daily Challenge",
+      "noLives": "You're out of lives! Come back later or practice to earn more."
+    },
+    "profile": {
+      "title": "Profile",
+      "stats": "Stats",
+      "totalXP": "Total XP",
+      "currentStreak": "Current Streak",
+      "bestStreak": "Best Streak",
+      "achievements": "Achievements",
+      "editProfile": "Edit Profile",
+      "logout": "Log out"
+    },
+    "quests": {
+      "title": "Quests",
+      "daily": "Daily Quests",
+      "weekly": "Weekly Quests",
+      "complete": "Complete",
+      "completed": "Completed",
+      "reward": "Reward",
+      "xpReward": "{{count}} XP",
+      "progress": "Progress",
+      "claim": "Claim reward"
+    }
+  },
+  "error": {
+    "common": "Something went wrong."
+  }
+}
