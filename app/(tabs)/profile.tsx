@@ -44,7 +44,7 @@ export default function ProfileScreen() {
         />
 
         {/* Profile Card Statistics */}
-        
+
         <View style={{ paddingTop: 24, display: "flex", gap: 8 }}>
           <Text style={{ paddingVertical: 12, fontSize: 20 }}>
             {t("screen.profile.stats")}

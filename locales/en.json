@@ -55,6 +55,11 @@
       "xpReward": "{{count}} XP",
       "progress": "Progress",
       "claim": "Claim reward"
+    },
+    "config": {
+      "title": "Configurations",
+      "logout": "Log Out",
+      "setLanguage": "Set language: "
     }
   },
   "error": {

@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { Button, View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 
 //Hook
 import { useTheme } from "@/hooks/useTheme";
@@ -8,19 +8,32 @@ import { useTheme } from "@/hooks/useTheme";
 import { logout } from "@/src/api/auth.api";
 
 //Componentes Core
-import { BadgeApp } from "@/components/components-core/BadgeApp";
 import { ButtonApp } from "@/components/components-core/ButtonApp";
 import { CardApp } from "@/components/components-core/CardApp";
-import { InputApp } from "@/components/components-core/InputApp";
-import { ProgressApp } from "@/components/components-core/ProgressApp";
 import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SettingsScreen() {
   const theme = useTheme();
+  const { t, i18n } = useTranslation();
+  const i18nToSet = i18n.language.toUpperCase() === "PT" ? "EN" : "PT";
 
   async function handleLogout() {
     await logout();
     router.replace("/(auth)/login");
+  }
+
+  async function handleSetLanguage() {
+    try {
+      const currentLang = i18n.language;
+      const newLang = currentLang === "pt" ? "en" : "pt";
+
+      await i18n.changeLanguage(newLang);
+      await AsyncStorage.setItem("lang", newLang);
+    } catch (error) {
+      console.error("Error changing language:", error);
+    }
   }
 
   return (
@@ -31,32 +44,26 @@ export default function SettingsScreen() {
       style={styles.background}
     >
       <View style={styles.container}>
-        {/* Logout */}
-        <Button title="Logout" onPress={handleLogout} />
-
-        {/* CardApp */}
-        <CardApp width="90%">
+        <Text style={styles.title}>{t("screen.config.title")}</Text>
+        <CardApp width="100%">
           <View
             style={{
               display: "flex",
-              flexDirection: "column",
-              gap: 10,
+              flexDirection: "row",
+              justifyContent: "space-between",
             }}
           >
-            {/* BadgeApp */}
-            <BadgeApp label="BadgeApp" />
+            <ButtonApp
+              title={`${t("screen.config.setLanguage")} ${i18nToSet}`}
+              variant="outline"
+              onPress={handleSetLanguage}
+            />
 
-            {/* ButtonApp */}
-            <ButtonApp title="Button Primary" />
-            <ButtonApp title="Button Secondary" variant="secondary" />
-            <ButtonApp title="Button Destructive" variant="destructive" />
-            <ButtonApp title="Button Outline" variant="outline" />
-
-            {/* InputApp */}
-            <InputApp />
-
-            {/* ProgressApp */}
-            <ProgressApp value={50} />
+            <ButtonApp
+              title={t("screen.config.logout")}
+              variant="destructive"
+              onPress={handleLogout}
+            />
           </View>
         </CardApp>
       </View>
@@ -69,10 +76,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  title: {
+    marginTop: 36,
+    fontSize: 24,
+    textAlign: "center",
+    color: "white",
+  },
+
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     padding: 24,
+    marginTop: 20,
   },
 });

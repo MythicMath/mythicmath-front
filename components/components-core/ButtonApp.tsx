@@ -7,11 +7,7 @@ type Props = {
   variant?: "primary" | "secondary" | "destructive" | "outline";
 };
 
-export function ButtonApp({
-  title,
-  onPress,
-  variant = "primary",
-}: Props) {
+export function ButtonApp({ title, onPress, variant = "primary" }: Props) {
   const theme = useTheme();
 
   const styles = getStyles(theme, variant);
@@ -33,10 +29,10 @@ const getStyles = (theme: any, variant: string) =>
         variant === "primary"
           ? theme.colors.primary
           : variant === "secondary"
-          ? theme.colors.secondary
-          : variant === "destructive"
-          ? theme.colors.destructive
-          : "transparent",
+            ? theme.colors.secondary
+            : variant === "destructive"
+              ? theme.colors.destructive
+              : "transparent",
       borderWidth: variant === "outline" ? 1 : 0,
       borderColor: theme.colors.border,
     },
@@ -44,7 +40,9 @@ const getStyles = (theme: any, variant: string) =>
       color:
         variant === "primary"
           ? theme.colors.primaryForeground
-          : theme.colors.foreground,
+          : variant === "destructive"
+            ? theme.colors.destructiveForeground
+            : theme.colors.foreground,
       fontWeight: "500",
     },
   });

@@ -18,5 +18,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 12,
     fontWeight: "600",
+    textAlign: "center"
   },
 });

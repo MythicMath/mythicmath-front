@@ -55,6 +55,11 @@
       "xpReward": "{{count}} XP",
       "progress": "Progresso",
       "claim": "Resgatar recompensa"
+    },
+    "config": {
+      "title": "Configurações",
+      "logout": "Desconectar",
+      "setLanguage": "Mudar idioma: "
     }
   },
   "error": {
