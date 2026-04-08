@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 //Components
 import UserInfo from "@/components/Home/UserInfo";
@@ -42,6 +42,12 @@ export default function Home() {
           xpCurrent={profileData.xpCurrent}
           xpToNextLevel={profileData.xpToNextLevel}
         />
+      </View>
+
+      <View className="flex-1 items-center justify-center bg-white">
+        <Text className="text-xl font-bold text-blue-500">
+          Welcome to Nativewind!
+        </Text>
       </View>
 
       <View

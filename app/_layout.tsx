@@ -3,11 +3,12 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useEffect } from "react";
 import { initI18n } from "@/i18n";
 
-export default function RootLayout() {
+import "./global.css";
 
+export default function RootLayout() {
   useEffect(() => {
-  initI18n();
-}, []);
+    initI18n();
+  }, []);
 
   return (
     <SafeAreaProvider>
