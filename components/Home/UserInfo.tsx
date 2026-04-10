@@ -1,11 +1,11 @@
 import { Text, View } from "react-native";
 
 //Theme
-import { Chip } from "../Chip";
-import { ProgressBar } from "../ProgressBar";
-import { Avatar } from "../Avatar";
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "react-i18next";
+import { ProgressBar } from "../Statistics/ProgressBar";
+import { Avatar } from "../User/Avatar";
+import { Chip } from "../User/Chip";
 
 type Props = {
   image: string;

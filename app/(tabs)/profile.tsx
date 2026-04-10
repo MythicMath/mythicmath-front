@@ -3,10 +3,10 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet, Text, View } from "react-native";
 
 //Components
-import { AppScrollView } from "@/components/AppScrollView";
-import CardStatistics from "@/components/CardStatistics";
+import { AppScrollView } from "@/components/Core/AppScrollView";
 import { LoadingApp } from "@/components/Core/LoadingApp";
-import ProfileCard from "@/components/Profile/ProfileCard";
+import CardStatistics from "@/components/Statistics/CardStatistics";
+import ProfileCard from "@/components/User/ProfileCard";
 
 //Services
 import { useTheme } from "@/hooks/useTheme";

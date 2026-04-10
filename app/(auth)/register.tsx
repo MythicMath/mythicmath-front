@@ -7,9 +7,9 @@ import { useTranslation } from "react-i18next";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 
 // Components
-import ButtonGradient from "@/components/ButtonGradient";
-import { ButtonLink } from "@/components/ButtonLink";
-import CardAuth from "@/components/CardAuth";
+import ButtonGradient from "@/components/Core/ButtonGradient";
+import { ButtonLink } from "@/components/Core/ButtonLink";
+import CardAuth from "@/components/User/CardAuth";
 
 //Hook
 import { useTheme } from "@/hooks/useTheme";
@@ -18,6 +18,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { FormDataRegister, registerSchema } from "@/helper/zodSchema/user";
 import { register } from "@/src/api/auth.api";
 import { Sparkles } from "lucide-react-native";
+import InputField from "@/components/Core/InputField";
 
 export default function RegisterScreen() {
   const theme = useTheme();
@@ -78,33 +79,15 @@ export default function RegisterScreen() {
             control={control}
             name="name"
             render={({ field: { onChange, value } }) => (
-              <>
-                <TextInput
-                  placeholder={t("screen.register.fields.name") + "*"}
-                  value={value}
-                  onChangeText={onChange}
-                  onFocus={() => setFocusedInput("name")}
-                  onBlur={() => setFocusedInput(null)}
-                  style={[
-                    styles.input,
-                    {
-                      borderColor: theme.colors.border,
-                      color: theme.colors.foreground,
-                      backgroundColor: theme.colors.inputBackground,
-                    },
-                    focusedInput === "name" && styles.focused,
-                  ]}
-                  placeholderTextColor={theme.colors.mutedForeground}
-                />
-
-                {errors.name && (
-                  <Text
-                    style={[styles.error, { color: theme.colors.destructive }]}
-                  >
-                    {errors.name.message}
-                  </Text>
-                )}
-              </>
+              <InputField
+                placeholder={t("screen.register.fields.name") + "*"}
+                value={value}
+                onChange={onChange}
+                error={errors.name?.message}
+                isFocused={focusedInput === "name"}
+                onFocus={() => setFocusedInput("name")}
+                onBlur={() => setFocusedInput(null)}
+              />
             )}
           />
 
@@ -113,35 +96,15 @@ export default function RegisterScreen() {
             control={control}
             name="email"
             render={({ field: { onChange, value } }) => (
-              <>
-                <TextInput
-                  placeholder={t("screen.register.fields.email") + "*"}
-                  value={value}
-                  onChangeText={onChange}
-                  keyboardType="email-address"
-                  autoCapitalize="none"
-                  onFocus={() => setFocusedInput("email")}
-                  onBlur={() => setFocusedInput(null)}
-                  style={[
-                    styles.input,
-                    {
-                      borderColor: theme.colors.border,
-                      color: theme.colors.foreground,
-                      backgroundColor: theme.colors.inputBackground,
-                    },
-                    focusedInput === "email" && styles.focused,
-                  ]}
-                  placeholderTextColor={theme.colors.mutedForeground}
-                />
-
-                {errors.email && (
-                  <Text
-                    style={[styles.error, { color: theme.colors.destructive }]}
-                  >
-                    {errors.email.message}
-                  </Text>
-                )}
-              </>
+              <InputField
+                placeholder={t("screen.register.fields.email") + "*"}
+                value={value}
+                onChange={onChange}
+                error={errors.email?.message}
+                isFocused={focusedInput === "email"}
+                onFocus={() => setFocusedInput("email")}
+                onBlur={() => setFocusedInput(null)}
+              />
             )}
           />
 
@@ -150,34 +113,15 @@ export default function RegisterScreen() {
             control={control}
             name="password"
             render={({ field: { onChange, value } }) => (
-              <>
-                <TextInput
-                  placeholder={t("screen.register.fields.password") + "*"}
-                  secureTextEntry
-                  value={value}
-                  onChangeText={onChange}
-                  onFocus={() => setFocusedInput("password")}
-                  onBlur={() => setFocusedInput(null)}
-                  style={[
-                    styles.input,
-                    {
-                      borderColor: theme.colors.border,
-                      color: theme.colors.foreground,
-                      backgroundColor: theme.colors.inputBackground,
-                    },
-                    focusedInput === "password" && styles.focused,
-                  ]}
-                  placeholderTextColor={theme.colors.mutedForeground}
-                />
-
-                {errors.password && (
-                  <Text
-                    style={[styles.error, { color: theme.colors.destructive }]}
-                  >
-                    {errors.password.message}
-                  </Text>
-                )}
-              </>
+              <InputField
+                placeholder={t("screen.register.fields.password") + "*"}
+                value={value}
+                onChange={onChange}
+                error={errors.password?.message}
+                isFocused={focusedInput === "password"}
+                onFocus={() => setFocusedInput("password")}
+                onBlur={() => setFocusedInput(null)}
+              />
             )}
           />
 
@@ -186,36 +130,15 @@ export default function RegisterScreen() {
             control={control}
             name="confirmPassword"
             render={({ field: { onChange, value } }) => (
-              <>
-                <TextInput
-                  placeholder={
-                    t("screen.register.fields.confirmPassword") + "*"
-                  }
-                  secureTextEntry
-                  value={value}
-                  onChangeText={onChange}
-                  onFocus={() => setFocusedInput("confirmPassword")}
-                  onBlur={() => setFocusedInput(null)}
-                  style={[
-                    styles.input,
-                    {
-                      borderColor: theme.colors.border,
-                      color: theme.colors.foreground,
-                      backgroundColor: theme.colors.inputBackground,
-                    },
-                    focusedInput === "confirmPassword" && styles.focused,
-                  ]}
-                  placeholderTextColor={theme.colors.mutedForeground}
-                />
-
-                {errors.confirmPassword && (
-                  <Text
-                    style={[styles.error, { color: theme.colors.destructive }]}
-                  >
-                    {errors.confirmPassword.message}
-                  </Text>
-                )}
-              </>
+              <InputField
+                placeholder={t("screen.register.fields.confirmPassword") + "*"}
+                value={value}
+                onChange={onChange}
+                error={errors.confirmPassword?.message}
+                isFocused={focusedInput === "confirmPassword"}
+                onFocus={() => setFocusedInput("confirmPassword")}
+                onBlur={() => setFocusedInput(null)}
+              />
             )}
           />
 

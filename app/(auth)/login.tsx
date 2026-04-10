@@ -1,16 +1,16 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
+import { Sparkles } from "lucide-react-native";
+import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { router } from "expo-router";
-import { useState } from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
-import { Sparkles } from "lucide-react-native";
 
 // Components
-import ButtonGradient from "@/components/ButtonGradient";
-import { ButtonLink } from "@/components/ButtonLink";
-import CardAuth from "@/components/CardAuth";
+import CardAuth from "@/components/User/CardAuth";
+import ButtonGradient from "@/components/Core/ButtonGradient";
+import { ButtonLink } from "@/components/Core/ButtonLink";
 
 //Hook
 import { useTheme } from "@/hooks/useTheme";
@@ -20,6 +20,7 @@ import { login } from "@/src/api/auth.api";
 
 //Zod Schema
 import { FormDataLogin, loginSchema } from "@/helper/zodSchema/user";
+import InputField from "@/components/Core/InputField";
 
 export default function LoginScreen() {
   const theme = useTheme();
@@ -49,7 +50,7 @@ export default function LoginScreen() {
       await login(payload);
       router.replace("/(tabs)");
     } catch (error: any) {
-      console.log(error);
+      console.error(error);
 
       const message =
         error?.response?.data?.detail || error?.message || "Erro ao logar";
@@ -85,34 +86,15 @@ export default function LoginScreen() {
             control={control}
             name="identifier"
             render={({ field: { onChange, value } }) => (
-              <>
-                <TextInput
-                  placeholder={t("screen.login.fields.nameEmail") + "*"}
-                  value={value}
-                  onChangeText={onChange}
-                  autoCapitalize="none"
-                  onFocus={() => setFocusedInput("identifier")}
-                  onBlur={() => setFocusedInput(null)}
-                  style={[
-                    styles.input,
-                    {
-                      borderColor: theme.colors.border,
-                      color: theme.colors.foreground,
-                      backgroundColor: theme.colors.inputBackground,
-                    },
-                    focusedInput === "identifier" && styles.focused,
-                  ]}
-                  placeholderTextColor={theme.colors.mutedForeground}
-                />
-
-                {errors.identifier && (
-                  <Text
-                    style={[styles.error, { color: theme.colors.destructive }]}
-                  >
-                    {errors.identifier.message}
-                  </Text>
-                )}
-              </>
+              <InputField
+                placeholder={t("screen.login.fields.nameEmail") + "*"}
+                value={value}
+                onChange={onChange}
+                error={errors.identifier?.message}
+                isFocused={focusedInput === "identifier"}
+                onFocus={() => setFocusedInput("identifier")}
+                onBlur={() => setFocusedInput(null)}
+              />
             )}
           />
 
@@ -121,34 +103,16 @@ export default function LoginScreen() {
             control={control}
             name="password"
             render={({ field: { onChange, value } }) => (
-              <>
-                <TextInput
-                  placeholder={t("screen.login.fields.password") + "*"}
-                  secureTextEntry
-                  value={value}
-                  onChangeText={onChange}
-                  onFocus={() => setFocusedInput("password")}
-                  onBlur={() => setFocusedInput(null)}
-                  style={[
-                    styles.input,
-                    {
-                      borderColor: theme.colors.border,
-                      color: theme.colors.foreground,
-                      backgroundColor: theme.colors.inputBackground,
-                    },
-                    focusedInput === "password" && styles.focused,
-                  ]}
-                  placeholderTextColor={theme.colors.mutedForeground}
-                />
-
-                {errors.password && (
-                  <Text
-                    style={[styles.error, { color: theme.colors.destructive }]}
-                  >
-                    {errors.password.message}
-                  </Text>
-                )}
-              </>
+              <InputField
+                placeholder={t("screen.login.fields.password") + "*"}
+                value={value}
+                onChange={onChange}
+                secureTextEntry
+                error={errors.password?.message}
+                isFocused={focusedInput === "password"}
+                onFocus={() => setFocusedInput("password")}
+                onBlur={() => setFocusedInput(null)}
+              />
             )}
           />
 

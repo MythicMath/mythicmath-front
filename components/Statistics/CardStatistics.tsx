@@ -1,7 +1,7 @@
 import { useTheme } from "@/hooks/useTheme";
 import { StatisticIcons } from "@/icons/StatisticIcons";
 import { Text, View } from "react-native";
-import Card from "./Card";
+import Card from "../Core/Card";
 
 type IconKey = keyof typeof StatisticIcons;
 

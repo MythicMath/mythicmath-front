@@ -6,8 +6,8 @@ import { LoadingApp } from "@/components/Core/LoadingApp";
 import UserInfo from "@/components/Home/UserInfo";
 
 //Services
-import { AppScrollView } from "@/components/AppScrollView";
-import CardStatistics from "@/components/CardStatistics";
+import { AppScrollView } from "@/components/Core/AppScrollView";
+import CardStatistics from "@/components/Statistics/CardStatistics";
 import { useTheme } from "@/hooks/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -42,12 +42,6 @@ export default function Home() {
           xpCurrent={profileData.xpCurrent}
           xpToNextLevel={profileData.xpToNextLevel}
         />
-      </View>
-
-      <View className="flex-1 items-center justify-center bg-white">
-        <Text className="text-xl font-bold text-blue-500">
-          Welcome to Nativewind!!!
-        </Text>
       </View>
 
       <View

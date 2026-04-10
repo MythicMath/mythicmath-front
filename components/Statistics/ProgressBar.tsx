@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 import { useTheme } from "@/hooks/useTheme";
-import { ProgressApp } from "./Core/ProgressApp";
+import { ProgressApp } from "../Core/ProgressApp";
 
 type Props = {
   variant?: "dark" | "light";

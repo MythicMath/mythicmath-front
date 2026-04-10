@@ -2,11 +2,11 @@ import { Text, View } from "react-native";
 
 //Theme
 
-import Card from "../Card";
-import { Chip } from "../Chip";
-import { ProgressBar } from "../ProgressBar";
-import { Avatar } from "../Avatar";
 import { useTranslation } from "react-i18next";
+import Card from "../Core/Card";
+import { ProgressBar } from "../Statistics/ProgressBar";
+import { Avatar } from "./Avatar";
+import { Chip } from "./Chip";
 
 type Props = {
   image: string;
@@ -35,7 +35,7 @@ export default function ProfileCard({
   const percentage = Math.round(progress * 100);
 
   const handleUpload = async () => {
-    console.log(
+    console.info(
       "TODO: Add logica para selecionar uma imagem da própria aplicação ou usar avatar dependedndo do tipo de login feito",
     );
   };
