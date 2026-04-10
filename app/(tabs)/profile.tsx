@@ -5,13 +5,13 @@ import { StyleSheet, Text, View } from "react-native";
 //Components
 import { AppScrollView } from "@/components/AppScrollView";
 import CardStatistics from "@/components/CardStatistics";
-import { LoadingApp } from "@/components/components-core/LoadingApp";
+import { LoadingApp } from "@/components/Core/LoadingApp";
 import ProfileCard from "@/components/Profile/ProfileCard";
 
 //Services
 import { useTheme } from "@/hooks/useTheme";
-import { LinearGradient } from "expo-linear-gradient";
 import { useProfileStore } from "@/store/profile";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function ProfileScreen() {
   const theme = useTheme();

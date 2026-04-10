@@ -1,11 +1,11 @@
-import { Tabs } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { LoadingApp } from "@/components/Core/LoadingApp";
 import { useTheme } from "@/hooks/useTheme";
 import { profile } from "@/src/api/profile.api";
-import { useEffect, useState } from "react";
-import { LoadingApp } from "@/components/components-core/LoadingApp";
 import { useProfileStore } from "@/store/profile";
+import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
+import { useEffect, useState } from "react";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabsLayout() {
   const [loading, setLoading] = useState(true);

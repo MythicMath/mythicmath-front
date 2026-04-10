@@ -1,16 +1,30 @@
-import { Pressable, Text, StyleSheet } from "react-native";
+import { Pressable, Text, StyleSheet, ColorValue } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "@/hooks/useTheme";
 import { Sparkles } from "lucide-react-native";
+
+type GradientColors = readonly [ColorValue, ColorValue, ...ColorValue[]];
 
 type Props = {
   title: string;
   onPress?: () => void;
   disabled?: boolean;
+
+  bgColored?: GradientColors;
+  bgColoredPressed?: GradientColors;
 };
 
-export default function ButtonGradient({ title, onPress, disabled }: Props) {
+export default function ButtonGradient({
+  title,
+  onPress,
+  disabled,
+  bgColored,
+  bgColoredPressed,
+}: Props) {
   const theme = useTheme();
+
+  const defaultBg = bgColored ?? theme.gradients.bgColored;
+  const defaultBgPressed = bgColoredPressed ?? theme.gradients.bgColoredPressed;
 
   return (
     <Pressable
@@ -24,9 +38,7 @@ export default function ButtonGradient({ title, onPress, disabled }: Props) {
     >
       {({ pressed }) => (
         <LinearGradient
-          colors={
-            pressed ? theme.gradients.bgColoredPressed : theme.gradients.bgColored
-          }
+          colors={pressed ? defaultBgPressed : defaultBg}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           style={styles.gradient}

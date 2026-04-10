@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { View, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 //Hook
 import { useTheme } from "@/hooks/useTheme";
@@ -8,11 +8,11 @@ import { useTheme } from "@/hooks/useTheme";
 import { logout } from "@/src/api/auth.api";
 
 //Componentes Core
-import { ButtonApp } from "@/components/components-core/ButtonApp";
-import { CardApp } from "@/components/components-core/CardApp";
+import { ButtonApp } from "@/components/Core/ButtonApp";
+import { CardApp } from "@/components/Core/CardApp";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function SettingsScreen() {
   const theme = useTheme();
