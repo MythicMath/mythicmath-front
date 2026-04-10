@@ -1,25 +1,24 @@
-import { Pressable, Text, StyleSheet, ColorValue } from "react-native";
+import { Pressable, Text, StyleSheet, ColorValue, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "@/hooks/useTheme";
-import { Sparkles } from "lucide-react-native";
 
 type GradientColors = readonly [ColorValue, ColorValue, ...ColorValue[]];
 
 type Props = {
-  title: string;
   onPress?: () => void;
   disabled?: boolean;
+  children: React.ReactNode;
 
   bgColored?: GradientColors;
   bgColoredPressed?: GradientColors;
 };
 
 export default function ButtonGradient({
-  title,
   onPress,
   disabled,
   bgColored,
   bgColoredPressed,
+  children,
 }: Props) {
   const theme = useTheme();
 
@@ -43,8 +42,7 @@ export default function ButtonGradient({
           end={{ x: 1, y: 0 }}
           style={styles.gradient}
         >
-          <Sparkles size={16} color="white" />
-          <Text style={styles.text}>{title}</Text>
+          {children}
         </LinearGradient>
       )}
     </Pressable>

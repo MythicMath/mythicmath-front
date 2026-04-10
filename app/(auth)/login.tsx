@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { Sparkles } from "lucide-react-native";
 
 // Components
 import ButtonGradient from "@/components/ButtonGradient";
@@ -151,10 +152,12 @@ export default function LoginScreen() {
             )}
           />
 
-          <ButtonGradient
-            title={t("screen.login.button.login")}
-            onPress={handleSubmit(handleLogin)}
-          />
+          <ButtonGradient onPress={handleSubmit(handleLogin)}>
+            <Sparkles size={16} color="white" />
+            <Text style={{ color: "white", fontWeight: 600 }}>
+              {t("screen.login.button.login")}
+            </Text>
+          </ButtonGradient>
 
           <ButtonLink
             title={t("screen.login.button.goToRegister")}

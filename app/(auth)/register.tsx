@@ -17,6 +17,7 @@ import { useTheme } from "@/hooks/useTheme";
 //API
 import { FormDataRegister, registerSchema } from "@/helper/zodSchema/user";
 import { register } from "@/src/api/auth.api";
+import { Sparkles } from "lucide-react-native";
 
 export default function RegisterScreen() {
   const theme = useTheme();
@@ -218,10 +219,12 @@ export default function RegisterScreen() {
             )}
           />
 
-          <ButtonGradient
-            title={t("screen.register.button.login")}
-            onPress={handleSubmit(handleRegister)}
-          />
+          <ButtonGradient onPress={handleSubmit(handleRegister)}>
+            <Sparkles size={16} color="white" />
+            <Text style={{ color: "white", fontWeight: 600 }}>
+              {t("screen.register.button.login")}
+            </Text>
+          </ButtonGradient>
 
           <ButtonLink
             title={t("screen.register.button.goToLogin")}

@@ -1,6 +1,5 @@
 import React from "react";
 import { ScrollView, ScrollViewProps, StyleProp, ViewStyle } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type Props = ScrollViewProps & {
   contentStyle?: StyleProp<ViewStyle>;
@@ -11,7 +10,6 @@ export function AppScrollView({
   contentStyle,
   ...rest
 }: Props) {
-  const insets = useSafeAreaInsets();
 
   return (
     <ScrollView
