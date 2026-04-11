@@ -31,10 +31,10 @@ export default function Home() {
         colors={theme.gradients.bgColored}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={styles.background}
+        className="absolute top-0 left-0 right-0 h-[260]"
       />
 
-      <View style={styles.container}>
+      <View className="mt-12">
         <UserInfo
           name={profileData.name}
           image={profileData.image || ""}
@@ -73,17 +73,3 @@ export default function Home() {
     </AppScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  background: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 260,
-  },
-
-  container: {
-    marginTop: 40,
-  },
-});

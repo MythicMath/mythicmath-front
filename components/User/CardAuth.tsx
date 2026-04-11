@@ -29,8 +29,8 @@ export default function CardAuth({ children }: Props) {
 
   return (
     <Animated.View
+      className="w-full p-6 rounded-lg border gap-4"
       style={[
-        styles.card,
         animatedStyle,
         {
           backgroundColor: theme.colors.card,
@@ -42,13 +42,3 @@ export default function CardAuth({ children }: Props) {
     </Animated.View>
   );
 }
-
-const styles = StyleSheet.create({
-  card: {
-    width: "100%",
-    padding: 24,
-    borderRadius: 12,
-    borderWidth: 1,
-    gap: 16,
-  },
-});

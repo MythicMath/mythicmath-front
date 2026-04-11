@@ -9,10 +9,10 @@ import { logout } from "@/src/api/auth.api";
 
 //Componentes Core
 import { ButtonApp } from "@/components/Core/ButtonApp";
-import { CardApp } from "@/components/Core/CardApp";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
+import Card from "@/components/Core/Card";
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -45,7 +45,7 @@ export default function SettingsScreen() {
     >
       <View style={styles.container}>
         <Text style={styles.title}>{t("screen.config.title")}</Text>
-        <CardApp width="100%">
+        <Card style={{ width: "100%" }}>
           <View
             style={{
               display: "flex",
@@ -65,7 +65,7 @@ export default function SettingsScreen() {
               onPress={handleLogout}
             />
           </View>
-        </CardApp>
+        </Card>
       </View>
     </LinearGradient>
   );

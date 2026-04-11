@@ -22,18 +22,32 @@ export default function ProfileScreen() {
     return <LoadingApp />;
   }
 
+  /*
+  title: {
+    marginTop: 36,
+    fontSize: 24,
+    textAlign: "center",
+    color: "white",
+  },
+  */
+
   return (
     <AppScrollView>
       <LinearGradient
         colors={theme.gradients.bgColored}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
-        style={styles.background}
+        className="absolute top-0 left-0 right-0 h-[260]"
       />
 
-      <Text style={styles.title}>{t("screen.profile.title")}</Text>
+      <Text
+        className="mt-10 text-2xl text-center"
+        style={{ color: theme.colors.textLight }}
+      >
+        {t("screen.profile.title")}
+      </Text>
 
-      <View style={styles.container}>
+      <View className="mt-8">
         {/* Profile Card Info */}
         <ProfileCard
           name={profileData?.name || ""}
@@ -77,22 +91,10 @@ export default function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  background: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    height: 260,
-  },
-
   title: {
     marginTop: 36,
     fontSize: 24,
     textAlign: "center",
     color: "white",
-  },
-
-  container: {
-    marginTop: 20,
   },
 });

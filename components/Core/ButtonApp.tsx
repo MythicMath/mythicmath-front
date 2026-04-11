@@ -13,18 +13,21 @@ export function ButtonApp({ title, onPress, variant = "primary" }: Props) {
   const styles = getStyles(theme, variant);
 
   return (
-    <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
+    <Pressable
+      style={styles.button}
+      className="p-4 rounded-xl text-center border"
+      onPress={onPress}
+    >
+      <Text style={styles.text} className="font-bold">
+        {title}
+      </Text>
     </Pressable>
   );
 }
-
+// style={styles.button}
 const getStyles = (theme: any, variant: string) =>
   StyleSheet.create({
     button: {
-      padding: theme.spacing.lg,
-      borderRadius: theme.radius.lg,
-      alignItems: "center",
       backgroundColor:
         variant === "primary"
           ? theme.colors.primary
@@ -33,7 +36,6 @@ const getStyles = (theme: any, variant: string) =>
             : variant === "destructive"
               ? theme.colors.destructive
               : "transparent",
-      borderWidth: variant === "outline" ? 1 : 0,
       borderColor: theme.colors.border,
     },
     text: {
@@ -43,6 +45,5 @@ const getStyles = (theme: any, variant: string) =>
           : variant === "destructive"
             ? theme.colors.destructiveForeground
             : theme.colors.foreground,
-      fontWeight: "500",
     },
   });

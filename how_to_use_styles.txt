@@ -1,0 +1,11 @@
+StyleSheet.create → use for static layout & base styles (default choice)
+
+useTheme → use for dynamic values from your design system (colors, dark mode, gradients)
+
+Tailwind (NativeWind) → use for quick, simple styling (spacing, flex, small UI tweaks)
+
+
+Structure = StyleSheet
+Theme = useTheme
+Speed = Tailwind
+

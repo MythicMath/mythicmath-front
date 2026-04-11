@@ -57,19 +57,25 @@ export default function RegisterScreen() {
       colors={theme.gradients.bgColored}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
-      style={styles.background}
+      className="flex-1"
     >
-      <View style={styles.container}>
+      <View className="flex-1 justify-center items-center p-6">
         <Image
           source={require("@/assets/images/logo_transparent.png")}
-          style={styles.logo}
+          className="w-28 h-28 rounded-full mb-4"
         />
 
-        <Text style={[styles.title, { color: theme.colors.secondary }]}>
+        <Text
+          className="text-2xl font-semibold mb-1"
+          style={{ color: theme.colors.secondary }}
+        >
           {t("screen.register.title")}
         </Text>
 
-        <Text style={[styles.message, { color: theme.colors.secondary }]}>
+        <Text
+          className="text-sm text-center mb-4"
+          style={{ color: theme.colors.secondary }}
+        >
           {t("screen.register.description")}
         </Text>
 
@@ -144,7 +150,7 @@ export default function RegisterScreen() {
 
           <ButtonGradient onPress={handleSubmit(handleRegister)}>
             <Sparkles size={16} color="white" />
-            <Text style={{ color: "white", fontWeight: 600 }}>
+            <Text className="font-semibold" style={{ color: "white" }}>
               {t("screen.register.button.login")}
             </Text>
           </ButtonGradient>
@@ -155,9 +161,10 @@ export default function RegisterScreen() {
           />
         </CardAuth>
 
-        <View style={styles.messageRow}>
+        <View className="flex-row items-center gap-2 mt-4">
           <Text
-            style={[styles.messageBottom, { color: theme.colors.secondary }]}
+            className="text-xs text-center"
+            style={{ color: theme.colors.secondary }}
           >
             {t("screen.register.footer")}
           </Text>
@@ -166,65 +173,3 @@ export default function RegisterScreen() {
     </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
-
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 24,
-  },
-
-  logo: {
-    width: 100,
-    height: 100,
-    borderRadius: 100,
-    marginBottom: 16,
-  },
-
-  title: {
-    fontSize: 24,
-    fontWeight: "600",
-    marginBottom: 4,
-  },
-
-  message: {
-    fontSize: 14,
-    textAlign: "center",
-    marginBottom: 16,
-  },
-
-  messageBottom: {
-    fontSize: 12,
-    textAlign: "center",
-  },
-
-  messageRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-    marginTop: 16,
-  },
-
-  input: {
-    width: "100%",
-    padding: 14,
-    borderRadius: 12,
-    borderWidth: 1,
-    marginBottom: 12,
-  },
-
-  focused: {
-    borderWidth: 2,
-  },
-
-  error: {
-    fontSize: 12,
-    marginTop: -8,
-    marginBottom: 8,
-  },
-});

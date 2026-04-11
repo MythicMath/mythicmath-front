@@ -27,51 +27,32 @@ export function Chip({
 
   const isGradient = Array.isArray(bg);
 
-  if (isTransparent) {
-    return (
-      <LinearGradient
-        colors={[theme.colors.chipTransparent, theme.colors.chipTransparent]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        style={[styles.container, style]}
-      >
-        <Text style={[styles.text, { color: textColor }]}>{label}</Text>
-      </LinearGradient>
-    );
-  }
-
-  if (isGradient) {
-    return (
-      <LinearGradient
-        colors={bg as Gradient}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        style={[styles.container, style]}
-      >
-        <Text style={[styles.text, { color: textColor }]}>{label}</Text>
-      </LinearGradient>
-    );
-  }
+  const colorsLinear: Gradient = isTransparent
+    ? [theme.colors.chipTransparent, theme.colors.chipTransparent]
+    : isGradient
+      ? (bg as Gradient)
+      : [bg as ColorValue, bg as ColorValue];
 
   return (
     <LinearGradient
-      colors={[bg, bg] as Gradient}
+      colors={colorsLinear}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
       style={[styles.container, style]}
+      className="px-4 py-2"
     >
-      <Text style={[styles.text, { color: textColor }]}>{label}</Text>
+      <Text
+        className="text-sm font-bold text-center"
+        style={{ color: textColor }}
+      >
+        {label}
+      </Text>
     </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 10,
-    paddingVertical: 5,
     borderRadius: 999,
-  },
-  text: {
-    fontSize: 13,
-    fontWeight: "bold",
-    textAlign: "center",
   },
 });

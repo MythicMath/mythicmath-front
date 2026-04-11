@@ -41,30 +41,9 @@ export default function CardStatistics({
       }}
     >
       {isVertical ? (
-        <View
-          style={{
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 12,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 12,
-            }}
-          >
-            <View
-              style={{
-                width: 40,
-                height: 36,
-                borderRadius: 12,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+        <View className="flex-col justify-center items-center gap-3">
+          <View className="flex-col items-center gap-3">
+            <View className="w-10 h-9 rounded-xl justify-center items-center">
               <IconComponent
                 name={IconConfig.iconName}
                 size={20}
@@ -72,54 +51,31 @@ export default function CardStatistics({
               />
             </View>
 
-            <View style={{ justifyContent: "center" }}>
+            <View className="justify-center">
               <Text
-                style={{
-                  fontWeight: "bold",
-                  fontSize: 18,
-                  color: theme.colors.foreground,
-                  textAlign: "center",
-                }}
+                className="font-bold text-lg text-center"
+                style={{ color: theme.colors.foreground }}
               >
                 {quantity}
               </Text>
             </View>
           </View>
 
-          <View style={{ justifyContent: "center", maxWidth: 80 }}>
+          <View className="justify-center max-w-20">
             <Text
-              style={{
-                fontSize: 16,
-                color: theme.colors.foreground,
-              }}
+              className="text-base"
+              style={{ color: theme.colors.foreground }}
             >
               {text}
             </Text>
           </View>
         </View>
       ) : (
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            paddingRight: 16,
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              gap: 12,
-            }}
-          >
+        <View className="flex-row justify-between pr-4">
+          <View className="flex-row gap-3">
             <View
-              style={{
-                backgroundColor: theme.colors.muted,
-                width: 40,
-                height: 40,
-                borderRadius: 12,
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              className="w-10 h-10 rounded-xl justify-center items-center"
+              style={{ backgroundColor: theme.colors.muted }}
             >
               <IconComponent
                 name={IconConfig.iconName}
@@ -128,25 +84,20 @@ export default function CardStatistics({
               />
             </View>
 
-            <View style={{ justifyContent: "center" }}>
+            <View className="justify-center">
               <Text
-                style={{
-                  fontSize: 16,
-                  color: theme.colors.foreground,
-                }}
+                className="text-base"
+                style={{ color: theme.colors.foreground }}
               >
                 {text}
               </Text>
             </View>
           </View>
 
-          <View style={{ justifyContent: "center" }}>
+          <View className="justify-center">
             <Text
-              style={{
-                fontWeight: "bold",
-                fontSize: 18,
-                color: theme.colors.foreground,
-              }}
+              className="font-bold text-lg"
+              style={{ color: theme.colors.foreground }}
             >
               {quantity}
             </Text>

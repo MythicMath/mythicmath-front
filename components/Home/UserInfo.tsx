@@ -34,16 +34,14 @@ export default function UserInfo({
 
   return (
     <View>
-      <View style={{ display: "flex", flexDirection: "row", gap: 10 }}>
+      <View className="flex flex-row gap-3">
         <Avatar size={56} uri={image} name={name} />
 
-        <View style={{ display: "flex", paddingBottom: 20 }}>
+        <View className="flex pb-5">
           <Text
+            className="text-2xl font-bold mb-2"
             style={{
-              fontSize: 18,
-              fontWeight: "bold",
               color: theme.colors.textLight,
-              marginBottom: 5,
             }}
           >
             {name}

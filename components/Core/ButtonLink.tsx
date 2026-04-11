@@ -13,16 +13,12 @@ export function ButtonLink({ title, href }: Props) {
   return (
     <Link href={href} asChild>
       <Pressable
-        style={({ pressed }) => [
-          styles.container,
-          { opacity: pressed ? 0.6 : 1 },
-        ]}
+        style={({ pressed }) => [{ opacity: pressed ? 0.6 : 1 }]}
+        className="mt-4"
       >
         <Text
-          style={[
-            styles.text,
-            { color: theme.colors.link },
-          ]}
+          style={{ color: theme.colors.link }}
+          className="text-center font-bold text-md no-underline"
         >
           {title}
         </Text>
@@ -30,16 +26,3 @@ export function ButtonLink({ title, href }: Props) {
     </Link>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 12,
-    alignItems: "center",
-  },
-  text: {
-    textAlign: "center",
-    fontSize: 14,
-    fontWeight: "600",
-    textDecorationLine: "none",
-  },
-});

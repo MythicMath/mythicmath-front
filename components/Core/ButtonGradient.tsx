@@ -1,4 +1,4 @@
-import { Pressable, Text, StyleSheet, ColorValue, View } from "react-native";
+import { Pressable, StyleSheet, ColorValue, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "@/hooks/useTheme";
 
@@ -29,52 +29,23 @@ export default function ButtonGradient({
     <Pressable
       onPress={onPress}
       disabled={disabled}
-      style={({ pressed }) => [
-        styles.container,
-        disabled && styles.disabled,
-        pressed && styles.pressed,
-      ]}
     >
       {({ pressed }) => (
-        <LinearGradient
-          colors={pressed ? defaultBgPressed : defaultBg}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={styles.gradient}
+        <View
+          className={`rounded-xl overflow-hidden ${
+            disabled ? "opacity-50" : pressed ? "opacity-80" : ""
+          }`}
         >
-          {children}
-        </LinearGradient>
+          <LinearGradient
+            colors={pressed ? defaultBgPressed : defaultBg}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            className="flex flex-row justify-center items-center p-4 gap-4"
+          >
+            {children}
+          </LinearGradient>
+        </View>
       )}
     </Pressable>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    paddingHorizontal: 8,
-    borderRadius: 12,
-  },
-
-  gradient: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 14,
-    padding: 14,
-    borderRadius: 12,
-  },
-
-  text: {
-    color: "white",
-    fontWeight: "600",
-  },
-
-  pressed: {
-    opacity: 0.9,
-  },
-
-  disabled: {
-    opacity: 0.5,
-  },
-});

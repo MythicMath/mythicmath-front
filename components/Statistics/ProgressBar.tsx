@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 import { useTheme } from "@/hooks/useTheme";
 import { ProgressApp } from "../Core/ProgressApp";
@@ -23,10 +23,13 @@ export function ProgressBar({
     variant === "dark" ? theme.colors.textDark : theme.colors.textLight;
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={[styles.title, { color: textColor }]}>{textLeft}</Text>
-        <Text style={[styles.percentage, { color: textColor }]}>
+    <View className="w-full">
+      <View className="flex-row justify-between mb-2">
+        <Text className="text-sm font-medium" style={{ color: textColor }}>
+          {textLeft}
+        </Text>
+
+        <Text className="text-sm font-semibold" style={{ color: textColor }}>
           {textRight}
         </Text>
       </View>
@@ -39,34 +42,3 @@ export function ProgressBar({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 8,
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: "500",
-  },
-  percentage: {
-    fontSize: 14,
-    fontWeight: "600",
-  },
-  barBackground: {
-    height: 10,
-    width: "100%",
-    backgroundColor: "#E5E7EB", // cinza claro
-    borderRadius: 999,
-    overflow: "hidden",
-  },
-  barFill: {
-    height: "100%",
-    backgroundColor: "#4F46E5", // roxo bonito (pode trocar pelo theme)
-    borderRadius: 999,
-  },
-});

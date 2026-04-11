@@ -2,13 +2,7 @@ import { ActivityIndicator, View } from "react-native";
 
 export function LoadingApp() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <View className="flex flex-1 justify-center items-center">
       <ActivityIndicator />
     </View>
   );

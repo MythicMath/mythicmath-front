@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, StyleSheet, Pressable, Text } from "react-native";
+import { View, Image, Pressable, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks/useTheme";
 
@@ -18,7 +18,6 @@ export function Avatar({
 }: Props) {
   const theme = useTheme();
 
-  // ✅ Generate initials
   const getInitials = () => {
     if (!name) return "?";
 
@@ -39,6 +38,7 @@ export function Avatar({
       {showImage ? (
         <Image
           source={{ uri }}
+          className="rounded-full"
           style={{
             width: size,
             height: size,
@@ -47,19 +47,18 @@ export function Avatar({
         />
       ) : (
         <View
+          className="justify-center items-center rounded-full"
           style={{
             width: size,
             height: size,
             borderRadius: size / 2,
             backgroundColor: theme.colors.muted,
-            justifyContent: "center",
-            alignItems: "center",
           }}
         >
           <Text
+            className="font-bold"
             style={{
               fontSize: size / 2.5,
-              fontWeight: "bold",
               color: theme.colors.textDark,
             }}
           >
@@ -72,13 +71,11 @@ export function Avatar({
       {onEditPress && (
         <Pressable
           onPress={onEditPress}
-          style={[
-            styles.editButton,
-            {
-              backgroundColor: theme.colors.primary,
-              borderColor: theme.colors.background,
-            },
-          ]}
+          className="absolute bottom-0 right-0 w-7 h-7 rounded-full justify-center items-center border-2"
+          style={{
+            backgroundColor: theme.colors.primary,
+            borderColor: theme.colors.background,
+          }}
         >
           <Ionicons name="camera" size={16} color="#fff" />
         </Pressable>
@@ -86,16 +83,3 @@ export function Avatar({
     </View>
   );
 }
-const styles = StyleSheet.create({
-  editButton: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    width: 28,
-    height: 28,
-    borderRadius: 999,
-    justifyContent: "center",
-    alignItems: "center",
-    borderWidth: 2,
-  },
-});

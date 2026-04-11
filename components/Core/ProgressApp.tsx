@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 
 type ProgressAppProps = {
   value: number;
@@ -12,19 +12,14 @@ export function ProgressApp({
   color = "#3b82f6",
 }: ProgressAppProps) {
   return (
-    <View style={[styles.container, { backgroundColor: bgColor }]}>
-      <View style={[styles.bar, { width: `${value}%`, backgroundColor: color }]} />
+    <View
+      className="h-2 rounded-full overflow-hidden"
+      style={{ backgroundColor: bgColor }}
+    >
+      <View
+        className="h-full"
+        style={{ width: `${value}%`, backgroundColor: color }}
+      />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 8,
-    borderRadius: 999,
-    overflow: "hidden",
-  },
-  bar: {
-    height: "100%",
-  },
-});

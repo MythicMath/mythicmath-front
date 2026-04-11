@@ -19,6 +19,7 @@ export default function Card({ children, style }: Props) {
         },
         style,
       ]}
+      className="p-6 rounded-md border"
     >
       {children}
     </View>
@@ -27,10 +28,6 @@ export default function Card({ children, style }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    minWidth: 110,
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: 1,
-    gap: 16,
+    minWidth: 110, // precise control that min-w-28 wouldnt do
   },
 });

@@ -35,38 +35,23 @@ export default function InputField({
         onFocus={onFocus}
         onBlur={onBlur}
         autoCapitalize="none"
-        style={[
-          styles.input,
-          {
-            borderColor: theme.colors.border,
-            color: theme.colors.foreground,
-            backgroundColor: theme.colors.inputBackground,
-          },
-          isFocused && styles.focused,
-        ]}
+        className={`border rounded-xl p-4 ${isFocused && "border-2"}`}
+        style={{
+          borderColor: theme.colors.border,
+          color: theme.colors.foreground,
+          backgroundColor: theme.colors.inputBackground,
+        }}
         placeholderTextColor={theme.colors.mutedForeground}
       />
 
       {error && (
-        <Text style={[styles.error, { color: theme.colors.destructive }]}>
+        <Text
+          className="mt-1 text-sm"
+          style={{ color: theme.colors.destructive }}
+        >
           {error}
         </Text>
       )}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  input: {
-    borderWidth: 1,
-    borderRadius: 12,
-    padding: 12,
-  },
-  focused: {
-    borderWidth: 2,
-  },
-  error: {
-    marginTop: 4,
-    fontSize: 12,
-  },
-});

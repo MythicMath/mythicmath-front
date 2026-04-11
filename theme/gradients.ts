@@ -8,5 +8,4 @@ export const gradients = {
 
   bgColored: ["#9333ea", "#2563eb"] as const,
   bgColoredPressed: ["#7e22ce", "#1d4ed8"] as const,
-
 };

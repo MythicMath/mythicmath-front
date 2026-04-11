@@ -71,7 +71,7 @@ export default function ProfileCard({
           {name}
         </Text>
 
-        <Chip label={levelText} />
+        <Chip label={levelText} style={{ marginBottom: 16 }} />
       </View>
 
       <ProgressBar
