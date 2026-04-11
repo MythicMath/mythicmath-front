@@ -2,6 +2,7 @@ import { useTheme } from "@/hooks/useTheme";
 import { StatisticIcons } from "@/icons/StatisticIcons";
 import { Text, View } from "react-native";
 import Card from "../Core/Card";
+import { AppText } from "../Core/AppText";
 
 type IconKey = keyof typeof StatisticIcons;
 
@@ -52,22 +53,22 @@ export default function CardStatistics({
             </View>
 
             <View className="justify-center">
-              <Text
+              <AppText
                 className="font-bold text-lg text-center"
-                style={{ color: theme.colors.foreground }}
+                color={theme.colors.foreground}
               >
                 {quantity}
-              </Text>
+              </AppText>
             </View>
           </View>
 
-          <View className="justify-center max-w-20">
-            <Text
-              className="text-base"
-              style={{ color: theme.colors.foreground }}
+          <View className="justify-center max-w-[80]">
+            <AppText
+              className="text-base text-center"
+              color={theme.colors.foreground}
             >
               {text}
-            </Text>
+            </AppText>
           </View>
         </View>
       ) : (
@@ -85,22 +86,19 @@ export default function CardStatistics({
             </View>
 
             <View className="justify-center">
-              <Text
-                className="text-base"
-                style={{ color: theme.colors.foreground }}
-              >
+              <AppText className="text-base" color={theme.colors.foreground}>
                 {text}
-              </Text>
+              </AppText>
             </View>
           </View>
 
           <View className="justify-center">
-            <Text
+            <AppText
               className="font-bold text-lg"
-              style={{ color: theme.colors.foreground }}
+              color={theme.colors.foreground}
             >
               {quantity}
-            </Text>
+            </AppText>
           </View>
         </View>
       )}

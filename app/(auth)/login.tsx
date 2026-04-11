@@ -5,7 +5,7 @@ import { Sparkles } from "lucide-react-native";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, View } from "react-native";
 
 // Components
 import CardAuth from "@/components/User/CardAuth";
@@ -21,6 +21,7 @@ import { login } from "@/src/api/auth.api";
 //Zod Schema
 import { FormDataLogin, loginSchema } from "@/helper/zodSchema/user";
 import InputField from "@/components/Core/InputField";
+import { AppText } from "@/components/Core/AppText";
 
 export default function LoginScreen() {
   const theme = useTheme();
@@ -72,19 +73,21 @@ export default function LoginScreen() {
           className="w-28 h-28 rounded-full mb-4"
         />
 
-        <Text
-          className="text-2xl font-semibold mb-1"
-          style={{ color: theme.colors.secondary }}
+        <AppText
+          variant="title"
+          className="mb-1"
+          color={theme.colors.secondary}
         >
           {t("screen.login.title")}
-        </Text>
+        </AppText>
 
-        <Text
-          className="text-sm text-center mb-4"
-          style={{ color: theme.colors.secondary }}
+        <AppText
+          variant="body"
+          className="text-center mb-4"
+          color={theme.colors.secondary}
         >
           {t("screen.login.description")}
-        </Text>
+        </AppText>
 
         <CardAuth>
           {/* IDENTIFIER */}
@@ -124,9 +127,9 @@ export default function LoginScreen() {
 
           <ButtonGradient onPress={handleSubmit(handleLogin)}>
             <Sparkles size={16} color="white" />
-            <Text className="font-semibold" style={{ color: "white" }}>
+            <AppText className="font-semibold" color="white">
               {t("screen.login.button.login")}
-            </Text>
+            </AppText>
           </ButtonGradient>
 
           <ButtonLink
@@ -136,12 +139,13 @@ export default function LoginScreen() {
         </CardAuth>
 
         <View className="flex-row items-center gap-2 mt-4">
-          <Text
-            className="text-xs text-center"
-            style={{ color: theme.colors.secondary }}
+          <AppText
+            variant="caption"
+            className="text-center"
+            color={theme.colors.secondary}
           >
             {t("screen.login.footer")}
-          </Text>
+          </AppText>
         </View>
       </View>
     </LinearGradient>

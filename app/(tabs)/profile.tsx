@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 
 //Components
 import { AppScrollView } from "@/components/Core/AppScrollView";
@@ -12,6 +12,7 @@ import ProfileCard from "@/components/User/ProfileCard";
 import { useTheme } from "@/hooks/useTheme";
 import { useProfileStore } from "@/store/profile";
 import { LinearGradient } from "expo-linear-gradient";
+import { AppText } from "@/components/Core/AppText";
 
 export default function ProfileScreen() {
   const theme = useTheme();
@@ -22,15 +23,6 @@ export default function ProfileScreen() {
     return <LoadingApp />;
   }
 
-  /*
-  title: {
-    marginTop: 36,
-    fontSize: 24,
-    textAlign: "center",
-    color: "white",
-  },
-  */
-
   return (
     <AppScrollView>
       <LinearGradient
@@ -40,12 +32,13 @@ export default function ProfileScreen() {
         className="absolute top-0 left-0 right-0 h-[260]"
       />
 
-      <Text
-        className="mt-10 text-2xl text-center"
-        style={{ color: theme.colors.textLight }}
+      <AppText
+        variant="title"
+        className="mt-10 text-center"
+        color={theme.colors.textLight}
       >
         {t("screen.profile.title")}
-      </Text>
+      </AppText>
 
       <View className="mt-8">
         {/* Profile Card Info */}
@@ -58,11 +51,10 @@ export default function ProfileScreen() {
         />
 
         {/* Profile Card Statistics */}
-
-        <View style={{ paddingTop: 24, display: "flex", gap: 8 }}>
-          <Text style={{ paddingVertical: 12, fontSize: 20 }}>
+        <View className="pt-6 gap-2">
+          <AppText className="py-3 text-xl">
             {t("screen.profile.stats")}
-          </Text>
+          </AppText>
 
           <CardStatistics
             text={t("screen.profile.currentStreak")}
@@ -89,12 +81,3 @@ export default function ProfileScreen() {
     </AppScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {
-    marginTop: 36,
-    fontSize: 24,
-    textAlign: "center",
-    color: "white",
-  },
-});

@@ -1,6 +1,7 @@
-import { Pressable, Text, StyleSheet } from "react-native";
+import { Pressable } from "react-native";
 import { useTheme } from "@/hooks/useTheme";
 import { Href, Link } from "expo-router";
+import { AppText } from "./AppText";
 
 type Props = {
   title: string;
@@ -16,12 +17,12 @@ export function ButtonLink({ title, href }: Props) {
         style={({ pressed }) => [{ opacity: pressed ? 0.6 : 1 }]}
         className="mt-4"
       >
-        <Text
-          style={{ color: theme.colors.link }}
-          className="text-center font-bold text-md no-underline"
+        <AppText
+          className="text-center font-bold text-base"
+          color={theme.colors.link}
         >
           {title}
-        </Text>
+        </AppText>
       </Pressable>
     </Link>
   );

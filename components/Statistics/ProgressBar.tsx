@@ -3,6 +3,7 @@ import { Text, View } from "react-native";
 
 import { useTheme } from "@/hooks/useTheme";
 import { ProgressApp } from "../Core/ProgressApp";
+import { AppText } from "../Core/AppText";
 
 type Props = {
   variant?: "dark" | "light";
@@ -25,13 +26,13 @@ export function ProgressBar({
   return (
     <View className="w-full">
       <View className="flex-row justify-between mb-2">
-        <Text className="text-sm font-medium" style={{ color: textColor }}>
+        <AppText variant="body" className="font-medium" color={textColor}>
           {textLeft}
-        </Text>
+        </AppText>
 
-        <Text className="text-sm font-semibold" style={{ color: textColor }}>
+        <AppText variant="body" className="font-semibold" color={textColor}>
           {textRight}
-        </Text>
+        </AppText>
       </View>
 
       <ProgressApp

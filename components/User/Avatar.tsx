@@ -2,6 +2,7 @@ import React from "react";
 import { View, Image, Pressable, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks/useTheme";
+import { AppText } from "../Core/AppText";
 
 type Props = {
   uri?: string;
@@ -56,9 +57,9 @@ export function Avatar({
           }}
         >
           <Text
-            className="font-bold"
             style={{
               fontSize: size / 2.5,
+              fontWeight: "bold",
               color: theme.colors.textDark,
             }}
           >

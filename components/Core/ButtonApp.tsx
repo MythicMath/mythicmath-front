@@ -1,5 +1,6 @@
-import { Pressable, Text, StyleSheet } from "react-native";
+import { Pressable, StyleSheet } from "react-native";
 import { useTheme } from "@/hooks/useTheme";
+import { AppText } from "./AppText";
 
 type Props = {
   title: string;
@@ -18,9 +19,7 @@ export function ButtonApp({ title, onPress, variant = "primary" }: Props) {
       className="p-4 rounded-xl text-center border"
       onPress={onPress}
     >
-      <Text style={styles.text} className="font-bold">
-        {title}
-      </Text>
+      <AppText className="font-bold">{title}</AppText>
     </Pressable>
   );
 }

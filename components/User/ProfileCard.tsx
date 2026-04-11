@@ -7,6 +7,8 @@ import Card from "../Core/Card";
 import { ProgressBar } from "../Statistics/ProgressBar";
 import { Avatar } from "./Avatar";
 import { Chip } from "./Chip";
+import { AppText } from "../Core/AppText";
+import { useTheme } from "@/hooks/useTheme";
 
 type Props = {
   image: string;
@@ -24,6 +26,7 @@ export default function ProfileCard({
   xpCurrent,
   xpToNextLevel,
 }: Props) {
+  const theme = useTheme();
   const { t } = useTranslation();
 
   const levelText = `${t("screen.profile.level")} ${level}`;
@@ -61,15 +64,13 @@ export default function ProfileCard({
       >
         <Avatar size={86} uri={image} name={name} onEditPress={handleUpload} />
 
-        <Text
-          style={{
-            textAlign: "center",
-            fontWeight: "bold",
-            fontSize: 25,
-          }}
+        <AppText
+          className="text-center font-bold"
+          variant="title"
+          color={theme.colors.textDark}
         >
           {name}
-        </Text>
+        </AppText>
 
         <Chip label={levelText} style={{ marginBottom: 16 }} />
       </View>

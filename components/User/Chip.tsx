@@ -2,6 +2,7 @@ import React from "react";
 import { Text, StyleSheet, ViewStyle, ColorValue } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "@/hooks/useTheme";
+import { AppText } from "../Core/AppText";
 
 type Gradient = readonly [ColorValue, ColorValue, ...ColorValue[]];
 
@@ -41,12 +42,13 @@ export function Chip({
       style={[styles.container, style]}
       className="px-4 py-2"
     >
-      <Text
-        className="text-sm font-bold text-center"
-        style={{ color: textColor }}
+      <AppText
+        variant="body"
+        className="font-bold text-center"
+        color={textColor}
       >
         {label}
-      </Text>
+      </AppText>
     </LinearGradient>
   );
 }

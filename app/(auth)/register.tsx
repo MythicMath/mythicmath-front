@@ -4,7 +4,7 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, View } from "react-native";
 
 // Components
 import ButtonGradient from "@/components/Core/ButtonGradient";
@@ -19,6 +19,7 @@ import { FormDataRegister, registerSchema } from "@/helper/zodSchema/user";
 import { register } from "@/src/api/auth.api";
 import { Sparkles } from "lucide-react-native";
 import InputField from "@/components/Core/InputField";
+import { AppText } from "@/components/Core/AppText"; // 👈 add
 
 export default function RegisterScreen() {
   const theme = useTheme();
@@ -65,19 +66,21 @@ export default function RegisterScreen() {
           className="w-28 h-28 rounded-full mb-4"
         />
 
-        <Text
-          className="text-2xl font-semibold mb-1"
-          style={{ color: theme.colors.secondary }}
+        <AppText
+          variant="title"
+          className="mb-1"
+          color={theme.colors.secondary}
         >
           {t("screen.register.title")}
-        </Text>
+        </AppText>
 
-        <Text
-          className="text-sm text-center mb-4"
-          style={{ color: theme.colors.secondary }}
+        <AppText
+          variant="body"
+          className="text-center mb-4"
+          color={theme.colors.secondary}
         >
           {t("screen.register.description")}
-        </Text>
+        </AppText>
 
         <CardAuth>
           {/* NAME */}
@@ -150,9 +153,9 @@ export default function RegisterScreen() {
 
           <ButtonGradient onPress={handleSubmit(handleRegister)}>
             <Sparkles size={16} color="white" />
-            <Text className="font-semibold" style={{ color: "white" }}>
+            <AppText className="font-semibold" color="white">
               {t("screen.register.button.login")}
-            </Text>
+            </AppText>
           </ButtonGradient>
 
           <ButtonLink
@@ -162,12 +165,13 @@ export default function RegisterScreen() {
         </CardAuth>
 
         <View className="flex-row items-center gap-2 mt-4">
-          <Text
-            className="text-xs text-center"
-            style={{ color: theme.colors.secondary }}
+          <AppText
+            variant="caption"
+            className="text-center"
+            color={theme.colors.secondary}
           >
             {t("screen.register.footer")}
-          </Text>
+          </AppText>
         </View>
       </View>
     </LinearGradient>

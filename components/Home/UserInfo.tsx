@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { ProgressBar } from "../Statistics/ProgressBar";
 import { Avatar } from "../User/Avatar";
 import { Chip } from "../User/Chip";
+import { AppText } from "../Core/AppText";
 
 type Props = {
   image: string;
@@ -38,14 +39,13 @@ export default function UserInfo({
         <Avatar size={56} uri={image} name={name} />
 
         <View className="flex pb-5">
-          <Text
-            className="text-2xl font-bold mb-2"
-            style={{
-              color: theme.colors.textLight,
-            }}
+          <AppText
+            variant="title"
+            className="mb-2"
+            color={theme.colors.textLight}
           >
             {name}
-          </Text>
+          </AppText>
 
           <Chip
             label={levelText}

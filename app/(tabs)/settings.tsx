@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 //Hook
 import { useTheme } from "@/hooks/useTheme";
@@ -13,6 +13,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
 import Card from "@/components/Core/Card";
+import { AppText } from "@/components/Core/AppText";
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -44,7 +45,7 @@ export default function SettingsScreen() {
       style={styles.background}
     >
       <View style={styles.container}>
-        <Text style={styles.title}>{t("screen.config.title")}</Text>
+        <AppText variant="title">{t("screen.config.title")}</AppText>
         <Card style={{ width: "100%" }}>
           <View
             style={{

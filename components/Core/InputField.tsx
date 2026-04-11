@@ -1,5 +1,6 @@
 import { TextInput, Text, View, StyleSheet } from "react-native";
 import { useTheme } from "@/hooks/useTheme";
+import { AppText } from "./AppText";
 
 type Props = {
   placeholder: string;
@@ -26,7 +27,7 @@ export default function InputField({
 
   return (
     <View>
-      <Text>{placeholder}</Text>
+      <AppText>{placeholder}</AppText>
       <TextInput
         placeholder={placeholder}
         value={value}
@@ -45,12 +46,13 @@ export default function InputField({
       />
 
       {error && (
-        <Text
-          className="mt-1 text-sm"
-          style={{ color: theme.colors.destructive }}
+        <AppText
+          variant="caption"
+          className="mt-1"
+          color={theme.colors.destructive}
         >
           {error}
-        </Text>
+        </AppText>
       )}
     </View>
   );
