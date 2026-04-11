@@ -78,7 +78,7 @@ export function Avatar({
             borderColor: theme.colors.background,
           }}
         >
-          <Ionicons name="camera" size={16} color="#fff" />
+          <Ionicons name="camera" size={16} color={theme.colors.textLight} />
         </Pressable>
       )}
     </View>

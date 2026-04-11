@@ -152,8 +152,8 @@ export default function RegisterScreen() {
           />
 
           <ButtonGradient onPress={handleSubmit(handleRegister)}>
-            <Sparkles size={16} color="white" />
-            <AppText className="font-semibold" color="white">
+            <Sparkles size={16} color={theme.colors.textLight} />
+            <AppText className="font-semibold" color={theme.colors.textLight}>
               {t("screen.register.button.login")}
             </AppText>
           </ButtonGradient>

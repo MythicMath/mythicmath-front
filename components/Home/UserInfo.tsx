@@ -50,7 +50,7 @@ export default function UserInfo({
           <Chip
             label={levelText}
             style={{ width: 70 }}
-            color="white"
+            color={theme.colors.textLight}
             isTransparent
           />
         </View>

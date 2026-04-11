@@ -126,8 +126,8 @@ export default function LoginScreen() {
           />
 
           <ButtonGradient onPress={handleSubmit(handleLogin)}>
-            <Sparkles size={16} color="white" />
-            <AppText className="font-semibold" color="white">
+            <Sparkles size={16} color={theme.colors.textLight} />
+            <AppText className="font-semibold" color={theme.colors.textLight}>
               {t("screen.login.button.login")}
             </AppText>
           </ButtonGradient>
