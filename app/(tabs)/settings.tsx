@@ -42,10 +42,12 @@ export default function SettingsScreen() {
       colors={theme.gradients.bgColored}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
-      style={styles.background}
+      className="flex flex-1"
     >
-      <View style={styles.container}>
-        <AppText variant="title">{t("screen.config.title")}</AppText>
+      <View className="flex flex-1 justify-between items-center p-10 mt-8">
+        <AppText variant="title" color={theme.colors.textLight}>
+          {t("screen.config.title")}
+        </AppText>
         <Card style={{ width: "100%" }}>
           <View
             style={{
@@ -71,24 +73,3 @@ export default function SettingsScreen() {
     </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-  },
-
-  title: {
-    marginTop: 36,
-    fontSize: 24,
-    textAlign: "center",
-    color: "white",
-  },
-
-  container: {
-    flex: 1,
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 24,
-    marginTop: 20,
-  },
-});
