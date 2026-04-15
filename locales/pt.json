@@ -43,7 +43,16 @@
       "totalXP": "XP total",
       "currentStreak": "Sequência atual",
       "rankedVictories": "Vitórias Ranqueadas",
-      "progressUntil": "Progresso até o nível"
+      "progressUntil": "Progresso até o nível",
+      "editProfile": {
+        "buttonLink": "Editar",
+        "message": "Atualize seu email e senha",
+        "title": "Editar Perfil",
+        "email": "Email",
+        "password": "Senha",
+        "confirmPassword": "Confirme a senha",
+        "saveButton": "Salvar Alterações"
+      }
     },
     "quests": {
       "title": "Missões",

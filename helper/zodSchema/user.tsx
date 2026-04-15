@@ -32,5 +32,15 @@ export const registerSchema = z
     path: ["confirmPassword"],
   });
 
+export const updateUserSchema = z.object({
+  email: z.string().email("Invalid email"),
+  password: z
+    .string()
+    .min(6, "Password must have at least 6 characters")
+    .optional()
+    .or(z.literal("")),
+});
+
 export type FormDataRegister = z.infer<typeof registerSchema>;
 export type FormDataLogin = z.infer<typeof loginSchema>;
+export type FormDataUpdateUser = z.infer<typeof updateUserSchema>;

@@ -54,6 +54,10 @@ export default function TabsLayout() {
       screenOptions={{
         headerShown: false,
         tabBarHideOnKeyboard: true,
+
+        tabBarActiveTintColor: "#2563eb",
+        tabBarInactiveTintColor: "#9ca3af",
+
         tabBarStyle: {
           height: 50 + insets.bottom,
           paddingBottom: insets.bottom,

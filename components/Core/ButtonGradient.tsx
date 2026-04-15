@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, ColorValue, View } from "react-native";
+import { Pressable, ColorValue, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "@/hooks/useTheme";
 

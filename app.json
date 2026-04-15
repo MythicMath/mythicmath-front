@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mythicmath-front",
+    "name": "MythicMath",
     "slug": "mythicmath-front",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,7 +8,7 @@
     "splash": {
       "image": "./assets/images/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#9333ea"
     },
     "scheme": "mythicmathfront",
     "userInterfaceStyle": "automatic",

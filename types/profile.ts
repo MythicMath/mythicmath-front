@@ -9,8 +9,13 @@ export interface ProfileResponse {
   level: number;
 }
 
-// RESPONSE TYPE
 export interface UpdateAvatarResponse {
   result: boolean;
   image: string;
+}
+
+export interface EditUserRequest {
+  userId: number,
+  email: string;
+  password?: string;
 }

@@ -1,10 +1,10 @@
-import { TextInput, Text, View, StyleSheet } from "react-native";
+import { TextInput, View } from "react-native";
 import { useTheme } from "@/hooks/useTheme";
 import { AppText } from "./AppText";
 
 type Props = {
   placeholder: string;
-  value: string;
+  value?: string;
   onChange: (text: string) => void;
   error?: string;
   secureTextEntry?: boolean;

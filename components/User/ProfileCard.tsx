@@ -1,7 +1,7 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import { router } from "expo-router";
 
 //Theme
-
 import { useTranslation } from "react-i18next";
 import Card from "../Core/Card";
 import { ProgressBar } from "../Statistics/ProgressBar";
@@ -9,6 +9,7 @@ import { Avatar } from "./Avatar";
 import { Chip } from "./Chip";
 import { AppText } from "../Core/AppText";
 import { useTheme } from "@/hooks/useTheme";
+import { ButtonApp } from "../Core/ButtonApp";
 
 type Props = {
   image: string;
@@ -17,6 +18,8 @@ type Props = {
   level: number;
   xpCurrent: number;
   xpToNextLevel: number;
+
+  className?: string;
 };
 
 export default function ProfileCard({
@@ -25,6 +28,7 @@ export default function ProfileCard({
   level,
   xpCurrent,
   xpToNextLevel,
+  className = "",
 }: Props) {
   const theme = useTheme();
   const { t } = useTranslation();
@@ -45,6 +49,7 @@ export default function ProfileCard({
 
   return (
     <Card
+      className={className}
       style={{
         // iOS shadow
         shadowColor: "#000",
@@ -63,6 +68,14 @@ export default function ProfileCard({
         }}
       >
         <Avatar size={86} uri={image} name={name} onEditPress={handleUpload} />
+
+        <View className="absolute top-3 right-3">
+          <ButtonApp
+            title={t("screen.profile.editProfile.buttonLink")}
+            variant="ghost"
+            onPress={() => router.push("/profile/edit-profile")}
+          />
+        </View>
 
         <AppText
           className="text-center font-bold"

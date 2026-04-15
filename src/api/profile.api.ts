@@ -1,10 +1,14 @@
-import { ProfileResponse, UpdateAvatarResponse } from "../../types/profile";
+import {
+  EditUserRequest,
+  ProfileResponse,
+  UpdateAvatarResponse,
+} from "../../types/profile";
 import { ApiEndpoints } from "../constants/api.endpoints";
 import api from "./api";
 
 // ENDPOINTS __________
 
-// Get profile info MOCKADO
+// Get profile info
 export const profile = async (): Promise<ProfileResponse> => {
   const response = await api.get<ProfileResponse>(ApiEndpoints.PROFILE);
   return response.data;
@@ -24,5 +28,17 @@ export const updateAvatar = async (
     },
   );
 
+  return response.data;
+};
+
+// Update profile
+export const updateUser = async (
+  data: EditUserRequest,
+): Promise<ProfileResponse> => {
+  const { userId, ...userData } = data;
+  const response = await api.put<ProfileResponse>(
+    `${ApiEndpoints.EDIT_USER}/${userId}`,
+    userData,
+  );
   return response.data;
 };
