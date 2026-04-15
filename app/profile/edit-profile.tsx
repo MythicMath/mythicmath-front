@@ -7,12 +7,14 @@ import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 
+// Components
 import CardAuth from "@/components/User/CardAuth";
 import ButtonGradient from "@/components/Core/ButtonGradient";
 import InputField from "@/components/Core/InputField";
 import { AppText } from "@/components/Core/AppText";
 import { AppHeader } from "@/components/Core/AppHeader";
 
+//Hooks
 import { useTheme } from "@/hooks/useTheme";
 
 // API
@@ -20,14 +22,10 @@ import { updateUser } from "@/src/api/profile.api";
 
 // Schema
 import { FormDataUpdateUser, updateUserSchema } from "@/helper/zodSchema/user";
-import { useProfileStore } from "@/store/profile";
 
 export default function EditProfileScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
-
-  // Aguardando o profile retornar email
-  const profileData = useProfileStore((s) => s.profile);
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
@@ -47,7 +45,7 @@ export default function EditProfileScreen() {
     try {
       await updateUser({
         userId: 1,
-        email: data.email,
+        email: data.email || undefined,
         password: data.password || undefined,
       });
 

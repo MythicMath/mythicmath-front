@@ -31,15 +31,41 @@ export const registerSchema = z
     message: "As senhas não coincidem",
     path: ["confirmPassword"],
   });
+  
+export const updateUserSchema = z
+  .object({
+    email: z.string().email("Invalid email").optional().or(z.literal("")),
 
-export const updateUserSchema = z.object({
-  email: z.string().email("Invalid email"),
-  password: z
-    .string()
-    .min(6, "Password must have at least 6 characters")
-    .optional()
-    .or(z.literal("")),
-});
+    password: z
+      .string()
+      .min(6, "Password must have at least 6 characters")
+      .optional()
+      .or(z.literal("")),
+  })
+  .refine(
+    (data) => {
+      const hasEmail = data.email && data.email !== "";
+      const hasPassword = data.password && data.password !== "";
+
+      return hasEmail || hasPassword;
+    },
+    {
+      message: "At least one field is required",
+      path: ["email"],
+    },
+  )
+  .refine(
+    (data) => {
+      const hasEmail = data.email && data.email !== "";
+      const hasPassword = data.password && data.password !== "";
+
+      return hasEmail || hasPassword;
+    },
+    {
+      message: "At least one field is required",
+      path: ["password"],
+    },
+  );
 
 export type FormDataRegister = z.infer<typeof registerSchema>;
 export type FormDataLogin = z.infer<typeof loginSchema>;

@@ -36,9 +36,13 @@ export const updateUser = async (
   data: EditUserRequest,
 ): Promise<ProfileResponse> => {
   const { userId, ...userData } = data;
+  const userDataSenha = {
+    email: data.email,
+    senha: data.password,
+  };
   const response = await api.put<ProfileResponse>(
     `${ApiEndpoints.EDIT_USER}/${userId}`,
-    userData,
+    userDataSenha,
   );
   return response.data;
 };

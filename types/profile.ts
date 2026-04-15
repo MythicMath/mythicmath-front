@@ -16,6 +16,6 @@ export interface UpdateAvatarResponse {
 
 export interface EditUserRequest {
   userId: number,
-  email: string;
+  email?: string;
   password?: string;
 }
