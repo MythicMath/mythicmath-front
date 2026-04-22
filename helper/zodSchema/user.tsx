@@ -22,7 +22,7 @@ export const loginSchema = z.object({
 
 export const registerSchema = z
   .object({
-    name: z.string().min(1, "O nome é obrigatório"),
+    username: z.string().min(1, "O nome é obrigatório"),
     email: z.string().email("Digite um e-mail válido"),
     password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
     confirmPassword: z.string(),
@@ -31,7 +31,7 @@ export const registerSchema = z
     message: "As senhas não coincidem",
     path: ["confirmPassword"],
   });
-  
+
 export const updateUserSchema = z
   .object({
     email: z.string().email("Invalid email").optional().or(z.literal("")),
@@ -41,6 +41,11 @@ export const updateUserSchema = z
       .min(6, "Password must have at least 6 characters")
       .optional()
       .or(z.literal("")),
+
+    currentPassword: z
+      .string()
+      .min(1, "Current Password is required to edit user")
+      .min(6, "Current Password must have at least 6 characters"),
   })
   .refine(
     (data) => {

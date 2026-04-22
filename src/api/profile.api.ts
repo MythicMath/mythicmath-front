@@ -37,10 +37,11 @@ export const updateUser = async (
 ): Promise<ProfileResponse> => {
   const { userId, ...userData } = data;
   const userDataSenha = {
-    email: data.email,
-    senha: data.password,
+    email: userData.email,
+    password: userData.password,
+    currentPassword: "password"
   };
-  const response = await api.put<ProfileResponse>(
+  const response = await api.patch<ProfileResponse>(
     `${ApiEndpoints.EDIT_USER}/${userId}`,
     userDataSenha,
   );

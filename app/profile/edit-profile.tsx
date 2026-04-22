@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { Sparkles } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
@@ -22,10 +22,13 @@ import { updateUser } from "@/src/api/profile.api";
 
 // Schema
 import { FormDataUpdateUser, updateUserSchema } from "@/helper/zodSchema/user";
+import { useProfileStore } from "@/store/profile";
 
 export default function EditProfileScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
+
+  const profile = useProfileStore((s) => s.profile);
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
@@ -33,20 +36,33 @@ export default function EditProfileScreen() {
     control,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormDataUpdateUser>({
     resolver: zodResolver(updateUserSchema),
     defaultValues: {
       email: "",
       password: "",
+      currentPassword: "",
     },
   });
+
+  useEffect(() => {
+    if (profile?.email) {
+      reset({
+        email: profile?.email,
+        password: "",
+        currentPassword: "",
+      });
+    }
+  }, [profile?.email, reset]);
 
   async function handleUpdate(data: FormDataUpdateUser) {
     try {
       await updateUser({
-        userId: 1,
+        userId: profile?.userId || 0,
         email: data.email || undefined,
         password: data.password || undefined,
+        currentPassword: data.currentPassword,
       });
 
       alert("Profile updated successfully");
@@ -117,6 +133,42 @@ export default function EditProfileScreen() {
                 error={errors.password?.message}
                 isFocused={focusedInput === "password"}
                 onFocus={() => setFocusedInput("password")}
+                onBlur={() => setFocusedInput(null)}
+              />
+            )}
+          />
+
+          {/* CONFIRM PASSWORD */}
+          <Controller
+            control={control}
+            name="currentPassword"
+            render={({ field: { onChange, value } }) => (
+              <InputField
+                placeholder={t("screen.profile.editProfile.currentPassword") + "*"}
+                value={value}
+                onChange={onChange}
+                secureTextEntry
+                error={errors.currentPassword?.message}
+                isFocused={focusedInput === "currentPassword"}
+                onFocus={() => setFocusedInput("currentPassword")}
+                onBlur={() => setFocusedInput(null)}
+              />
+            )}
+          />
+
+          {/* CURRENT PASSWORD */}
+          <Controller
+            control={control}
+            name="currentPassword"
+            render={({ field: { onChange, value } }) => (
+              <InputField
+                placeholder={t("screen.profile.editProfile.currentPassword") + "*"}
+                value={value}
+                onChange={onChange}
+                secureTextEntry
+                error={errors.currentPassword?.message}
+                isFocused={focusedInput === "currentPassword"}
+                onFocus={() => setFocusedInput("currentPassword")}
                 onBlur={() => setFocusedInput(null)}
               />
             )}

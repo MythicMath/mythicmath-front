@@ -18,7 +18,7 @@
       "title": "Criar Conta",
       "description": "Comece sua jornada matemática hoje!",
       "fields": {
-        "name": "Nome",
+        "username": "Nome de usuário",
         "email": "Email",
         "password": "Senha",
         "confirmPassword": "Confirme a senha"
@@ -50,6 +50,7 @@
         "title": "Editar Perfil",
         "email": "Email",
         "password": "Senha",
+        "currentPassword": "Senha Atual",
         "confirmPassword": "Confirme a senha",
         "saveButton": "Salvar Alterações"
       }

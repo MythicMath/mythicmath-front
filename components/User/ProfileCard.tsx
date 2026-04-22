@@ -14,6 +14,7 @@ import { ButtonApp } from "../Core/ButtonApp";
 type Props = {
   image: string;
   name: string;
+  email: string;
 
   level: number;
   xpCurrent: number;
@@ -24,6 +25,7 @@ type Props = {
 
 export default function ProfileCard({
   name,
+  email,
   image,
   level,
   xpCurrent,
@@ -83,6 +85,13 @@ export default function ProfileCard({
           color={theme.colors.textDark}
         >
           {name}
+        </AppText>
+        <AppText
+          className="text-center font-bold"
+          variant="body"
+          color={theme.colors.textSoftDark}
+        >
+          {email}
         </AppText>
 
         <Chip label={levelText} style={{ marginBottom: 16 }} />

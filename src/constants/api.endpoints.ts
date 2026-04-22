@@ -4,6 +4,6 @@ export enum ApiEndpoints {
   LOGOUT = "/logout",
   HEALTH = "/health",
   PROFILE = "/profile",
-  EDIT_USER = "/edit-user",
+  EDIT_USER = "/users",
   CHANGE_AVATAR = "/avatar"
 }

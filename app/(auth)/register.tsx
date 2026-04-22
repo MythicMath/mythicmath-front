@@ -34,7 +34,7 @@ export default function RegisterScreen() {
   } = useForm<FormDataRegister>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      name: "",
+      username: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -86,15 +86,15 @@ export default function RegisterScreen() {
           {/* NAME */}
           <Controller
             control={control}
-            name="name"
+            name="username"
             render={({ field: { onChange, value } }) => (
               <InputField
-                placeholder={t("screen.register.fields.name") + "*"}
+                placeholder={t("screen.register.fields.username") + "*"}
                 value={value}
                 onChange={onChange}
-                error={errors.name?.message}
-                isFocused={focusedInput === "name"}
-                onFocus={() => setFocusedInput("name")}
+                error={errors.username?.message}
+                isFocused={focusedInput === "username"}
+                onFocus={() => setFocusedInput("username")}
                 onBlur={() => setFocusedInput(null)}
               />
             )}

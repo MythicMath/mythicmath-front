@@ -36,7 +36,7 @@ export default function LoginScreen() {
   } = useForm<FormDataLogin>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      identifier: "ana",
+      identifier: "analins",
       password: "password",
     },
   });

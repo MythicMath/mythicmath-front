@@ -36,7 +36,7 @@ export default function Home() {
 
       <View className="mt-12">
         <UserInfo
-          name={profileData.name}
+          name={profileData.username}
           image={profileData.image || ""}
           level={profileData.level}
           xpCurrent={profileData.xpCurrent}
