@@ -42,16 +42,22 @@ export const updateUserSchema = z
       .optional()
       .or(z.literal("")),
 
+    confirmPassword: z
+      .string()
+      .optional()
+      .or(z.literal("")),
+
     currentPassword: z
       .string()
       .min(1, "Current Password is required to edit user")
       .min(6, "Current Password must have at least 6 characters"),
   })
+
+  // At least one field (email or password)
   .refine(
     (data) => {
       const hasEmail = data.email && data.email !== "";
       const hasPassword = data.password && data.password !== "";
-
       return hasEmail || hasPassword;
     },
     {
@@ -59,16 +65,18 @@ export const updateUserSchema = z
       path: ["email"],
     },
   )
+
+  // Passwords must match (only if password is provided)
   .refine(
     (data) => {
-      const hasEmail = data.email && data.email !== "";
-      const hasPassword = data.password && data.password !== "";
-
-      return hasEmail || hasPassword;
+      if (data.password && data.password !== "") {
+        return data.password === data.confirmPassword;
+      }
+      return true;
     },
     {
-      message: "At least one field is required",
-      path: ["password"],
+      message: "Passwords do not match",
+      path: ["confirmPassword"],
     },
   );
 

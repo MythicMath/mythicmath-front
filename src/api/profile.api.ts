@@ -36,14 +36,15 @@ export const updateUser = async (
   data: EditUserRequest,
 ): Promise<ProfileResponse> => {
   const { userId, ...userData } = data;
-  const userDataSenha = {
+  const payload = {
     email: userData.email,
     password: userData.password,
-    currentPassword: "password"
+    current_password: userData.currentPassword,
   };
+
   const response = await api.patch<ProfileResponse>(
     `${ApiEndpoints.EDIT_USER}/${userId}`,
-    userDataSenha,
+    payload,
   );
   return response.data;
 };

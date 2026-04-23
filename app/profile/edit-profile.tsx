@@ -42,6 +42,7 @@ export default function EditProfileScreen() {
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword: "",
       currentPassword: "",
     },
   });
@@ -51,6 +52,7 @@ export default function EditProfileScreen() {
       reset({
         email: profile?.email,
         password: "",
+        confirmPassword: "",
         currentPassword: "",
       });
     }
@@ -141,16 +143,16 @@ export default function EditProfileScreen() {
           {/* CONFIRM PASSWORD */}
           <Controller
             control={control}
-            name="currentPassword"
+            name="confirmPassword"
             render={({ field: { onChange, value } }) => (
               <InputField
-                placeholder={t("screen.profile.editProfile.currentPassword") + "*"}
+                placeholder={t("screen.profile.editProfile.confirmPassword")}
                 value={value}
                 onChange={onChange}
                 secureTextEntry
-                error={errors.currentPassword?.message}
-                isFocused={focusedInput === "currentPassword"}
-                onFocus={() => setFocusedInput("currentPassword")}
+                error={errors.confirmPassword?.message}
+                isFocused={focusedInput === "confirmPassword"}
+                onFocus={() => setFocusedInput("confirmPassword")}
                 onBlur={() => setFocusedInput(null)}
               />
             )}
