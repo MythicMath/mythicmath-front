@@ -1,6 +1,6 @@
 import { useTheme } from "@/hooks/useTheme";
 import { StatisticIcons } from "@/icons/StatisticIcons";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import Card from "../Core/Card";
 import { AppText } from "../Core/AppText";
 

@@ -43,7 +43,8 @@ export default function ProfileScreen() {
       <View className="mt-8">
         {/* Profile Card Info */}
         <ProfileCard
-          name={profileData?.name || ""}
+          name={profileData?.username || ""}
+          email={profileData?.email || ""}
           image={profileData?.image || ""}
           level={profileData?.level || 0}
           xpCurrent={profileData?.xpCurrent || 0}

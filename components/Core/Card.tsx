@@ -4,9 +4,10 @@ import { useTheme } from "@/hooks/useTheme";
 type Props = {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  className?: string;
 };
 
-export default function Card({ children, style }: Props) {
+export default function Card({ children, style, className = "" }: Props) {
   const theme = useTheme();
 
   return (
@@ -19,7 +20,7 @@ export default function Card({ children, style }: Props) {
         },
         style,
       ]}
-      className="p-6 rounded-md border"
+      className={`p-6 rounded-md border ${className}`}
     >
       {children}
     </View>

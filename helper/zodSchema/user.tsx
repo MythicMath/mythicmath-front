@@ -22,7 +22,7 @@ export const loginSchema = z.object({
 
 export const registerSchema = z
   .object({
-    name: z.string().min(1, "O nome é obrigatório"),
+    username: z.string().min(1, "O nome é obrigatório"),
     email: z.string().email("Digite um e-mail válido"),
     password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
     confirmPassword: z.string(),
@@ -32,5 +32,54 @@ export const registerSchema = z
     path: ["confirmPassword"],
   });
 
+export const updateUserSchema = z
+  .object({
+    email: z.string().email("Invalid email").optional().or(z.literal("")),
+
+    password: z
+      .string()
+      .min(6, "Password must have at least 6 characters")
+      .optional()
+      .or(z.literal("")),
+
+    confirmPassword: z
+      .string()
+      .optional()
+      .or(z.literal("")),
+
+    currentPassword: z
+      .string()
+      .min(1, "Current Password is required to edit user")
+      .min(6, "Current Password must have at least 6 characters"),
+  })
+
+  // At least one field (email or password)
+  .refine(
+    (data) => {
+      const hasEmail = data.email && data.email !== "";
+      const hasPassword = data.password && data.password !== "";
+      return hasEmail || hasPassword;
+    },
+    {
+      message: "At least one field is required",
+      path: ["email"],
+    },
+  )
+
+  // Passwords must match (only if password is provided)
+  .refine(
+    (data) => {
+      if (data.password && data.password !== "") {
+        return data.password === data.confirmPassword;
+      }
+      return true;
+    },
+    {
+      message: "Passwords do not match",
+      path: ["confirmPassword"],
+    },
+  );
+
 export type FormDataRegister = z.infer<typeof registerSchema>;
 export type FormDataLogin = z.infer<typeof loginSchema>;
+export type FormDataUpdateUser = z.infer<typeof updateUserSchema>;

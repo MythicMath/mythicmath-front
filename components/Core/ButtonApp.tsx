@@ -5,7 +5,7 @@ import { AppText } from "./AppText";
 type Props = {
   title: string;
   onPress?: () => void;
-  variant?: "primary" | "secondary" | "destructive" | "outline";
+  variant?: "primary" | "secondary" | "destructive" | "outline" | "ghost";
 };
 
 export function ButtonApp({ title, onPress, variant = "primary" }: Props) {
@@ -16,10 +16,21 @@ export function ButtonApp({ title, onPress, variant = "primary" }: Props) {
   return (
     <Pressable
       style={styles.button}
-      className="p-4 rounded-xl text-center border"
+      className={`rounded-xl text-center border ${variant === "ghost" || "p-4"}`}
       onPress={onPress}
     >
-      <AppText className="font-bold">{title}</AppText>
+      <AppText
+        color={
+          variant === "primary"
+            ? theme.colors.primaryForeground
+            : variant === "destructive"
+              ? theme.colors.destructiveForeground
+              : theme.colors.foreground
+        }
+        className="font-bold"
+      >
+        {title}
+      </AppText>
     </Pressable>
   );
 }
@@ -35,14 +46,9 @@ const getStyles = (theme: any, variant: string) =>
             : variant === "destructive"
               ? theme.colors.destructive
               : "transparent",
-      borderColor: theme.colors.border,
-    },
-    text: {
-      color:
-        variant === "primary"
-          ? theme.colors.primaryForeground
-          : variant === "destructive"
-            ? theme.colors.destructiveForeground
-            : theme.colors.foreground,
+
+      borderColor: variant === "outline" ? theme.colors.border : "transparent",
+
+      borderWidth: variant === "outline" ? 1 : 0,
     },
   });

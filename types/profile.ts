@@ -1,6 +1,7 @@
 export interface ProfileResponse {
   userId: number;
-  name: string;
+  username: string;
+  email: string;
   image: string | null;
   day_learning_streak: number;
   ranked_victories: number;
@@ -9,8 +10,14 @@ export interface ProfileResponse {
   level: number;
 }
 
-// RESPONSE TYPE
 export interface UpdateAvatarResponse {
   result: boolean;
   image: string;
+}
+
+export interface EditUserRequest {
+  userId: number,
+  email?: string;
+  password?: string;
+  currentPassword: string;
 }

@@ -1,29 +1,34 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import { useState } from "react";
+import { Sparkles } from "lucide-react-native";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 
 // Components
-import ButtonGradient from "@/components/Core/ButtonGradient";
-import { ButtonLink } from "@/components/Core/ButtonLink";
 import CardAuth from "@/components/User/CardAuth";
+import ButtonGradient from "@/components/Core/ButtonGradient";
+import InputField from "@/components/Core/InputField";
+import { AppText } from "@/components/Core/AppText";
+import { AppHeader } from "@/components/Core/AppHeader";
 
-//Hook
+//Hooks
 import { useTheme } from "@/hooks/useTheme";
 
-//API
-import { FormDataRegister, registerSchema } from "@/helper/zodSchema/user";
-import { register } from "@/src/api/auth.api";
-import { Sparkles } from "lucide-react-native";
-import InputField from "@/components/Core/InputField";
-import { AppText } from "@/components/Core/AppText"; // 👈 add
+// API
+import { updateUser } from "@/src/api/profile.api";
 
-export default function RegisterScreen() {
+// Schema
+import { FormDataUpdateUser, updateUserSchema } from "@/helper/zodSchema/user";
+import { useProfileStore } from "@/store/profile";
+
+export default function EditProfileScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
+
+  const profile = useProfileStore((s) => s.profile);
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
@@ -31,23 +36,47 @@ export default function RegisterScreen() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormDataRegister>({
-    resolver: zodResolver(registerSchema),
+    reset,
+  } = useForm<FormDataUpdateUser>({
+    resolver: zodResolver(updateUserSchema),
     defaultValues: {
-      username: "",
       email: "",
       password: "",
       confirmPassword: "",
+      currentPassword: "",
     },
   });
 
-  async function handleRegister(data: FormDataRegister) {
+  useEffect(() => {
+    if (profile?.email) {
+      reset({
+        email: profile?.email,
+        password: "",
+        confirmPassword: "",
+        currentPassword: "",
+      });
+    }
+  }, [profile?.email, reset]);
+
+  async function handleUpdate(data: FormDataUpdateUser) {
     try {
-      await register(data);
-      router.replace("/(tabs)");
+      await updateUser({
+        userId: profile?.userId || 0,
+        email: data.email || undefined,
+        password: data.password || undefined,
+        currentPassword: data.currentPassword,
+      });
+
+      alert("Profile updated successfully");
+
+      router.back();
     } catch (error: any) {
+      console.error(error);
+
       const message =
-        error?.response?.data?.detail || error?.message || t("error.common");
+        error?.response?.data?.detail ||
+        error?.message ||
+        "Error updating profile";
 
       alert(message);
     }
@@ -60,53 +89,29 @@ export default function RegisterScreen() {
       end={{ x: 1, y: 1 }}
       className="flex-1"
     >
-      <View className="flex-1 justify-center items-center p-6">
-        <Image
-          source={require("@/assets/images/logo_transparent.png")}
-          className="w-28 h-28 rounded-full mb-4"
-        />
+      <AppHeader
+        title={t("screen.profile.editProfile.title")}
+        onBackPress={() => router.replace("/(tabs)/profile")}
+        color={theme.colors.secondary}
+      />
 
-        <AppText
-          variant="title"
-          className="mb-1"
-          color={theme.colors.secondary}
-        >
-          {t("screen.register.title")}
-        </AppText>
-
+      <View className="flex-1 justify-center items-center p-6 pb-60">
         <AppText
           variant="body"
           className="text-center mb-4"
           color={theme.colors.secondary}
         >
-          {t("screen.register.description")}
+          {t("screen.profile.editProfile.message")}
         </AppText>
 
         <CardAuth>
-          {/* NAME */}
-          <Controller
-            control={control}
-            name="username"
-            render={({ field: { onChange, value } }) => (
-              <InputField
-                placeholder={t("screen.register.fields.username") + "*"}
-                value={value}
-                onChange={onChange}
-                error={errors.username?.message}
-                isFocused={focusedInput === "username"}
-                onFocus={() => setFocusedInput("username")}
-                onBlur={() => setFocusedInput(null)}
-              />
-            )}
-          />
-
           {/* EMAIL */}
           <Controller
             control={control}
             name="email"
             render={({ field: { onChange, value } }) => (
               <InputField
-                placeholder={t("screen.register.fields.email") + "*"}
+                placeholder={t("screen.profile.editProfile.email")}
                 value={value}
                 onChange={onChange}
                 error={errors.email?.message}
@@ -123,9 +128,10 @@ export default function RegisterScreen() {
             name="password"
             render={({ field: { onChange, value } }) => (
               <InputField
-                placeholder={t("screen.register.fields.password") + "*"}
+                placeholder={t("screen.profile.editProfile.password")}
                 value={value}
                 onChange={onChange}
+                secureTextEntry
                 error={errors.password?.message}
                 isFocused={focusedInput === "password"}
                 onFocus={() => setFocusedInput("password")}
@@ -140,9 +146,10 @@ export default function RegisterScreen() {
             name="confirmPassword"
             render={({ field: { onChange, value } }) => (
               <InputField
-                placeholder={t("screen.register.fields.confirmPassword") + "*"}
+                placeholder={t("screen.profile.editProfile.confirmPassword")}
                 value={value}
                 onChange={onChange}
+                secureTextEntry
                 error={errors.confirmPassword?.message}
                 isFocused={focusedInput === "confirmPassword"}
                 onFocus={() => setFocusedInput("confirmPassword")}
@@ -151,28 +158,31 @@ export default function RegisterScreen() {
             )}
           />
 
-          <ButtonGradient onPress={handleSubmit(handleRegister)}>
+          {/* CURRENT PASSWORD */}
+          <Controller
+            control={control}
+            name="currentPassword"
+            render={({ field: { onChange, value } }) => (
+              <InputField
+                placeholder={t("screen.profile.editProfile.currentPassword") + "*"}
+                value={value}
+                onChange={onChange}
+                secureTextEntry
+                error={errors.currentPassword?.message}
+                isFocused={focusedInput === "currentPassword"}
+                onFocus={() => setFocusedInput("currentPassword")}
+                onBlur={() => setFocusedInput(null)}
+              />
+            )}
+          />
+
+          <ButtonGradient onPress={handleSubmit(handleUpdate)}>
             <Sparkles size={16} color={theme.colors.textLight} />
             <AppText className="font-semibold" color={theme.colors.textLight}>
-              {t("screen.register.button.login")}
+              {t("screen.profile.editProfile.saveButton")}
             </AppText>
           </ButtonGradient>
-
-          <ButtonLink
-            title={t("screen.register.button.goToLogin")}
-            href="/login"
-          />
         </CardAuth>
-
-        <View className="flex-row items-center gap-2 mt-4">
-          <AppText
-            variant="caption"
-            className="text-center"
-            color={theme.colors.secondary}
-          >
-            {t("screen.register.footer")}
-          </AppText>
-        </View>
       </View>
     </LinearGradient>
   );

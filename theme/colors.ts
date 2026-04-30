@@ -20,6 +20,7 @@ export const colors = {
   border: "rgba(0,0,0,0.1)",
 
   textDark: "#161616",
+  textSoftDark: "#4b5556",
   textLight: "#ffffff",
 
   card: "#ffffff",
