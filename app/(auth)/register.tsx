@@ -126,6 +126,7 @@ export default function RegisterScreen() {
                 placeholder={t("screen.register.fields.password") + "*"}
                 value={value}
                 onChange={onChange}
+                secureTextEntry
                 error={errors.password?.message}
                 isFocused={focusedInput === "password"}
                 onFocus={() => setFocusedInput("password")}
@@ -143,6 +144,7 @@ export default function RegisterScreen() {
                 placeholder={t("screen.register.fields.confirmPassword") + "*"}
                 value={value}
                 onChange={onChange}
+                secureTextEntry
                 error={errors.confirmPassword?.message}
                 isFocused={focusedInput === "confirmPassword"}
                 onFocus={() => setFocusedInput("confirmPassword")}
