@@ -52,7 +52,8 @@
         "password": "Senha",
         "currentPassword": "Senha Atual",
         "confirmPassword": "Confirme a senha",
-        "saveButton": "Salvar Alterações"
+        "saveButton": "Salvar Alterações",
+        "alertSuccess": "Perfil do usuário atualizado com sucesso."
       }
     },
     "quests": {
@@ -73,6 +74,40 @@
     }
   },
   "error": {
-    "common": "Algo deu errado."
+    "DEFAULT_ERROR": "Algo deu errado.",
+    "LOAD_PROFILE_ERROR": "Falha ao carregar o perfil.",
+    "CHANGE_LANGUAGE_ERROR": "Falha ao alterar o idioma.",
+
+    "INVALID_IMAGE_TYPE": "Tipo de imagem inválido.",
+    "INVALID_AVATAR_PRESET": "Preset de avatar inválido.",
+
+    "AUTH_HEADER_INVALID": "Cabeçalho de autorização inválido.",
+    "AUTH_TOKEN_INVALID": "Token de autenticação inválido.",
+    "AUTH_USER_NOT_FOUND": "Usuário autenticado não encontrado.",
+
+    "ACCOUNT_UPDATE_FORBIDDEN": "Você não tem permissão para atualizar esta conta.",
+    "PASSWORD_REQUIRED": "Senha é obrigatória.",
+    "EMAIL_OR_PASSWORD_REQUIRED": "E-mail ou senha é obrigatório.",
+    "CURRENT_PASSWORD_REQUIRED": "Senha atual é obrigatória.",
+    "CURRENT_PASSWORD_INCORRECT": "Senha atual incorreta.",
+
+    "USERNAME_REQUIRED": "Nome de usuário é obrigatório.",
+    "EMAIL_REQUIRED": "E-mail é obrigatório.",
+    "INVALID_EMAIL_FORMAT": "Formato de e-mail inválido.",
+    "EMAIL_ALREADY_REGISTERED": "E-mail já cadastrado.",
+    "USERNAME_ALREADY_REGISTERED": "Nome de usuário já cadastrado.",
+    "IDENTIFIER_REQUIRED": "Nome de usuário ou e-mail é obrigatório.",
+    "INVALID_CREDENTIALS": "Credenciais inválidas.",
+    "GOOGLE_ID_TOKEN_REQUIRED": "Token de autenticação do Google é obrigatório.",
+    "GOOGLE_AUTH_CONFIG_ERROR": "Erro na configuração da autenticação do Google.",
+    "GOOGLE_AUTH_FAILED": "Falha na autenticação com o Google.",
+    "EMAIL_ALREADY_LINKED_TO_ANOTHER_GOOGLE_ACCOUNT": "Este e-mail já está vinculado a outra conta Google.",
+    "AUTH_TOKEN_REQUIRED": "Token de autenticação é obrigatório.",
+
+    "INVALID_IDENTIFIER": "Digite um nome de usuário ou e-mail válido.",
+    "PASSWORD_MIN_LENGTH": "A senha deve ter no mínimo 6 caracteres.",
+    "PASSWORDS_DO_NOT_MATCH": "As senhas não coincidem.",
+    "CURRENT_PASSWORD_MIN_LENGTH": "A senha atual deve ter no mínimo 6 caracteres.",
+    "AT_LEAST_ONE_FIELD_REQUIRED": "Pelo menos um campo é obrigatório."
   }
 }

@@ -5,10 +5,13 @@ import { PUBLIC_ROUTES, TOKEN_KEY } from "../constants/auth.constants";
 import { navigateToLogin } from "../services/navigation.service";
 import { clearAuth } from "../services/auth.service";
 
+const ENDPOINT = process.env.EXPO_PUBLIC_ENDPOINT;
+const PORT = process.env.EXPO_PUBLIC_PORT;
+
 let isLoggingOut = false;
 
 const api = axios.create({
-  baseURL: "http://10.0.2.2:8000",
+  baseURL: `${ENDPOINT}:${PORT}`,
 });
 
 api.interceptors.request.use(
@@ -47,7 +50,11 @@ api.interceptors.response.use(
       }
     }
 
-    return Promise.reject(error);
+    return Promise.reject({
+      ...error,
+      friendlyMessage:
+        error?.response?.data?.code || error?.message || "UNKNOWN_ERROR",
+    });
   },
 );
 

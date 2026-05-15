@@ -1,4 +1,5 @@
 import { LoadingApp } from "@/components/Core/LoadingApp";
+import { useAlert } from "@/contexts/alert/useAlert";
 import { useTheme } from "@/hooks/useTheme";
 import { profile } from "@/src/api/profile.api";
 import { useProfileStore } from "@/store/profile";
@@ -9,9 +10,9 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabsLayout() {
   const [loading, setLoading] = useState(true);
-
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const { show } = useAlert();
 
   const setProfile = useProfileStore((s) => s.setProfile);
 
@@ -22,7 +23,10 @@ export default function TabsLayout() {
       setProfile(data);
     } catch (error: any) {
       if (error?.response?.status !== 401) {
-        console.error("Profile load error:", error);
+        show({
+          type: "error",
+          message: "LOAD_PROFILE_ERROR",
+        });
       }
     }
   };

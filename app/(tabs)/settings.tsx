@@ -14,10 +14,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useTranslation } from "react-i18next";
 import Card from "@/components/Core/Card";
 import { AppText } from "@/components/Core/AppText";
+import { useAlert } from "@/contexts/alert/useAlert";
 
 export default function SettingsScreen() {
   const theme = useTheme();
   const { t, i18n } = useTranslation();
+  const { show } = useAlert();
   const i18nToSet = i18n.language.toUpperCase() === "PT" ? "EN" : "PT";
 
   async function handleLogout() {
@@ -32,8 +34,11 @@ export default function SettingsScreen() {
 
       await i18n.changeLanguage(newLang);
       await AsyncStorage.setItem("lang", newLang);
-    } catch (error) {
-      console.error("Error changing language:", error);
+    } catch (error: any) {
+      show({
+        type: "error",
+        message: "CHANGE_LANGUAGE_ERROR",
+      });
     }
   }
 

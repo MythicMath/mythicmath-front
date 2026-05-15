@@ -52,7 +52,8 @@
         "password": "Password",
         "currentPassword": "Current Password",
         "confirmPassword": "Confirm Password",
-        "saveButton": "Save Changes"
+        "saveButton": "Save Changes",
+        "alertSuccess": "User profile updated successfully."
       }
     },
     "quests": {
@@ -72,7 +73,41 @@
       "setLanguage": "Set language: "
     }
   },
-  "error": {
-    "common": "Something went wrong."
+  "errors": {
+    "DEFAULT_ERROR": "Something went wrong.",
+    "LOAD_PROFILE_ERROR": "Failed to load profile.",
+    "CHANGE_LANGUAGE_ERROR": "Failed to change language.",
+
+    "INVALID_IMAGE_TYPE": "Invalid image type.",
+    "INVALID_AVATAR_PRESET": "Invalid avatar preset.",
+
+    "AUTH_HEADER_INVALID": "Invalid authorization header.",
+    "AUTH_TOKEN_INVALID": "Invalid authentication token.",
+    "AUTH_USER_NOT_FOUND": "Authenticated user not found.",
+
+    "ACCOUNT_UPDATE_FORBIDDEN": "You are not allowed to update this account.",
+    "PASSWORD_REQUIRED": "Password is required.",
+    "EMAIL_OR_PASSWORD_REQUIRED": "Email or password is required.",
+    "CURRENT_PASSWORD_REQUIRED": "Current password is required.",
+    "CURRENT_PASSWORD_INCORRECT": "Current password is incorrect.",
+
+    "USERNAME_REQUIRED": "Username is required.",
+    "EMAIL_REQUIRED": "Email is required.",
+    "INVALID_EMAIL_FORMAT": "Invalid email format.",
+    "EMAIL_ALREADY_REGISTERED": "Email is already registered.",
+    "USERNAME_ALREADY_REGISTERED": "Username is already registered.",
+    "IDENTIFIER_REQUIRED": "Username or email is required.",
+    "INVALID_CREDENTIALS": "Invalid credentials.",
+    "GOOGLE_ID_TOKEN_REQUIRED": "Google ID token is required.",
+    "GOOGLE_AUTH_CONFIG_ERROR": "Google authentication configuration error.",
+    "GOOGLE_AUTH_FAILED": "Google authentication failed.",
+    "EMAIL_ALREADY_LINKED_TO_ANOTHER_GOOGLE_ACCOUNT": "This email is already linked to another Google account.",
+    "AUTH_TOKEN_REQUIRED": "Authentication token is required.",
+
+    "INVALID_IDENTIFIER": "Enter a valid username or email.",
+    "PASSWORD_MIN_LENGTH": "Password must have at least 6 characters.",
+    "PASSWORDS_DO_NOT_MATCH": "Passwords do not match.",
+    "CURRENT_PASSWORD_MIN_LENGTH": "Current password must have at least 6 characters.",
+    "AT_LEAST_ONE_FIELD_REQUIRED": "At least one field is required."
   }
 }

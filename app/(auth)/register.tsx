@@ -20,10 +20,12 @@ import { register } from "@/src/api/auth.api";
 import { Sparkles } from "lucide-react-native";
 import InputField from "@/components/Core/InputField";
 import { AppText } from "@/components/Core/AppText"; // 👈 add
+import { useAlert } from "@/contexts/alert/useAlert";
 
 export default function RegisterScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
+  const { show } = useAlert();
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
@@ -46,10 +48,12 @@ export default function RegisterScreen() {
       await register(data);
       router.replace("/(tabs)");
     } catch (error: any) {
-      const message =
-        error?.response?.data?.detail || error?.message || t("error.common");
+      const translatedMessage = t(`errors.${error.friendlyMessage}`);
 
-      alert(message);
+      show({
+        type: "error",
+        message: translatedMessage,
+      });
     }
   }
 
