@@ -34,7 +34,25 @@
       "xp": "XP",
       "progressUntil": "Progresso até o nível",
       "currentStreak": "Sequência",
-      "rankedVictories": "Vitórias"
+      "rankedVictories": "Vitórias",
+      "chooseMode": "Escolha um modo",
+      "gameModes": {
+        "available": "Disponível",
+        "daily": {
+          "title": "Modo Diário",
+          "infoOne": "10 perguntas por dia"
+        },
+        "free": {
+          "title": "Modo Livre",
+          "infoOne": "3 vidas",
+          "infoTwo": "Jogue até perder"
+        },
+        "ranked": {
+          "title": "Modo Ranqueado",
+          "infoOne": "3 - 5 jogadores",
+          "infoTwo": "5 perguntas"
+        }
+      }
     },
     "profile": {
       "title": "Perfil",

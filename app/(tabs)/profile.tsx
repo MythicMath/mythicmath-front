@@ -49,34 +49,37 @@ export default function ProfileScreen() {
           level={profileData?.level || 0}
           xpCurrent={profileData?.xpCurrent || 0}
           xpToNextLevel={profileData?.xpToNextLevel || 0}
+          className="p-6"
         />
 
         {/* Profile Card Statistics */}
-        <View className="pt-6 gap-2">
+        <View className="pt-6 gap-0">
           <AppText className="py-3 text-xl">
             {t("screen.profile.stats")}
           </AppText>
 
-          <CardStatistics
-            text={t("screen.profile.currentStreak")}
-            icon="fire"
-            quantity={profileData?.day_learning_streak || 0}
-          />
-          <CardStatistics
-            text={t("screen.profile.rankedVictories")}
-            icon="trophy"
-            quantity={profileData?.ranked_victories || 0}
-          />
-          <CardStatistics
-            text={t("screen.profile.totalXP")}
-            icon="lightning"
-            quantity={profileData?.xpCurrent || 0}
-          />
-          <CardStatistics
-            text={t("screen.profile.level")}
-            icon="medal"
-            quantity={profileData?.level || 0}
-          />
+          <View className="gap-5">
+            <CardStatistics
+              text={t("screen.profile.currentStreak")}
+              icon="fire"
+              quantity={profileData?.day_learning_streak || 0}
+            />
+            <CardStatistics
+              text={t("screen.profile.rankedVictories")}
+              icon="trophy"
+              quantity={profileData?.ranked_victories || 0}
+            />
+            <CardStatistics
+              text={t("screen.profile.totalXP")}
+              icon="lightning"
+              quantity={profileData?.xpCurrent || 0}
+            />
+            <CardStatistics
+              text={t("screen.profile.level")}
+              icon="medal"
+              quantity={profileData?.level || 0}
+            />
+          </View>
         </View>
       </View>
     </AppScrollView>

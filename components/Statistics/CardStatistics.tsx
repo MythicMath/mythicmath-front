@@ -30,6 +30,7 @@ export default function CardStatistics({
 
   return (
     <Card
+      className="p-6"
       style={{
         // iOS shadow
         shadowColor: "#000",

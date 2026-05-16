@@ -17,6 +17,12 @@ export const colors = {
   accent: "#e9ebef",
   accentForeground: "#030213",
 
+  available: "#DCFCE7",
+  availableForeground: "#16A34A",
+
+  unavailable: "#FEE2E2",
+  unavailableForeground: "#DC2626",
+
   border: "rgba(0,0,0,0.1)",
 
   textDark: "#161616",

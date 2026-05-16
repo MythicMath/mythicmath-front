@@ -2,7 +2,7 @@ import { Text } from "react-native";
 
 type Props = {
   children: React.ReactNode;
-  variant?: "title" | "body" | "caption";
+  variant?: "title" | "card-title" | "body" | "caption";
   className?: string;
   color?: string;
 };
@@ -15,6 +15,7 @@ export function AppText({
 }: Props) {
   const variants = {
     title: "text-2xl font-semibold",
+    "card-title": "text-lg font-semibold",
     body: "text-sm",
     caption: "text-xs",
   };

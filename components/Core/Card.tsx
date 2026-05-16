@@ -20,7 +20,7 @@ export default function Card({ children, style, className = "" }: Props) {
         },
         style,
       ]}
-      className={`p-6 rounded-md border ${className}`}
+      className={`rounded-2xl border ${className}`}
     >
       {children}
     </View>

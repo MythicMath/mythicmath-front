@@ -34,7 +34,25 @@
       "xp": "XP",
       "progressUntil": "Progression to level",
       "currentStreak": "Streak",
-      "rankedVictories": "Victories"
+      "rankedVictories": "Victories",
+      "chooseMode": "Pick a mode",
+      "gameModes": {
+        "available": "Available",
+        "daily": {
+          "title": "Daily Mode",
+          "infoOne": "10 questions per day"
+        },
+        "free": {
+          "title": "Free Mode",
+          "infoOne": "3 lives",
+          "infoTwo": "Play until you lose"
+        },
+        "ranked": {
+          "title": "Ranked Mode",
+          "infoOne": "3 - 5 players",
+          "infoTwo": "5 questions"
+        }
+      }
     },
     "profile": {
       "title": "Profile",
