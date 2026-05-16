@@ -10,7 +10,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:ci": "jest --coverage --watchAll=false"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
