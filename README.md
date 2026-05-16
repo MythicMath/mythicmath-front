@@ -1,17 +1,34 @@
-# Welcome to MythicMath App 👋
+# MythicMath App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![CI](https://github.com/MythicMath/mythicmath-front/actions/workflows/ci.yml/badge.svg)
 
-## Prerequisites
+O MythicMath é um aplicativo mobile de treino de matemática com elementos de gamificação. Seu objetivo é transformar a prática da matemática básica em uma experiência dinâmica, divertida e competitiva, incentivando o aprendizado por meio de desafios rápidos e questões que podem ser resolvidas em poucos segundos.
 
-Before running the project, make sure you have installed:
+---
 
-* **Node.js** (recommended: LTS version)
-* **npm** or **yarn**
-* **Expo CLI** (optional but recommended)
-* **Android Studio** (for Android emulator) or **Xcode** (for iOS simulator) *If you prefer not to install either of these tools, you can run the app directly on your phone using the Expo Go app. After running npx expo start, simply scan the generated QR code with Expo Go to open the project on your device.
+O **MythicMath** é uma aplicação mobile desenvolvida com **React Native** e **Expo**.
 
-You can check your Node installation with:
+O projeto foi criado utilizando o [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+
+---
+
+## 🚀 Pré-requisitos
+
+Antes de iniciar o projeto, certifique-se de ter instalado em sua máquina:
+
+- **Node.js** (recomendado: versão LTS)
+- **npm** ou **yarn**
+- **Expo CLI** *(opcional, mas recomendado)*
+- **Android Studio** *(para emulador Android)* ou **Xcode** *(para simulador iOS)*
+
+> Caso não queira instalar Android Studio ou Xcode, você pode executar o aplicativo diretamente no celular utilizando o aplicativo **Expo Go**.  
+> Após iniciar o projeto com `npx expo start`, basta escanear o QR Code gerado para abrir o app no dispositivo.
+
+---
+
+## 📦 Verificando instalação do Node.js
+
+Execute o comando abaixo no terminal para verificar se o Node.js está instalado corretamente:
 
 ```bash
 node -v
@@ -19,13 +36,13 @@ node -v
 
 ---
 
-## Clone the repository
+## 📥 Clonando o repositório
 
 ```bash
 git clone https://github.com/AnaLinsDev/mythicmath-front.git
 ```
 
-Enter the project folder:
+Acesse a pasta do projeto:
 
 ```bash
 cd mythicmath-front
@@ -33,7 +50,7 @@ cd mythicmath-front
 
 ---
 
-## Install dependencies
+##🔧 Instalando as dependências
 
 ```bash
 npm install
@@ -41,15 +58,35 @@ npm install
 
 ---
 
-## Start the application
+## ▶️ Executando a aplicação
 
 ```bash
 npx expo start
 ```
 
-In the terminal output, you will see options to open the app in:
+---
 
-* **Development build**
-* **Android emulator**
-* **iOS simulator**
-* **Expo Go** (scan the QR code with the Expo Go app)
+## 📱 Executando no celular
+
+1. Instale o aplicativo **Expo Go** no seu dispositivo:
+   - Android: Google Play Store
+   - iPhone: App Store
+
+2. Execute o projeto:
+
+```bash
+npx expo start
+```
+
+3. Escaneie o QR Code exibido no terminal ou navegador.
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+- React Native
+- Expo
+- TypeScript
+- NativeWind
+- Expo Router
+
