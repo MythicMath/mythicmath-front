@@ -16,7 +16,7 @@ export function ButtonApp({ title, onPress, variant = "primary" }: Props) {
   return (
     <Pressable
       style={styles.button}
-      className={`rounded-xl text-center border ${variant === "ghost" || "p-4"}`}
+      className={`rounded-xl text-center border ${variant !== "ghost" ? "" : "p-4"}`}
       onPress={onPress}
     >
       <AppText

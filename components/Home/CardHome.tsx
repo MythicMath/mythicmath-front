@@ -7,8 +7,8 @@ import { useTranslation } from "react-i18next";
 //Components
 import { AppText } from "../Core/AppText";
 import { StatisticIcons } from "@/icons/StatisticIcons";
-import Card from "../Core/Card";
 import { Chip } from "../User/Chip";
+import Card from "../Core/Card";
 
 type Props = {
   mode: "daily" | "free" | "ranked";
