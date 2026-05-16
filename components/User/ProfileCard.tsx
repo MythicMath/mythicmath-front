@@ -82,7 +82,6 @@ export default function ProfileCard({
         <AppText
           className="text-center font-bold"
           variant="title"
-          color={theme.colors.textDark}
         >
           {name}
         </AppText>

@@ -21,7 +21,7 @@ export function ProgressBar({
   const theme = useTheme();
 
   const textColor =
-    variant === "dark" ? theme.colors.textDark : theme.colors.textLight;
+    variant === "dark" ? theme.colors.foreground : theme.colors.textLight;
 
   return (
     <View className="w-full">

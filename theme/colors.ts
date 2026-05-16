@@ -1,6 +1,9 @@
 export const colors = {
   background: "#ffffff",
-  foreground: "#0a0a0a",
+  foreground: "#242323",
+
+  textSoftDark: "#4b5556",
+  textLight: "#ffffff",
 
   primary: "#030213",
   primaryForeground: "#ffffff57",
@@ -25,11 +28,10 @@ export const colors = {
 
   border: "rgba(0,0,0,0.1)",
 
-  textDark: "#161616",
-  textSoftDark: "#4b5556",
-  textLight: "#ffffff",
-
   card: "#ffffff",
+
+  active: "#2563eb",
+  inactive: "#bdc1c7",
 
   chipForeground: "#ffffff",
   chipTransparent: "#ffffff2b",

@@ -60,7 +60,7 @@ export function Avatar({
             style={{
               fontSize: size / 2.5,
               fontWeight: "bold",
-              color: theme.colors.textDark,
+              color: theme.colors.foreground,
             }}
           >
             {getInitials()}

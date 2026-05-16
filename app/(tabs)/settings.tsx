@@ -53,7 +53,7 @@ export default function SettingsScreen() {
         <AppText variant="title" color={theme.colors.textLight}>
           {t("screen.config.title")}
         </AppText>
-        <Card style={{ width: "100%" }}>
+        <Card className="p-6" style={{ width: "100%" }}>
           <View
             style={{
               display: "flex",

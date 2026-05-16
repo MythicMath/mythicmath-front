@@ -1,3 +1,4 @@
+import { useTheme } from "@/hooks/useTheme";
 import { Text } from "react-native";
 
 type Props = {
@@ -13,6 +14,8 @@ export function AppText({
   className = "",
   color,
 }: Props) {
+  const theme = useTheme();
+
   const variants = {
     title: "text-2xl font-semibold",
     "card-title": "text-lg font-semibold",
@@ -23,7 +26,7 @@ export function AppText({
   return (
     <Text
       className={`${variants[variant]} ${className}`}
-      style={color ? { color } : undefined}
+      style={color ? { color } : { color: theme.colors.foreground }}
     >
       {children}
     </Text>

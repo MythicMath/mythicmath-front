@@ -59,8 +59,8 @@ export default function TabsLayout() {
         headerShown: false,
         tabBarHideOnKeyboard: true,
 
-        tabBarActiveTintColor: "#2563eb",
-        tabBarInactiveTintColor: "#9ca3af",
+        tabBarActiveTintColor: theme.colors.active,
+        tabBarInactiveTintColor: theme.colors.inactive,
 
         tabBarStyle: {
           height: 50 + insets.bottom,
