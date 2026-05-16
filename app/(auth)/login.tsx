@@ -22,10 +22,12 @@ import { login } from "@/src/api/auth.api";
 import { FormDataLogin, loginSchema } from "@/helper/zodSchema/user";
 import InputField from "@/components/Core/InputField";
 import { AppText } from "@/components/Core/AppText";
+import { useAlert } from "@/contexts/alert/useAlert";
 
 export default function LoginScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
+  const { show } = useAlert();
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
@@ -36,8 +38,8 @@ export default function LoginScreen() {
   } = useForm<FormDataLogin>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      identifier: "analins",
-      password: "password",
+      identifier: "analins1",
+      password: "analins1",
     },
   });
 
@@ -51,12 +53,12 @@ export default function LoginScreen() {
       await login(payload);
       router.replace("/(tabs)");
     } catch (error: any) {
-      console.error(error);
+      const translatedMessage = t(`errors.${error.friendlyMessage}`);
 
-      const message =
-        error?.response?.data?.detail || error?.message || "Erro ao logar";
-
-      alert(message);
+      show({
+        type: "error",
+        message: translatedMessage,
+      });
     }
   }
 
@@ -69,7 +71,7 @@ export default function LoginScreen() {
     >
       <View className="flex-1 justify-center items-center p-6">
         <Image
-          source={require("@/assets/images/logo_transparent.png")}
+          source={require("@/assets/images/icon_transparent.png")}
           className="w-28 h-28 rounded-full mb-4"
         />
 

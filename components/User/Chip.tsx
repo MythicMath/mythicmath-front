@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, ViewStyle, ColorValue } from "react-native";
+import { StyleSheet, ViewStyle, ColorValue } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "@/hooks/useTheme";
 import { AppText } from "../Core/AppText";
@@ -12,6 +12,7 @@ type Props = {
   backgroundColor?: string | Gradient;
   style?: ViewStyle;
   isTransparent?: boolean;
+  className?: string;
 };
 
 export function Chip({
@@ -20,6 +21,7 @@ export function Chip({
   backgroundColor,
   style,
   isTransparent = false,
+  className = "font-bold",
 }: Props) {
   const theme = useTheme();
 
@@ -40,11 +42,11 @@ export function Chip({
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
       style={[styles.container, style]}
-      className="px-4 py-2"
+      className="px-3 py-1"
     >
       <AppText
         variant="body"
-        className="font-bold text-center"
+        className={`${className} text-center`}
         color={textColor}
       >
         {label}

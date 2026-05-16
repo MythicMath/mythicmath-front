@@ -1,31 +1,39 @@
 import { LoadingApp } from "@/components/Core/LoadingApp";
+import { useAlert } from "@/contexts/alert/useAlert";
 import { useTheme } from "@/hooks/useTheme";
 import { profile } from "@/src/api/profile.api";
 import { useProfileStore } from "@/store/profile";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabsLayout() {
   const [loading, setLoading] = useState(true);
-
   const theme = useTheme();
   const insets = useSafeAreaInsets();
+  const { show } = useAlert();
 
   const setProfile = useProfileStore((s) => s.setProfile);
 
-  const loadUser = async () => {
+  const loadUser = useCallback(async () => {
     try {
       setLoading(true);
+
       const data = await profile();
+
       setProfile(data);
     } catch (error: any) {
       if (error?.response?.status !== 401) {
-        console.error("Profile load error:", error);
+        show({
+          type: "error",
+          message: "LOAD_PROFILE_ERROR",
+        });
       }
+    } finally {
+      setLoading(false);
     }
-  };
+  }, [show, setProfile]);
 
   useEffect(() => {
     let isMounted = true;
@@ -45,7 +53,7 @@ export default function TabsLayout() {
     return () => {
       isMounted = false;
     };
-  }, []);
+  }, [loadUser]);
 
   if (loading) return <LoadingApp />;
 
@@ -55,8 +63,8 @@ export default function TabsLayout() {
         headerShown: false,
         tabBarHideOnKeyboard: true,
 
-        tabBarActiveTintColor: "#2563eb",
-        tabBarInactiveTintColor: "#9ca3af",
+        tabBarActiveTintColor: theme.colors.active,
+        tabBarInactiveTintColor: theme.colors.inactive,
 
         tabBarStyle: {
           height: 50 + insets.bottom,

@@ -2,6 +2,10 @@
 
 # dependencies
 node_modules/
+.env
+
+# Coverage
+coverage/
 
 # Expo
 .expo/

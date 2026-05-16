@@ -23,10 +23,12 @@ import { updateUser } from "@/src/api/profile.api";
 // Schema
 import { FormDataUpdateUser, updateUserSchema } from "@/helper/zodSchema/user";
 import { useProfileStore } from "@/store/profile";
+import { useAlert } from "@/contexts/alert/useAlert";
 
 export default function EditProfileScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
+  const { show } = useAlert();
 
   const profile = useProfileStore((s) => s.profile);
 
@@ -67,18 +69,19 @@ export default function EditProfileScreen() {
         currentPassword: data.currentPassword,
       });
 
-      alert("Profile updated successfully");
+      show({
+        type: "success",
+        message: t("screen.profile.editProfile.alertSuccess"),
+      });
 
       router.back();
     } catch (error: any) {
-      console.error(error);
+      const translatedMessage = t(`errors.${error.friendlyMessage}`);
 
-      const message =
-        error?.response?.data?.detail ||
-        error?.message ||
-        "Error updating profile";
-
-      alert(message);
+      show({
+        type: "error",
+        message: translatedMessage,
+      });
     }
   }
 
@@ -164,7 +167,9 @@ export default function EditProfileScreen() {
             name="currentPassword"
             render={({ field: { onChange, value } }) => (
               <InputField
-                placeholder={t("screen.profile.editProfile.currentPassword") + "*"}
+                placeholder={
+                  t("screen.profile.editProfile.currentPassword") + "*"
+                }
                 value={value}
                 onChange={onChange}
                 secureTextEntry

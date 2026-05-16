@@ -6,7 +6,7 @@ export const loginSchema = z.object({
   identifier: z
     .string()
     .trim()
-    .min(1, "Nome ou e-mail é obrigatório")
+    .min(1, "IDENTIFIER_REQUIRED")
     .refine((value) => {
       if (!value) return true;
 
@@ -15,30 +15,45 @@ export const loginSchema = z.object({
       }
 
       return value.length >= 2;
-    }, "Digite um nome ou e-mail válido"),
+    }, "INVALID_IDENTIFIER"),
 
-  password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
+  password: z
+    .string()
+    .min(6, "PASSWORD_MIN_LENGTH"),
 });
 
 export const registerSchema = z
   .object({
-    username: z.string().min(1, "O nome é obrigatório"),
-    email: z.string().email("Digite um e-mail válido"),
-    password: z.string().min(6, "A senha deve ter no mínimo 6 caracteres"),
+    username: z
+      .string()
+      .min(1, "USERNAME_REQUIRED"),
+
+    email: z
+      .string()
+      .email("INVALID_EMAIL_FORMAT"),
+
+    password: z
+      .string()
+      .min(6, "PASSWORD_MIN_LENGTH"),
+
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: "As senhas não coincidem",
+    message: "PASSWORDS_DO_NOT_MATCH",
     path: ["confirmPassword"],
   });
 
 export const updateUserSchema = z
   .object({
-    email: z.string().email("Invalid email").optional().or(z.literal("")),
+    email: z
+      .string()
+      .email("INVALID_EMAIL_FORMAT")
+      .optional()
+      .or(z.literal("")),
 
     password: z
       .string()
-      .min(6, "Password must have at least 6 characters")
+      .min(6, "PASSWORD_MIN_LENGTH")
       .optional()
       .or(z.literal("")),
 
@@ -49,8 +64,8 @@ export const updateUserSchema = z
 
     currentPassword: z
       .string()
-      .min(1, "Current Password is required to edit user")
-      .min(6, "Current Password must have at least 6 characters"),
+      .min(1, "CURRENT_PASSWORD_REQUIRED")
+      .min(6, "CURRENT_PASSWORD_MIN_LENGTH"),
   })
 
   // At least one field (email or password)
@@ -61,21 +76,22 @@ export const updateUserSchema = z
       return hasEmail || hasPassword;
     },
     {
-      message: "At least one field is required",
+      message: "AT_LEAST_ONE_FIELD_REQUIRED",
       path: ["email"],
     },
   )
 
-  // Passwords must match (only if password is provided)
+  // Passwords must match
   .refine(
     (data) => {
       if (data.password && data.password !== "") {
         return data.password === data.confirmPassword;
       }
+
       return true;
     },
     {
-      message: "Passwords do not match",
+      message: "PASSWORDS_DO_NOT_MATCH",
       path: ["confirmPassword"],
     },
   );

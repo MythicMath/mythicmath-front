@@ -20,10 +20,12 @@ import { register } from "@/src/api/auth.api";
 import { Sparkles } from "lucide-react-native";
 import InputField from "@/components/Core/InputField";
 import { AppText } from "@/components/Core/AppText"; // 👈 add
+import { useAlert } from "@/contexts/alert/useAlert";
 
 export default function RegisterScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
+  const { show } = useAlert();
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
@@ -46,10 +48,12 @@ export default function RegisterScreen() {
       await register(data);
       router.replace("/(tabs)");
     } catch (error: any) {
-      const message =
-        error?.response?.data?.detail || error?.message || t("error.common");
+      const translatedMessage = t(`errors.${error.friendlyMessage}`);
 
-      alert(message);
+      show({
+        type: "error",
+        message: translatedMessage,
+      });
     }
   }
 
@@ -62,7 +66,7 @@ export default function RegisterScreen() {
     >
       <View className="flex-1 justify-center items-center p-6">
         <Image
-          source={require("@/assets/images/logo_transparent.png")}
+          source={require("@/assets/images/icon_transparent.png")}
           className="w-28 h-28 rounded-full mb-4"
         />
 
@@ -126,6 +130,7 @@ export default function RegisterScreen() {
                 placeholder={t("screen.register.fields.password") + "*"}
                 value={value}
                 onChange={onChange}
+                secureTextEntry
                 error={errors.password?.message}
                 isFocused={focusedInput === "password"}
                 onFocus={() => setFocusedInput("password")}
@@ -143,6 +148,7 @@ export default function RegisterScreen() {
                 placeholder={t("screen.register.fields.confirmPassword") + "*"}
                 value={value}
                 onChange={onChange}
+                secureTextEntry
                 error={errors.confirmPassword?.message}
                 isFocused={focusedInput === "confirmPassword"}
                 onFocus={() => setFocusedInput("confirmPassword")}

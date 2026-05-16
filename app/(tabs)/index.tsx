@@ -14,6 +14,8 @@ import { LinearGradient } from "expo-linear-gradient";
 //Store
 import { useProfileStore } from "@/store/profile";
 import { useTranslation } from "react-i18next";
+import CardHome from "@/components/Home/CardHome";
+import { AppText } from "@/components/Core/AppText";
 
 export default function Home() {
   const theme = useTheme();
@@ -69,6 +71,14 @@ export default function Home() {
           icon="medal"
           quantity={profileData.level}
         />
+      </View>
+
+      {/*TODO: Status precisa ser pego do backend */}
+      <View className="flex flex-col gap-4 mt-6">
+        <AppText variant="title">{t("screen.home.chooseMode")}</AppText>
+        <CardHome mode="daily" status="available" />
+        <CardHome mode="free" status="unavailable" />
+        <CardHome mode="ranked" status="unavailable" />
       </View>
     </AppScrollView>
   );

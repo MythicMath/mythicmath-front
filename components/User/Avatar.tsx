@@ -2,7 +2,6 @@ import React from "react";
 import { View, Image, Pressable, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks/useTheme";
-import { AppText } from "../Core/AppText";
 
 type Props = {
   uri?: string;
@@ -60,7 +59,7 @@ export function Avatar({
             style={{
               fontSize: size / 2.5,
               fontWeight: "bold",
-              color: theme.colors.textDark,
+              color: theme.colors.foreground,
             }}
           >
             {getInitials()}
