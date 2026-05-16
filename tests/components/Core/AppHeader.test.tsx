@@ -2,50 +2,6 @@ import { AppHeader } from "@/components/Core/AppHeader";
 import { render, screen, fireEvent } from "@testing-library/react-native";
 import { router } from "expo-router";
 
-jest.mock("expo-router", () => ({
-  router: {
-    back: jest.fn(),
-    push: jest.fn(),
-    replace: jest.fn(),
-    canGoBack: jest.fn(),
-  },
-}));
-
-jest.mock("react-native-safe-area-context", () => ({
-  useSafeAreaInsets: () => ({
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-  }),
-}));
-
-jest.mock("@/hooks/useTheme", () => ({
-  useTheme: () => ({
-    colors: {
-      foreground: "#111",
-    },
-  }),
-}));
-
-jest.mock("@expo/vector-icons", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { Text } = require("react-native");
-
-  return {
-    Ionicons: ({ name }: any) => <Text>{name}</Text>,
-  };
-});
-
-jest.mock("@/components/Core/AppText", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { Text } = require("react-native");
-
-  return {
-    AppText: ({ children }: any) => <Text>{children}</Text>,
-  };
-});
-
 describe("AppHeader", () => {
   beforeEach(() => {
     jest.clearAllMocks();

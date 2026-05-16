@@ -2,24 +2,6 @@ import { ButtonApp } from "@/components/Core/ButtonApp";
 
 import { render, screen, fireEvent } from "@testing-library/react-native";
 
-jest.mock("@/hooks/useTheme", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { mockUseTheme } = require("@/tests/mocks/useTheme.mock");
-
-  return {
-    useTheme: mockUseTheme,
-  };
-});
-
-jest.mock("@/components/Core/AppText", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { MockAppText } = require("@/tests/mocks/appText.mock");
-
-  return {
-    AppText: MockAppText,
-  };
-});
-
 describe("ButtonApp", () => {
   it("should render button title", () => {
     render(<ButtonApp title="Login" />);

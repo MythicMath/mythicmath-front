@@ -1,66 +1,6 @@
 import UserInfo from "@/components/Home/UserInfo";
 import { render, screen } from "@testing-library/react-native";
 
-jest.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (key: string) => key,
-  }),
-}));
-
-jest.mock("@/hooks/useTheme", () => ({
-  useTheme: () => ({
-    colors: {
-      textLight: "#ffffff",
-    },
-  }),
-}));
-
-jest.mock("@/components/Core/AppText", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { Text } = require("react-native");
-
-  return {
-    AppText: ({ children }: any) => <Text>{children}</Text>,
-  };
-});
-
-jest.mock("@/components/User/Chip", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { Text } = require("react-native");
-
-  return {
-    Chip: ({ label }: any) => <Text>{label}</Text>,
-  };
-});
-
-jest.mock("@/components/User/Avatar", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { Text } = require("react-native");
-
-  return {
-    Avatar: ({ name }: any) => <Text>{name}-avatar</Text>,
-  };
-});
-
-jest.mock("@/components/Statistics/ProgressBar", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { View, Text } = require("react-native");
-
-  return {
-    ProgressBar: ({
-      progressValue,
-      textLeft,
-      textRight,
-    }: any) => (
-      <View>
-        <Text>{progressValue}</Text>
-        <Text>{textLeft}</Text>
-        <Text>{textRight}</Text>
-      </View>
-    ),
-  };
-});
-
 describe("UserInfo", () => {
   beforeEach(() => {
     jest.clearAllMocks();

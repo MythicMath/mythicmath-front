@@ -1,68 +1,6 @@
 import CardStatistics from "@/components/Statistics/CardStatistics";
 import { render, screen } from "@testing-library/react-native";
 
-jest.mock("@/hooks/useTheme", () => ({
-  useTheme: () => ({
-    colors: {
-      foreground: "#111",
-      muted: "#eee",
-
-      success: "#22c55e",
-      warning: "#f59e0b",
-      destructive: "#ef4444",
-      primary: "#3b82f6",
-    },
-  }),
-}));
-
-jest.mock("@/components/Core/AppText", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { Text } = require("react-native");
-
-  return {
-    AppText: ({ children }: any) => <Text>{children}</Text>,
-  };
-});
-
-jest.mock("@/components/Core/Card", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { View } = require("react-native");
-
-  return {
-    __esModule: true,
-    default: ({ children }: any) => <View>{children}</View>,
-  };
-});
-
-jest.mock("@/icons/StatisticIcons", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { Text } = require("react-native");
-
-  const MockIcon = ({ name }: any) => <Text>{name}</Text>;
-
-  return {
-    StatisticIcons: {
-      trophy: {
-        icon: MockIcon,
-        iconName: "trophy-icon",
-        colorKey: "warning",
-      },
-
-      heart: {
-        icon: MockIcon,
-        iconName: "heart-icon",
-        colorKey: "destructive",
-      },
-
-      calendar: {
-        icon: MockIcon,
-        iconName: "calendar-icon",
-        colorKey: "primary",
-      },
-    },
-  };
-});
-
 describe("CardStatistics", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -101,7 +39,7 @@ describe("CardStatistics", () => {
       />
     );
 
-    expect(screen.getByText("trophy-icon")).toBeTruthy();
+    expect(screen.getByText("trophy")).toBeTruthy();
   });
 
   it("should render horizontal variant by default", () => {
@@ -117,7 +55,7 @@ describe("CardStatistics", () => {
 
     expect(screen.getByText("20")).toBeTruthy();
 
-    expect(screen.getByText("calendar-icon")).toBeTruthy();
+    expect(screen.getByText("calendar")).toBeTruthy();
   });
 
   it("should render vertical variant", () => {
@@ -134,6 +72,6 @@ describe("CardStatistics", () => {
 
     expect(screen.getByText("3")).toBeTruthy();
 
-    expect(screen.getByText("heart-icon")).toBeTruthy();
+    expect(screen.getByText("heart")).toBeTruthy();
   });
 });

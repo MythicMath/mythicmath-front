@@ -1,37 +1,6 @@
 import InputField from "@/components/Core/InputField";
 import { render, screen, fireEvent } from "@testing-library/react-native";
 
-
-jest.mock("@/hooks/useTheme", () => ({
-  useTheme: () => ({
-    colors: {
-      border: "#ccc",
-      foreground: "#111",
-      inputBackground: "#fff",
-      mutedForeground: "#777",
-      destructive: "#f00",
-    },
-  }),
-}));
-
-jest.mock("@expo/vector-icons", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { Text } = require("react-native");
-
-  return {
-    Ionicons: ({ name }: any) => <Text>{name}</Text>,
-  };
-});
-
-jest.mock("@/components/Core/AppText", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { Text } = require("react-native");
-
-  return {
-    AppText: ({ children }: any) => <Text>{children}</Text>,
-  };
-});
-
 describe("InputField", () => {
   beforeEach(() => {
     jest.clearAllMocks();

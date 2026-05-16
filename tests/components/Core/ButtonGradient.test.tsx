@@ -2,24 +2,6 @@ import ButtonGradient from "@/components/Core/ButtonGradient";
 import { Text } from "react-native";
 import { render, screen, fireEvent } from "@testing-library/react-native";
 
-jest.mock("@/hooks/useTheme", () => ({
-  useTheme: () => ({
-    gradients: {
-      bgColored: ["#000", "#111"],
-      bgColoredPressed: ["#222", "#333"],
-    },
-  }),
-}));
-
-jest.mock("expo-linear-gradient", () => {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { View } = require("react-native");
-
-  return {
-    LinearGradient: ({ children }: any) => <View>{children}</View>,
-  };
-});
-
 describe("ButtonGradient", () => {
   beforeEach(() => {
     jest.clearAllMocks();
