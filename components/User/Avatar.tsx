@@ -2,7 +2,6 @@ import React from "react";
 import { View, Image, Pressable, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/hooks/useTheme";
-import { AppText } from "../Core/AppText";
 
 type Props = {
   uri?: string;

@@ -1,5 +1,5 @@
 import { router } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
 //Hook
 import { useTheme } from "@/hooks/useTheme";
@@ -34,7 +34,7 @@ export default function SettingsScreen() {
 
       await i18n.changeLanguage(newLang);
       await AsyncStorage.setItem("lang", newLang);
-    } catch (error: any) {
+    } catch {
       show({
         type: "error",
         message: "CHANGE_LANGUAGE_ERROR",

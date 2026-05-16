@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, StyleSheet, ViewStyle, ColorValue } from "react-native";
+import { StyleSheet, ViewStyle, ColorValue } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useTheme } from "@/hooks/useTheme";
 import { AppText } from "../Core/AppText";

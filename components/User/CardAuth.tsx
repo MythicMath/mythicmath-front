@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -20,7 +19,7 @@ export default function CardAuth({ children }: Props) {
   useEffect(() => {
     translateY.value = withTiming(0, { duration: 400 });
     opacity.value = withTiming(1, { duration: 600 });
-  }, []);
+  }, [translateY, opacity]);
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
