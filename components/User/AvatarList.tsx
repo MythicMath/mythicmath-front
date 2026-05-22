@@ -36,8 +36,8 @@ export function AvatarList({ images, selected, onSelect }: Props) {
             onPress={() => onSelect(key as AvatarKey)}
             className="items-center justify-center"
             style={{
-              width: 70,
-              height: 70,
+              width: 90,
+              height: 90,
               borderRadius: 999,
               borderWidth: isSelected ? 3 : 0,
               borderColor: theme.colors.link,

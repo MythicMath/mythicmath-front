@@ -63,6 +63,7 @@
       "rankedVictories": "Vitórias Ranqueadas",
       "progressUntil": "Progresso até o nível",
       "editProfile": {
+        "chooseAvatar": "Escolha um avatar",
         "buttonLink": "Editar",
         "message": "Atualize seu email e senha",
         "title": "Editar Perfil",

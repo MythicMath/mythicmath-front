@@ -8,6 +8,7 @@ import { useTheme } from "@/hooks/useTheme";
 
 import { AvatarList } from "./AvatarList";
 import { AvatarKey, avatars } from "../../constants/avatars";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   source?: AvatarKey;
@@ -23,6 +24,7 @@ export function AvatarProfile({
   onChange,
 }: Props) {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const [showAvatarModal, setShowAvatarModal] = useState(false);
 
@@ -42,10 +44,11 @@ export function AvatarProfile({
 
   function handleSelectAvatar(avatar: AvatarKey) {
     onChange?.(avatar);
-    console.log("TODO: SENT TO API NEW AVATAR: " + avatar)
+    
+    console.log("TODO: SENT TO API NEW AVATAR: " + avatar);
     setShowAvatarModal(false);
   }
-  
+
   return (
     <>
       <View className="items-center">
@@ -125,7 +128,7 @@ export function AvatarProfile({
                   color: theme.colors.foreground,
                 }}
               >
-                Choose an avatar
+                {t("screen.profile.editProfile.chooseAvatar")}
               </Text>
 
               <Pressable

@@ -63,6 +63,7 @@
       "rankedVictories": "Ranked Victories",
       "progressUntil": "Progression to level",
       "editProfile": {
+        "chooseAvatar": "Choose an avatar",
         "buttonLink": "Edit",
         "message": "Update your email and password",
         "title": "Edit Profile",
