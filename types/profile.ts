@@ -1,8 +1,10 @@
+import { AvatarKey } from "@/constants/avatars";
+
 export interface ProfileResponse {
   userId: number;
   username: string;
   email: string;
-  image: string | null;
+  image: AvatarKey;
   day_learning_streak: number;
   ranked_victories: number;
   xpCurrent: number;

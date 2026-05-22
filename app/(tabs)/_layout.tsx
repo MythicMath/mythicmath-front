@@ -6,9 +6,11 @@ import { useProfileStore } from "@/store/profile";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabsLayout() {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
   const insets = useSafeAreaInsets();
@@ -25,9 +27,11 @@ export default function TabsLayout() {
       setProfile(data);
     } catch (error: any) {
       if (error?.response?.status !== 401) {
+        const translatedMessage = t(`errors.LOAD_PROFILE_ERROR`);
+
         show({
           type: "error",
-          message: "LOAD_PROFILE_ERROR",
+          message: translatedMessage,
         });
       }
     } finally {

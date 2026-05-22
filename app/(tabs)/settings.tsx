@@ -35,9 +35,11 @@ export default function SettingsScreen() {
       await i18n.changeLanguage(newLang);
       await AsyncStorage.setItem("lang", newLang);
     } catch {
+      const translatedMessage = t(`errors.CHANGE_LANGUAGE_ERROR`);
+
       show({
         type: "error",
-        message: "CHANGE_LANGUAGE_ERROR",
+        message: translatedMessage,
       });
     }
   }

@@ -3,13 +3,14 @@ import { View } from "react-native";
 //Theme
 import { useTheme } from "@/hooks/useTheme";
 import { useTranslation } from "react-i18next";
-import { ProgressBar } from "../Statistics/ProgressBar";
-import { Avatar } from "../User/Avatar";
-import { Chip } from "../User/Chip";
 import { AppText } from "../Core/AppText";
+import { ProgressBar } from "../Statistics/ProgressBar";
+import { AvatarProfile } from "../User/AvatarProfile";
+import { Chip } from "../User/Chip";
+import { AvatarKey } from "@/constants/avatars";
 
 type Props = {
-  image: string;
+  image: AvatarKey;
   name: string;
 
   level: number;
@@ -36,7 +37,7 @@ export default function UserInfo({
   return (
     <View>
       <View className="flex flex-row gap-3">
-        <Avatar size={56} uri={image} name={name} />
+        <AvatarProfile size={56} source={image} name={name} />
 
         <View className="flex pb-5">
           <AppText
