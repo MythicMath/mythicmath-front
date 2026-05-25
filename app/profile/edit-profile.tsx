@@ -33,6 +33,7 @@ export default function EditProfileScreen() {
   const profile = useProfileStore((s) => s.profile);
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     control,
@@ -62,6 +63,7 @@ export default function EditProfileScreen() {
 
   async function handleUpdate(data: FormDataUpdateUser) {
     try {
+      setIsLoading(true);
       await updateUser({
         userId: profile?.userId || 0,
         email: data.email || undefined,
@@ -82,6 +84,8 @@ export default function EditProfileScreen() {
         type: "error",
         message: translatedMessage,
       });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -116,6 +120,7 @@ export default function EditProfileScreen() {
               <InputField
                 placeholder={t("screen.profile.editProfile.email")}
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 error={errors.email?.message}
                 isFocused={focusedInput === "email"}
@@ -133,6 +138,7 @@ export default function EditProfileScreen() {
               <InputField
                 placeholder={t("screen.profile.editProfile.password")}
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 secureTextEntry
                 error={errors.password?.message}
@@ -151,6 +157,7 @@ export default function EditProfileScreen() {
               <InputField
                 placeholder={t("screen.profile.editProfile.confirmPassword")}
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 secureTextEntry
                 error={errors.confirmPassword?.message}
@@ -171,6 +178,7 @@ export default function EditProfileScreen() {
                   t("screen.profile.editProfile.currentPassword") + "*"
                 }
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 secureTextEntry
                 error={errors.currentPassword?.message}
@@ -181,7 +189,10 @@ export default function EditProfileScreen() {
             )}
           />
 
-          <ButtonGradient onPress={handleSubmit(handleUpdate)}>
+          <ButtonGradient
+            onPress={handleSubmit(handleUpdate)}
+            loading={isLoading}
+          >
             <Sparkles size={16} color={theme.colors.textLight} />
             <AppText className="font-semibold" color={theme.colors.textLight}>
               {t("screen.profile.editProfile.saveButton")}

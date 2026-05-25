@@ -1,5 +1,6 @@
-import { Pressable, ColorValue, View } from "react-native";
+import { Pressable, ColorValue, View, ActivityIndicator } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+
 import { useTheme } from "@/hooks/useTheme";
 
 type GradientColors = readonly [ColorValue, ColorValue, ...ColorValue[]];
@@ -7,6 +8,8 @@ type GradientColors = readonly [ColorValue, ColorValue, ...ColorValue[]];
 type Props = {
   onPress?: () => void;
   disabled?: boolean;
+  loading?: boolean;
+
   children: React.ReactNode;
 
   bgColored?: GradientColors;
@@ -15,7 +18,8 @@ type Props = {
 
 export default function ButtonGradient({
   onPress,
-  disabled,
+  disabled = false,
+  loading = false,
   bgColored,
   bgColoredPressed,
   children,
@@ -25,24 +29,30 @@ export default function ButtonGradient({
   const defaultBg = bgColored ?? theme.gradients.bgColored;
   const defaultBgPressed = bgColoredPressed ?? theme.gradients.bgColoredPressed;
 
+  const isDisabled = disabled || loading;
+
   return (
-    <Pressable
-      onPress={onPress}
-      disabled={disabled}
-    >
+    <Pressable testID="gradient-button" onPress={onPress} disabled={isDisabled}>
       {({ pressed }) => (
         <View
           className={`rounded-xl overflow-hidden ${
-            disabled ? "opacity-50" : pressed ? "opacity-80" : ""
+            isDisabled ? "opacity-50" : pressed ? "opacity-80" : ""
           }`}
         >
           <LinearGradient
             colors={pressed ? defaultBgPressed : defaultBg}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }}
-            className="flex flex-row justify-center items-center p-4 gap-4"
+            className="flex-row justify-center items-center p-4 gap-4"
           >
-            {children}
+            {loading ? (
+              <ActivityIndicator
+                testID="loading-indicator"
+                color={theme.colors.textLight}
+              />
+            ) : (
+              children
+            )}
           </LinearGradient>
         </View>
       )}

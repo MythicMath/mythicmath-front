@@ -28,6 +28,7 @@ export default function RegisterScreen() {
   const { show } = useAlert();
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     control,
@@ -45,6 +46,7 @@ export default function RegisterScreen() {
 
   async function handleRegister(data: FormDataRegister) {
     try {
+      setIsLoading(true);
       await register(data);
       router.replace("/(tabs)");
     } catch (error: any) {
@@ -54,6 +56,8 @@ export default function RegisterScreen() {
         type: "error",
         message: translatedMessage,
       });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -95,6 +99,7 @@ export default function RegisterScreen() {
               <InputField
                 placeholder={t("screen.register.fields.username") + "*"}
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 error={errors.username?.message}
                 isFocused={focusedInput === "username"}
@@ -112,6 +117,7 @@ export default function RegisterScreen() {
               <InputField
                 placeholder={t("screen.register.fields.email") + "*"}
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 error={errors.email?.message}
                 isFocused={focusedInput === "email"}
@@ -129,6 +135,7 @@ export default function RegisterScreen() {
               <InputField
                 placeholder={t("screen.register.fields.password") + "*"}
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 secureTextEntry
                 error={errors.password?.message}
@@ -147,6 +154,7 @@ export default function RegisterScreen() {
               <InputField
                 placeholder={t("screen.register.fields.confirmPassword") + "*"}
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 secureTextEntry
                 error={errors.confirmPassword?.message}
@@ -157,7 +165,10 @@ export default function RegisterScreen() {
             )}
           />
 
-          <ButtonGradient onPress={handleSubmit(handleRegister)}>
+          <ButtonGradient
+            onPress={handleSubmit(handleRegister)}
+            loading={isLoading}
+          >
             <Sparkles size={16} color={theme.colors.textLight} />
             <AppText className="font-semibold" color={theme.colors.textLight}>
               {t("screen.register.button.login")}

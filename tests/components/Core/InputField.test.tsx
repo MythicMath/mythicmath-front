@@ -50,12 +50,12 @@ describe("InputField", () => {
     render(
       <InputField
         placeholder="Email"
-        error="Invalid email"
+        error="INVALID_EMAIL_FORMAT"
         onChange={() => {}}
       />
     );
 
-    expect(screen.getByText("Invalid email")).toBeTruthy();
+    expect(screen.getByText("errors.INVALID_EMAIL_FORMAT")).toBeTruthy();
   });
 
   it("should render secure text toggle icon", () => {

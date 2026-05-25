@@ -1,5 +1,5 @@
 import ButtonGradient from "@/components/Core/ButtonGradient";
-import { Text } from "react-native";
+import { Pressable, Text } from "react-native";
 import { render, screen, fireEvent } from "@testing-library/react-native";
 
 describe("ButtonGradient", () => {
@@ -51,6 +51,30 @@ describe("ButtonGradient", () => {
     );
 
     fireEvent.press(screen.getByText("Disabled Button"));
+
+    expect(onPress).not.toHaveBeenCalled();
+  });
+
+  it("should render loading indicator", () => {
+    render(
+      <ButtonGradient loading>
+        <Text>Loading Button</Text>
+      </ButtonGradient>,
+    );
+
+    expect(screen.getByTestId("loading-indicator")).toBeTruthy();
+  });
+
+  it("should not call onPress when loading", () => {
+    const onPress = jest.fn();
+
+    render(
+      <ButtonGradient onPress={onPress} loading>
+        <Text>Loading Button</Text>
+      </ButtonGradient>,
+    );
+
+    fireEvent.press(screen.getByTestId("gradient-button"));
 
     expect(onPress).not.toHaveBeenCalled();
   });
