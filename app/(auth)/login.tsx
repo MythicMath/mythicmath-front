@@ -30,6 +30,7 @@ export default function LoginScreen() {
   const { show } = useAlert();
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     control,
@@ -38,8 +39,8 @@ export default function LoginScreen() {
   } = useForm<FormDataLogin>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      identifier: "analins1",
-      password: "analins1",
+      identifier: "analins123",
+      password: "analins123",
     },
   });
 
@@ -50,6 +51,8 @@ export default function LoginScreen() {
     };
 
     try {
+      setIsLoading(true);
+
       await login(payload);
       router.replace("/(tabs)");
     } catch (error: any) {
@@ -59,6 +62,8 @@ export default function LoginScreen() {
         type: "error",
         message: translatedMessage,
       });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -100,6 +105,7 @@ export default function LoginScreen() {
               <InputField
                 placeholder={t("screen.login.fields.nameEmail") + "*"}
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 error={errors.identifier?.message}
                 isFocused={focusedInput === "identifier"}
@@ -117,6 +123,7 @@ export default function LoginScreen() {
               <InputField
                 placeholder={t("screen.login.fields.password") + "*"}
                 value={value}
+                disabled={isLoading}
                 onChange={onChange}
                 secureTextEntry
                 error={errors.password?.message}
@@ -127,7 +134,10 @@ export default function LoginScreen() {
             )}
           />
 
-          <ButtonGradient onPress={handleSubmit(handleLogin)}>
+          <ButtonGradient
+            onPress={handleSubmit(handleLogin)}
+            loading={isLoading}
+          >
             <Sparkles size={16} color={theme.colors.textLight} />
             <AppText className="font-semibold" color={theme.colors.textLight}>
               {t("screen.login.button.login")}
