@@ -21,11 +21,14 @@ import { Sparkles } from "lucide-react-native";
 import InputField from "@/components/Core/InputField";
 import { AppText } from "@/components/Core/AppText"; // 👈 add
 import { useAlert } from "@/contexts/alert/useAlert";
+import { profile } from "@/src/api/profile.api";
+import { useProfileStore } from "@/store/profile";
 
 export default function RegisterScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
   const { show } = useAlert();
+  const setProfile = useProfileStore((state) => state.setProfile);
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,6 +51,11 @@ export default function RegisterScreen() {
     try {
       setIsLoading(true);
       await register(data);
+
+      const userProfile = await profile();
+
+      setProfile(userProfile);
+
       router.replace("/(tabs)");
     } catch (error: any) {
       const translatedMessage = t(`errors.${error.friendlyMessage}`);
@@ -70,7 +78,7 @@ export default function RegisterScreen() {
     >
       <View className="flex-1 justify-center items-center p-6">
         <Image
-          source={require("@/assets/images/icon_transparent.png")}
+          source={require("@/assets/images/icon-transparent.png")}
           className="w-28 h-28 rounded-full mb-4"
         />
 

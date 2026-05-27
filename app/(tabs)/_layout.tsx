@@ -1,61 +1,11 @@
-import { LoadingApp } from "@/components/Core/LoadingApp";
-import { useAlert } from "@/contexts/alert/useAlert";
 import { useTheme } from "@/hooks/useTheme";
-import { profile } from "@/src/api/profile.api";
-import { useProfileStore } from "@/store/profile";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabsLayout() {
-  const [loading, setLoading] = useState(true);
   const theme = useTheme();
   const insets = useSafeAreaInsets();
-  const { show } = useAlert();
-
-  const setProfile = useProfileStore((s) => s.setProfile);
-
-  const loadUser = useCallback(async () => {
-    try {
-      setLoading(true);
-
-      const data = await profile();
-
-      setProfile(data);
-    } catch (error: any) {
-      if (error?.response?.status !== 401) {
-        show({
-          type: "error",
-          message: "LOAD_PROFILE_ERROR",
-        });
-      }
-    } finally {
-      setLoading(false);
-    }
-  }, [show, setProfile]);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    const checkAuth = async () => {
-      try {
-        await loadUser();
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    checkAuth();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [loadUser]);
-
-  if (loading) return <LoadingApp />;
 
   return (
     <Tabs

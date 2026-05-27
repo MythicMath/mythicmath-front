@@ -6,28 +6,23 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Image, View } from "react-native";
-
-// Components
 import CardAuth from "@/components/User/CardAuth";
 import ButtonGradient from "@/components/Core/ButtonGradient";
 import { ButtonLink } from "@/components/Core/ButtonLink";
-
-//Hook
 import { useTheme } from "@/hooks/useTheme";
-
-//API
 import { login } from "@/src/api/auth.api";
-
-//Zod Schema
 import { FormDataLogin, loginSchema } from "@/helper/zodSchema/user";
 import InputField from "@/components/Core/InputField";
 import { AppText } from "@/components/Core/AppText";
 import { useAlert } from "@/contexts/alert/useAlert";
+import { useProfileStore } from "@/store/profile";
+import { profile } from "@/src/api/profile.api";
 
 export default function LoginScreen() {
   const theme = useTheme();
   const { t } = useTranslation();
   const { show } = useAlert();
+  const setProfile = useProfileStore((state) => state.setProfile);
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +49,11 @@ export default function LoginScreen() {
       setIsLoading(true);
 
       await login(payload);
+
+      const userProfile = await profile();
+
+      setProfile(userProfile);
+
       router.replace("/(tabs)");
     } catch (error: any) {
       const translatedMessage = t(`errors.${error.friendlyMessage}`);
@@ -76,7 +76,7 @@ export default function LoginScreen() {
     >
       <View className="flex-1 justify-center items-center p-6">
         <Image
-          source={require("@/assets/images/icon_transparent.png")}
+          source={require("@/assets/images/icon-transparent.png")}
           className="w-28 h-28 rounded-full mb-4"
         />
 
