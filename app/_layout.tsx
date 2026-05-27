@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SplashScreen, Stack, router } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import { initI18n } from "@/i18n";
+import { i18nInitialization } from "@/i18n";
 
 import { getToken } from "@/src/api/auth.api";
 import { profile } from "@/src/api/profile.api";
@@ -36,7 +36,7 @@ export default function RootLayout() {
 
   async function initializeApplication() {
     try {
-      await initI18n();
+       await i18nInitialization;
 
       const authenticationToken = await getToken();
 
