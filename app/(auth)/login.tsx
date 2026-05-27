@@ -76,7 +76,7 @@ export default function LoginScreen() {
     >
       <View className="flex-1 justify-center items-center p-6">
         <Image
-          source={require("@/assets/images/icon_transparent.png")}
+          source={require("@/assets/images/icon-transparent.png")}
           className="w-28 h-28 rounded-full mb-4"
         />
 
