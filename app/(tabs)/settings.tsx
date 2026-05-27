@@ -1,13 +1,7 @@
 import { router } from "expo-router";
 import { View } from "react-native";
-
-//Hook
 import { useTheme } from "@/hooks/useTheme";
-
-//Services
 import { logout } from "@/src/api/auth.api";
-
-//Componentes Core
 import { ButtonApp } from "@/components/Core/ButtonApp";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LinearGradient } from "expo-linear-gradient";
@@ -15,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import Card from "@/components/Core/Card";
 import { AppText } from "@/components/Core/AppText";
 import { useAlert } from "@/contexts/alert/useAlert";
+import { ROUTES } from "@/constants/routes";
 
 export default function SettingsScreen() {
   const theme = useTheme();
@@ -24,7 +19,7 @@ export default function SettingsScreen() {
 
   async function handleLogout() {
     await logout();
-    router.replace("/(auth)/login");
+    router.replace(ROUTES.AUTH.LOGIN);
   }
 
   async function handleSetLanguage() {
@@ -35,9 +30,10 @@ export default function SettingsScreen() {
       await i18n.changeLanguage(newLang);
       await AsyncStorage.setItem("lang", newLang);
     } catch {
+      const translatedMessage = t(`errors.CHANGE_LANGUAGE_ERROR`);
       show({
         type: "error",
-        message: "CHANGE_LANGUAGE_ERROR",
+        message: translatedMessage,
       });
     }
   }

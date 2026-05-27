@@ -91,7 +91,7 @@
       "setLanguage": "Mudar idioma: "
     }
   },
-  "error": {
+  "errors": {
     "DEFAULT_ERROR": "Algo deu errado.",
     "LOAD_PROFILE_ERROR": "Falha ao carregar o perfil.",
     "CHANGE_LANGUAGE_ERROR": "Falha ao alterar o idioma.",

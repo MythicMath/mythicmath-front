@@ -1,18 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
-
-//Components
 import { AppScrollView } from "@/components/Core/AppScrollView";
-import { LoadingApp } from "@/components/Core/LoadingApp";
 import CardStatistics from "@/components/Statistics/CardStatistics";
 import ProfileCard from "@/components/User/ProfileCard";
-
-//Services
 import { useTheme } from "@/hooks/useTheme";
 import { useProfileStore } from "@/store/profile";
 import { LinearGradient } from "expo-linear-gradient";
 import { AppText } from "@/components/Core/AppText";
+import { LoadingScreen } from "@/components/Core/LoadingScreen";
 
 export default function ProfileScreen() {
   const theme = useTheme();
@@ -20,7 +16,7 @@ export default function ProfileScreen() {
   const profileData = useProfileStore((s) => s.profile);
 
   if (!profileData) {
-    return <LoadingApp />;
+    return <LoadingScreen />;
   }
 
   return (

@@ -1,30 +1,23 @@
 import React from "react";
 import { View } from "react-native";
-
-//Components
-import { LoadingApp } from "@/components/Core/LoadingApp";
 import UserInfo from "@/components/Home/UserInfo";
-
-//Services
 import { AppScrollView } from "@/components/Core/AppScrollView";
 import CardStatistics from "@/components/Statistics/CardStatistics";
 import { useTheme } from "@/hooks/useTheme";
 import { LinearGradient } from "expo-linear-gradient";
-
-//Store
 import { useProfileStore } from "@/store/profile";
 import { useTranslation } from "react-i18next";
 import CardHome from "@/components/Home/CardHome";
 import { AppText } from "@/components/Core/AppText";
+import { LoadingScreen } from "@/components/Core/LoadingScreen";
 
 export default function Home() {
   const theme = useTheme();
   const { t } = useTranslation();
-
   const profileData = useProfileStore((s) => s.profile);
 
   if (!profileData) {
-    return <LoadingApp />;
+    return <LoadingScreen />;
   }
 
   return (
